@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PractikalLesson_1
 {
     class Program
-    {       
+    {
         static void Main(string[] args)
         {
             double minimumWage = 6500;
@@ -22,6 +22,9 @@ namespace PractikalLesson_1
 
             double singleSocialContribution = minimumWage * 0.22;
             double sumInHruvnia = 0;
+            double singleTax;
+            double taxDeduction;
+            double sumOfIncome;
 
             Console.WriteLine("Введите валюту вашего дохода");
             Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
@@ -29,49 +32,45 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
 
             string currence = Console.ReadLine();
+            Console.Clear();
 
             //Вычисление суммы в гривнах
 
             if (currence == hryvnia)
             {
-                Console.Clear();
                 Console.WriteLine("Пожалуйста, введите сумму");
-                double sumOfIncome = Convert.ToDouble(Console.ReadLine());
+                sumOfIncome = Convert.ToDouble(Console.ReadLine());
                 sumInHruvnia = sumOfIncome * kursHruvnia;
             }
             else if (currence == dollar)
             {
-                Console.Clear();
                 Console.WriteLine("Пожалуйста, введите сумму вашего дохода в виде ранее выбранной валюты ");
-                double sumOfIncome = Convert.ToDouble(Console.ReadLine());
+                sumOfIncome = Convert.ToDouble(Console.ReadLine());
                 sumInHruvnia = sumOfIncome * kursDollar;
             }
-
             else if (currence == euro)
             {
-                Console.Clear();
                 Console.WriteLine("Пожалуйста, введите сумму вашего дохода в виде ранее выбранной валюты ");
-                double sumOfIncome = Convert.ToDouble(Console.ReadLine());
-                sumInHruvnia = sumOfIncome * kursEuro;            
+                sumOfIncome = Convert.ToDouble(Console.ReadLine());
+                sumInHruvnia = sumOfIncome * kursEuro;
             }
             else
             {
                 Console.WriteLine("Введено неверное значение, попробуйте снова!");
             }
 
-            //Прибыль, за вычетом налогов
+            //Прибыль, за вычетом 
 
             Console.Clear();
             Console.WriteLine("Вот ваш счет!");
-            Console.WriteLine("Сумма в гривнах"+sumInHruvnia);
-            double singleTax = sumInHruvnia * 0.05;
-            Console.WriteLine("Сумма единого налога равна:"+ singleTax);
-            Console.WriteLine("Сумма единого социального взноса равна:"+singleSocialContribution);
-            double taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-            Console.WriteLine("Ваша прибыль, за вычетом налогов равна: :" + taxDeduction);
+            Console.WriteLine("Сумма в гривнах " + sumInHruvnia + " грн.");
+            singleTax = sumInHruvnia * 0.05;
+            Console.WriteLine("Сумма единого налога равна " + singleTax + " грн.");
+            Console.WriteLine("Сумма единого социального взноса равна " + singleSocialContribution);
+            taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
+            Console.WriteLine("Ваша прибыль, за вычетом налогов равна " + taxDeduction + " грн.");
 
             Console.ReadKey();
         }
-      
     }
 }
