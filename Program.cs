@@ -10,15 +10,23 @@ namespace PractikalLesson_1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите свой год рождения ");
-            Console.WriteLine("_____________________________");
-            int adult = 2004;
+            Console.WriteLine("Введите свой год рождения:");
+            Console.Write("Вы работаутстроены?");
+            Console.WriteLine(" ");
+            Console.WriteLine("(Введите Yes если да и No если нет):");
+
+            bool TripleWork, IsEighteen;
             int ReturnUser = Convert.ToInt32(Console.ReadLine());
-            bool IsEighteen = ReturnUser <= adult;   
+            int adult = 2004;
+            IsEighteen = ReturnUser <= adult;
+
+            string input = Console.ReadLine();
+            string TrueTripleWork = "Yes";
+            TripleWork = input == TrueTripleWork;
 
             string Exite = "Exit";
             string UserInput = Console.ReadLine();
-            if (IsEighteen)
+            if (IsEighteen & TripleWork)
             {
                 CalculatorTax();
             }
@@ -34,10 +42,9 @@ namespace PractikalLesson_1
 
             void CalculatorTax()
             {
-                string hryvnia = "UAH";
-                string dollar = "USD";
-                string euro = "EUR";
-
+                const string hryvnia = "UAH";
+                const string dollar = "USD";
+                const string euro = "EUR";
 
                 double kursDollar = 29.2;
                 double kursHruvnia = 1;
@@ -64,33 +71,24 @@ namespace PractikalLesson_1
                 Console.Clear();
 
                 //Вычисление суммы в гривнах
+                sumOfIncome = Convert.ToDouble(Console.ReadLine());
+                switch (currence)
+                {
+                    case hryvnia:
+                        Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
+                        sumInHruvnia = sumOfIncome * kursHruvnia;
+                        break;
 
-                if (currence == hryvnia)
-                {
-                    Console.WriteLine("Пожалуйста, введите сумму");
-                    sumOfIncome = Convert.ToDouble(Console.ReadLine());
-                    sumInHruvnia = sumOfIncome * kursHruvnia;
-                }
-                else if (currence == dollar)
-                {
-                    Console.WriteLine("Пожалуйста, введите сумму вашего дохода в виде ранее выбранной валюты ");
-                    sumOfIncome = Convert.ToDouble(Console.ReadLine());
-                    sumInHruvnia = sumOfIncome * kursDollar;
-                }
-                else if (currence == euro)
-                {
-                    Console.WriteLine("Пожалуйста, введите сумму вашего дохода в виде ранее выбранной валюты ");
-                    sumOfIncome = Convert.ToDouble(Console.ReadLine());
-                    sumInHruvnia = sumOfIncome * kursEuro;
-                }
-                else
-                {
-                    Console.WriteLine("Введено неверное значение, попробуйте снова!");
-                    Console.WriteLine("_______________________________________________");
-                    Console.WriteLine(" ");
-                    Main(args);
-                }
+                    case dollar:
+                        Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
+                        sumInHruvnia = sumOfIncome * kursDollar;
+                        break;
 
+                    case euro:
+                        Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
+                        sumInHruvnia = sumOfIncome * kursEuro;
+                        break;
+                }
                 Tax(" ");
 
             //Прибыль, за вычетом 
@@ -121,12 +119,10 @@ namespace PractikalLesson_1
                     {
                         CalculatorTax();
                     }
-
                     else if (exit == userInput)
                     {
                         Console.ReadKey();
                     }
-
                     else
                     {
                         Tax(InputFalse);
