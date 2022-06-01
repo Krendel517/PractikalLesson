@@ -10,7 +10,6 @@ namespace PractikalLesson_1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите свой год рождения");
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
@@ -26,17 +25,20 @@ namespace PractikalLesson_1
             double taxDeduction;
             double sumOfIncome;
 
-            int userAge = Convert.ToInt32(Console.ReadLine());
-           
-            string input = Console.ReadLine();
+            Console.WriteLine(@"Введите свой год рождения
+_____________________________");
+
             string exitTrigger = "Exit";
             bool isEighteen;
             bool exceedingLimitAge;
-            int adult = 2004, questionableAge = 1920;
-            isEighteen = userAge <= adult;
-            exceedingLimitAge = userAge >= questionableAge;
+            int adult = 2004;
+            int questionableAge = 1920;
 
-            Console.WriteLine("Введите свой год рождения");
+            string input = Console.ReadLine();
+            int result = Int32.Parse(input);
+            isEighteen = result <= adult;
+            exceedingLimitAge = result >= questionableAge;
+            
 
             if (isEighteen & exceedingLimitAge)
             {
@@ -47,7 +49,8 @@ namespace PractikalLesson_1
             {
                 Console.Clear();
                 Console.WriteLine("На данный момент у вас нету возможности воспользоваться данными услугами, пожалуйста, введи Exit, чтобы выйти");
-                if (exitTrigger == input)
+                input = Console.ReadLine();
+                if (input == exitTrigger)
                 {
                     Console.ReadKey();
                 }
@@ -65,22 +68,27 @@ namespace PractikalLesson_1
                 Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
 
                 input = Console.ReadLine();
+
                 Console.Clear();
 
                 //Вычисление суммы в гривнах
-                Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
-                sumOfIncome = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine(@"Пожалуйста, введите сумму вашего дохода
+_____________________________________");
+               
                 switch (input)
-                {
+                { 
                     case hryvnia:
+                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursHruvnia;
                         break;
 
                     case dollar:
+                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursDollar;
                         break;
 
                     case euro:
+                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursEuro;
                         break;
                     default:
@@ -95,7 +103,6 @@ namespace PractikalLesson_1
             void CalculateTax(string HollowString)
                 {
                     string exit = "Exit";
-                    input = Console.ReadLine();
                     string calculatorAgain = "Calculate again";
                     string InputFalse = @"Значение не корректно, попробуйте снова
 ___________________________________________";
@@ -111,11 +118,12 @@ ___________________________________________";
                     taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
                     Console.WriteLine($"Ваша прибыль, за вычетом налогов равна {taxDeduction} грн.");
                     Console.WriteLine("_________________________________________");
-                    Console.WriteLine(" ");
+                    Console.WriteLine("");
                     Console.WriteLine(HollowString);
-                    Console.WriteLine(" ");
                     Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
                     Console.WriteLine("Если же вы желаете выйти, введите Exit");
+
+                    input = Console.ReadLine();
 
                     if (calculatorAgain == input)
                     {
