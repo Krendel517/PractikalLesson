@@ -10,24 +10,19 @@ namespace PractikalLesson_1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите свой год рождения:");
-            Console.Write("Вы работаутстроены?");
-            Console.WriteLine(" ");
-            Console.WriteLine("(Введите Yes если да и No если нет):");
+            Console.WriteLine("Введите свой год рождения (Введите Yes если да и No если нет):");
 
-            bool TripleWork, IsEighteen;
+            bool IsEighteen,InputAge;
             int ReturnUser = Convert.ToInt32(Console.ReadLine());
-            int adult = 2004;
+            int adult = 2004, questionableAge = 1920;
             IsEighteen = ReturnUser <= adult;
-
-            string input = Console.ReadLine();
-            string TrueTripleWork = "Yes";
-            TripleWork = input == TrueTripleWork;
+            InputAge = ReturnUser >= questionableAge;
 
             string Exite = "Exit";
             string UserInput = Console.ReadLine();
-            if (IsEighteen & TripleWork)
+            if (IsEighteen & InputAge)
             {
+                Console.Clear();
                 CalculatorTax();
             }
             else
@@ -57,7 +52,6 @@ namespace PractikalLesson_1
                 double taxDeduction;
                 double sumOfIncome;
 
-                Console.Clear();
                 Console.WriteLine("Введите валюту вашего дохода");
                 Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
                 Console.WriteLine(" ");
@@ -71,22 +65,30 @@ namespace PractikalLesson_1
                 Console.Clear();
 
                 //Вычисление суммы в гривнах
-                sumOfIncome = Convert.ToDouble(Console.ReadLine());
+                
                 switch (currence)
                 {
                     case hryvnia:
                         Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
+                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursHruvnia;
                         break;
 
                     case dollar:
                         Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
+                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursDollar;
                         break;
 
                     case euro:
                         Console.WriteLine("Пожалуйста, введите сумму вашего дохода");
+                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursEuro;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, попробуйте снова!");
+                        CalculatorTax();
                         break;
                 }
                 Tax(" ");
@@ -117,6 +119,7 @@ namespace PractikalLesson_1
 
                     if (calculatorAgain == userInput)
                     {
+                        Console.Clear();
                         CalculatorTax();
                     }
                     else if (exit == userInput)
