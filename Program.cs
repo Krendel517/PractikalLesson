@@ -25,7 +25,7 @@ namespace PractikalLesson_1
             double taxDeduction;
             double sumOfIncome;
 
-            Console.WriteLine(@"Введите свой год рождения
+            Console.WriteLine(@"Введите свой год рожденияЫ
 _____________________________");
 
             string exitTrigger = "Exit";
@@ -74,21 +74,19 @@ _____________________________");
                 //Вычисление суммы в гривнах
                 Console.WriteLine(@"Пожалуйста, введите сумму вашего дохода
 _____________________________________");
-               
+                sumOfIncome = Convert.ToDouble(Console.ReadLine());
+
                 switch (input)
                 { 
                     case hryvnia:
-                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursHruvnia;
                         break;
 
                     case dollar:
-                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursDollar;
                         break;
 
                     case euro:
-                        sumOfIncome = Convert.ToDouble(Console.ReadLine());
                         sumInHruvnia = sumOfIncome * kursEuro;
                         break;
                     default:
@@ -100,7 +98,7 @@ _____________________________________");
                 CalculateTax("");
 
             //Прибыль, за вычетом 
-            void CalculateTax(string HollowString)
+            void CalculateTax(string hollowString)
                 {
                     string exit = "Exit";
                     string calculatorAgain = "Calculate again";
@@ -119,7 +117,7 @@ ___________________________________________";
                     Console.WriteLine($"Ваша прибыль, за вычетом налогов равна {taxDeduction} грн.");
                     Console.WriteLine("_________________________________________");
                     Console.WriteLine("");
-                    Console.WriteLine(HollowString);
+                    Console.WriteLine(hollowString);
                     Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
                     Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
