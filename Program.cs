@@ -8,6 +8,7 @@ namespace PractikalLesson_1
 {
     class Program
     {
+        enum TypeOfUserInput { year, currence, money, command };
         static void Main(string[] args)
         {
             const string hryvnia = "UAH";
@@ -23,38 +24,30 @@ namespace PractikalLesson_1
             double sumInHruvnia = 0;
             double singleTax;
             double taxDeduction;
-            double sumOfIncome;
+            string exit = "Exit";
+            string calculatorAgain = "Calculate again";
+            string wrongInput = "";
 
-            Console.WriteLine(@"Введите свой год рожденияЫ
+            Console.WriteLine(@"Введите свой год рождения
 _____________________________");
 
-            string exitTrigger = "Exit";
-            bool isEighteen;
-            bool exceedingLimitAge;
-            int adult = 2004;
-            int questionableAge = 1920;
+            string input;
+            input = GetUserInput(TypeOfUserInput.year);
 
-            string input = Console.ReadLine();
-            int result = Int32.Parse(input);
-            isEighteen = result <= adult;
-            exceedingLimitAge = result >= questionableAge;
-            
-
-            if (isEighteen & exceedingLimitAge)
+            if (input != wrongInput)
             {
                 Console.Clear();
                 ChooseCurrency();
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("На данный момент у вас нету возможности воспользоваться данными услугами, пожалуйста, введи Exit, чтобы выйти");
-                input = Console.ReadLine();
-                if (input == exitTrigger)
+                Console.WriteLine("Значение некорректно, введите Exit, чтобы выйти");
+                string inputCommand = Console.ReadLine();
+                if (inputCommand == exit)
                 {
                     Console.ReadKey();
                 }
-            }
+            }    
 
             void ChooseCurrency()
             {
@@ -67,41 +60,45 @@ _____________________________");
                 Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
                 Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
 
-                input = Console.ReadLine();
+                string inputCur = GetUserInput(TypeOfUserInput.currence);
 
                 Console.Clear();
 
                 //Вычисление суммы в гривнах
                 Console.WriteLine(@"Пожалуйста, введите сумму вашего дохода
 _____________________________________");
-                sumOfIncome = Convert.ToDouble(Console.ReadLine());
 
-                switch (input)
-                { 
-                    case hryvnia:
-                        sumInHruvnia = sumOfIncome * kursHruvnia;
-                        break;
+                input = GetUserInput(TypeOfUserInput.money);
+                int inputMonye = Convert.ToInt32(input);
 
-                    case dollar:
-                        sumInHruvnia = sumOfIncome * kursDollar;
-                        break;
-
-                    case euro:
-                        sumInHruvnia = sumOfIncome * kursEuro;
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Значение некорректно, попробуйте снова!");
-                        ChooseCurrency();
-                        break;
-                }
-                CalculateTax("");
-
-            //Прибыль, за вычетом 
-            void CalculateTax(string hollowString)
+                if (input != wrongInput)
                 {
-                    string exit = "Exit";
-                    string calculatorAgain = "Calculate again";
+                    switch (inputCur)
+                    {
+                        case hryvnia:
+                            sumInHruvnia = inputMonye * kursHruvnia;
+                            break;
+
+                        case dollar:
+                            sumInHruvnia = inputMonye * kursDollar;
+                            break;
+
+                        case euro:
+                            sumInHruvnia = inputMonye * kursEuro;
+                            break;
+                    }
+                    CalculateTax("");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение некорректно, пропробуйте снова");
+                    ChooseCurrency();
+                }
+
+                //Прибыль, за вычетом 
+                void CalculateTax(string hollowString)
+                {
                     string InputFalse = @"Значение не корректно, попробуйте снова
 ___________________________________________";
 
@@ -121,14 +118,14 @@ ___________________________________________";
                     Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
                     Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
-                    input = Console.ReadLine();
+                    input = GetUserInput(TypeOfUserInput.command);
 
-                    if (calculatorAgain == input)
+                    if (input == calculatorAgain)
                     {
                         Console.Clear();
                         ChooseCurrency();
                     }
-                    else if (exit == input)
+                    else if (input == exit)
                     {
                         Console.ReadKey();
                     }
@@ -137,6 +134,67 @@ ___________________________________________";
                         CalculateTax(InputFalse);
                     }
                 }
+            }
+
+            string GetUserInput(TypeOfUserInput type)
+            {
+                string currentInput = "";
+                string userInput = Console.ReadLine();
+
+                if (type == TypeOfUserInput.year)
+                {
+                    int adult = 2004;
+                    int questionableAge = 1920;
+                    int userInputInt = Convert.ToInt32(userInput);
+                    if (userInputInt <= adult && userInputInt >= questionableAge)
+                    {
+                        currentInput = userInput;
+                    }
+
+                }
+                else if (type == TypeOfUserInput.currence)
+                {
+                    if (userInput == hryvnia)
+                    {
+                        currentInput = hryvnia;
+                    }
+
+                    else if (userInput == dollar)
+                    {
+                        currentInput = dollar;
+                    }
+
+                    else if (userInput == euro)
+                    {
+                        currentInput = euro;
+                    }
+                }
+                else if (type == TypeOfUserInput.money)
+                {
+                    bool isNumber = userInput.All(Char.IsDigit);
+                    if (isNumber)
+                    {
+                        currentInput = userInput;
+                    }
+                }
+                else if (type == TypeOfUserInput.command)
+                {
+                    if (userInput == calculatorAgain)
+                    {
+                        currentInput = userInput;
+                    }
+                    else if (userInput == exit)
+
+                    {
+                        currentInput = userInput;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Значение некорректно, нажмите на любую клавишу, чтобы выйти");
+                }
+
+                return currentInput;
             }
         }
     }
