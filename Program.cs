@@ -25,6 +25,8 @@ namespace PractikalLesson_1
             double singleTax;
             double taxDeduction;
             string exit = "Exit";
+            string calculatorCont = "Yeas";
+            string calculatorNotCont = "No";
             string calculatorAgain = "Calculate again";
             string wrongInput = "";
 
@@ -37,85 +39,115 @@ _____________________________");
             if (input != wrongInput)
             {
                 Console.Clear();
-                IncomeForAnual();
-            }
-           
-            void IncomeForAnual()
-            {
-                string[] moth = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-                string[] monthlySalary = new string[12];
-                int[] monthlySalaryInt = new int[12];
-                int annualIncome;
-
-                for (int count = 0; count <= 11; count++)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Введите ваш доход за " + moth[count]);
-                    monthlySalary[count] = GetUserInput(TypeOfUserInput.money);
-                    monthlySalaryInt[count] = Convert.ToInt32(monthlySalary[count]);
-                }
-                annualIncome = monthlySalaryInt[0] + monthlySalaryInt[1] + monthlySalaryInt[2] + monthlySalaryInt[3] + monthlySalaryInt[4] + monthlySalaryInt[5] + monthlySalaryInt[6]
-                + monthlySalaryInt[7] + monthlySalaryInt[8] + monthlySalaryInt[9] + monthlySalaryInt[10] + monthlySalaryInt[11];
-
-                Console.Clear();
-                Console.WriteLine("Ваш годовой доход состовляет " + annualIncome);
-                Console.WriteLine("____________________________________________");
-                Console.WriteLine("Нажмите на любую клавижу чтобы продолжить");
-
-                Console.ReadKey();
                 ChooseCurrency();
             }
 
-
             void ChooseCurrency()
             {
-                Console.Clear();
-                Console.WriteLine("Введите валюту вашего дохода");
-                Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
-                Console.WriteLine(" ");
-                Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-                Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-                Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-                Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
+                Console.WriteLine("Вы желаете присупить к вычислению годового дохода?(Yeas/No)");
+                input = Console.ReadLine();
 
-                string inputCur = GetUserInput(TypeOfUserInput.currence);
-
-                Console.Clear();
-
-                //Вычисление суммы в гривнах
-                Console.WriteLine(@"Пожалуйста, введите сумму вашего дохода
-_____________________________________");
-
-                input = GetUserInput(TypeOfUserInput.money);
-                int inputMonye = Convert.ToInt32(input);
-
-                if (input != wrongInput)
+                if (input == calculatorCont)
                 {
-                    switch (inputCur)
-                    {
-                        case hryvnia:
-                            sumInHruvnia = inputMonye * kursHruvnia;
-                            break;
 
-                        case dollar:
-                            sumInHruvnia = inputMonye * kursDollar;
-                            break;
-
-                        case euro:
-                            sumInHruvnia = inputMonye * kursEuro;
-                            break;
-                    }
+                }
+                else if (input == calculatorNotCont)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Нажмите любую клавишу чтобы выйти");
+                    Console.ReadKey();
                 }
                 else
                 {
-
                     Console.Clear();
-                    Console.WriteLine("Значение некорректно, пропробуйте снова");
+                    Console.WriteLine("Значение не корректно, попробуйте снова.");
+                    Console.WriteLine("_________________________________________");
                     ChooseCurrency();
-                    GetUserInput(TypeOfUserInput.money);
                 }
 
-                CalculateTax("");
+                while (input == calculatorAgain || input == calculatorCont)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Введите валюту вашего дохода");
+                    Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+                    Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+                    Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+                    Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
+
+                    string inputCur = GetUserInput(TypeOfUserInput.currence);
+
+                    string[] moth = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+                    string[] monthlySalary = new string[12];
+                    int[] monthlySalaryInt = new int[12];
+
+                    for (int count = 0; count <= 11; count++)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Введите ваш доход за " + moth[count]);
+                        monthlySalary[count] = GetUserInput(TypeOfUserInput.money);
+                        monthlySalaryInt[count] = Convert.ToInt32(monthlySalary[count]);
+                    }
+
+                    int annualIncome = 0;
+                    foreach (int annualIncomeInt in monthlySalaryInt)
+                    {
+                        annualIncome += annualIncomeInt;
+                    }
+
+                    if (input != wrongInput)
+                    {
+                        switch (inputCur)
+                        {
+                            case hryvnia:
+                                sumInHruvnia = annualIncome * kursHruvnia;
+                                break;
+
+                            case dollar:
+                                sumInHruvnia = annualIncome * kursDollar;
+                                break;
+
+                            case euro:
+                                sumInHruvnia = annualIncome * kursEuro;
+                                break;
+                        }
+                    }
+                    else
+                    {
+
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, пропробуйте снова");
+                        ChooseCurrency();
+                        GetUserInput(TypeOfUserInput.money);
+                    }
+
+
+                    bool notReaction = input != calculatorCont || input != calculatorNotCont || input != calculatorAgain || input != exit;
+
+                    Console.Clear();
+                    Console.WriteLine("Ваш годовой доход состовляет " + annualIncome);
+                    Console.WriteLine("____________________________________________");
+                    Console.WriteLine("Желаете приступить к вычисления вашего годового дохода в грн.(Yeas/No)");
+
+                    input = Console.ReadLine();
+
+                    if (input == calculatorCont)
+                    {
+                        CalculateTax("");
+                    }
+                    else if (input == calculatorNotCont)
+                    {
+                        Console.WriteLine("Нажмите на любую клавишу, чтобы выйти");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Значение не корректно, нажмите любую клавишу, чтобы выйти.");
+                        Console.ReadKey();
+                    }
+                }
+
                 //Прибыль, за вычетом 
                 void CalculateTax(string hollowString)
                 {
@@ -142,19 +174,19 @@ ___________________________________________";
 
                     if (input == calculatorAgain)
                     {
-                        ChooseCurrency();
+
                     }
                     else if (input == exit)
                     {
+                        Console.WriteLine("Нажмите на любую клавишу чтобы выйти.");
                         Console.ReadKey();
                     }
-                    else
+                    else if (input != exit || input != calculatorAgain)
                     {
                         CalculateTax(InputFalse);
                     }
                 }
             }
-
             string GetUserInput(TypeOfUserInput type)
             {
                 string currentInput = "";
