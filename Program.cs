@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace PractikalLesson_1
         enum TypeOfUserInput { year, currence, money, command };
         static void Main(string[] args)
         {
+
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
@@ -29,44 +31,42 @@ namespace PractikalLesson_1
             string calculatorNotCont = "No";
             string calculatorAgain = "Calculate again";
             string wrongInput = "";
+            string input = " ";
 
-            Console.WriteLine(@"Введите свой год рождения
+            Console.WriteLine("Добро пожаловать вас в CalculateIncome :D");
+            Console.WriteLine("________________________________________________");
+            Console.WriteLine("Нажмите на любую клавишу, чтобы приступить к выполнению программы");
+
+            Console.ReadKey();
+            Console.Clear();
+
+            Start();
+
+            void Start()
+            {
+                Console.WriteLine(@"Введите свой год рождения
 _____________________________");
 
-            string input;
-            input = GetUserInput(TypeOfUserInput.year);
+                input = GetUserInput(TypeOfUserInput.year);
 
-            if (input != wrongInput)
-            {
-                Console.Clear();
-                ChooseCurrency();
+                if (input != wrongInput)
+                {
+                    Console.Clear();
+                    ChooseCurrency();
+                }
             }
 
             void ChooseCurrency()
             {
-                Console.WriteLine("Вы желаете присупить к вычислению годового дохода?(Yeas/No)");
-                input = Console.ReadLine();
+                Console.WriteLine("Нажмите любую клавишу чтобы присупить к вычислению годового дохода.");
 
-                if (input == calculatorCont)
-                {
+                Console.ReadKey();
+                string ticket = "ticket";
 
-                }
-                else if (input == calculatorNotCont)
+                while (input == calculatorAgain || ticket == "ticket")
                 {
-                    Console.Clear();
-                    Console.WriteLine("Нажмите любую клавишу чтобы выйти");
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение не корректно, попробуйте снова.");
-                    Console.WriteLine("_________________________________________");
-                    ChooseCurrency();
-                }
+                    ticket = "";
 
-                while (input == calculatorAgain || input == calculatorCont)
-                {
                     Console.Clear();
                     Console.WriteLine("Введите валюту вашего дохода");
                     Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
@@ -128,24 +128,10 @@ _____________________________");
                     Console.Clear();
                     Console.WriteLine("Ваш годовой доход состовляет " + annualIncome);
                     Console.WriteLine("____________________________________________");
-                    Console.WriteLine("Желаете приступить к вычисления вашего годового дохода в грн.(Yeas/No)");
+                    Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
 
-                    input = Console.ReadLine();
-
-                    if (input == calculatorCont)
-                    {
-                        CalculateTax("");
-                    }
-                    else if (input == calculatorNotCont)
-                    {
-                        Console.WriteLine("Нажмите на любую клавишу, чтобы выйти");
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Значение не корректно, нажмите любую клавишу, чтобы выйти.");
-                        Console.ReadKey();
-                    }
+                    Console.ReadKey();
+                    CalculateTax("");
                 }
 
                 //Прибыль, за вычетом 
@@ -225,8 +211,11 @@ ___________________________________________";
                     }
                     else
                     {
-                        Console.WriteLine("Значение некорректно, нажмите любую клавишу, чтобы выйти");
-                        Console.ReadKey();
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, попробуйте снова");
+                        Console.WriteLine("___________________________________________");
+
+                        ChooseCurrency();
                     }
                 }
                 else if (type == TypeOfUserInput.money)
@@ -238,8 +227,11 @@ ___________________________________________";
                     }
                     else
                     {
-                        Console.WriteLine("Значение некорректно, нажмите любую клавишу, чтобы выйти");
-                        Console.ReadKey();
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, попробуйте снова");
+                        Console.WriteLine("___________________________________________");
+
+                        ChooseCurrency();
                     }
                 }
                 else if (type == TypeOfUserInput.command)
