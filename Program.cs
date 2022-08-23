@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -78,20 +79,20 @@ _____________________________");
 
                     string inputCur = GetUserInput(TypeOfUserInput.currence);
 
-                    string[] moth = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+                    string[] moth = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
                     string[] monthlySalary = new string[12];
-                    int[] monthlySalaryInt = new int[12];
+                    double[] monthlySalaryInt = new double[12];
 
                     for (int count = 0; count <= 11; count++)
                     {
                         Console.Clear();
                         Console.WriteLine("Введите ваш доход за " + moth[count]);
-                        monthlySalary[count] = GetUserInput(TypeOfUserInput.money);
-                        monthlySalaryInt[count] = Convert.ToInt32(monthlySalary[count]);
+                        monthlySalary[count] = Console.ReadLine();
+                        monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count]);
                     }
 
-                    int annualIncome = 0;
-                    foreach (int annualIncomeInt in monthlySalaryInt)
+                    double annualIncome = 0;
+                    foreach (double annualIncomeInt in monthlySalaryInt)
                     {
                         annualIncome += annualIncomeInt;
                     }
