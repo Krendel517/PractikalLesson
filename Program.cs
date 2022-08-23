@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,16 +9,16 @@ namespace PractikalLesson_1
 {
     class Program
     {
-        enum TypeOfUserInput { year, currence, money, command };
+        enum TypeOfUserInput { year, currency, money, command };
         static void Main(string[] args)
         {
 
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
+            string valut = "";
 
             double kursDollar = 29.2;
-            double kursHruvnia = 1;
             double kursEuro = 30.7;
 
             double minimumWage = 6500;
@@ -28,8 +27,6 @@ namespace PractikalLesson_1
             double singleTax;
             double taxDeduction;
             string exit = "Exit";
-            string calculatorCont = "Yeas";
-            string calculatorNotCont = "No";
             string calculatorAgain = "Calculate again";
             string wrongInput = "";
             string input = " ";
@@ -47,18 +44,12 @@ namespace PractikalLesson_1
             {
                 Console.WriteLine(@"Введите свой год рождения
 _____________________________");
-
                 input = GetUserInput(TypeOfUserInput.year);
-
-                if (input != wrongInput)
-                {
-                    Console.Clear();
-                    ChooseCurrency();
-                }
             }
 
             void ChooseCurrency()
             {
+                Console.Clear();
                 Console.WriteLine("Нажмите любую клавишу чтобы присупить к вычислению годового дохода.");
 
                 Console.ReadKey();
@@ -77,7 +68,7 @@ _____________________________");
                     Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
                     Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
 
-                    string inputCur = GetUserInput(TypeOfUserInput.currence);
+                    string inputCur = GetUserInput(TypeOfUserInput.currency);
 
                     string[] moth = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
                     string[] monthlySalary = new string[12];
@@ -102,7 +93,7 @@ _____________________________");
                         switch (inputCur)
                         {
                             case hryvnia:
-                                sumInHruvnia = annualIncome * kursHruvnia;
+                                sumInHruvnia += annualIncome;
                                 break;
 
                             case dollar:
@@ -123,11 +114,8 @@ _____________________________");
                         GetUserInput(TypeOfUserInput.money);
                     }
 
-
-                    bool notReaction = input != calculatorCont || input != calculatorNotCont || input != calculatorAgain || input != exit;
-
                     Console.Clear();
-                    Console.WriteLine("Ваш годовой доход состовляет " + annualIncome);
+                    Console.WriteLine("Ваш годовой доход состовляет " + annualIncome + valut);
                     Console.WriteLine("____________________________________________");
                     Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
 
@@ -147,10 +135,10 @@ ___________________________________________";
                     Console.WriteLine(" ");
                     Console.WriteLine("Сумма в гривнах " + sumInHruvnia + " грн.");
                     singleTax = sumInHruvnia * 0.05;
-                    Console.WriteLine($"Сумма единого налога равна {singleTax} грн.");
-                    Console.WriteLine($"Сумма единого социального взноса равна {singleSocialContribution} ");
+                    Console.WriteLine($"Сумма единого налога равна" + singleTax + " грн.");
+                    Console.WriteLine($"Сумма единого социального взноса равна" + singleSocialContribution + " грн.");
                     taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-                    Console.WriteLine($"Ваша прибыль, за вычетом налогов равна {taxDeduction} грн.");
+                    Console.WriteLine($"Ваша прибыль, за вычетом налогов равна" + taxDeduction + " грн.");
                     Console.WriteLine("_________________________________________");
                     Console.WriteLine("");
                     Console.WriteLine(hollowString);
@@ -158,17 +146,13 @@ ___________________________________________";
                     Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
                     input = GetUserInput(TypeOfUserInput.command);
-
-                    if (input == calculatorAgain)
-                    {
-
-                    }
-                    else if (input == exit)
+      
+                    if (input == exit)
                     {
                         Console.WriteLine("Нажмите на любую клавишу чтобы выйти.");
                         Console.ReadKey();
                     }
-                    else if (input != exit || input != calculatorAgain)
+                    else
                     {
                         CalculateTax(InputFalse);
                     }
@@ -187,27 +171,32 @@ ___________________________________________";
                     if (userInputInt <= adult && userInputInt >= questionableAge)
                     {
                         currentInput = userInput;
+                        ChooseCurrency();
                     }
                     else
                     {
-                        Console.WriteLine("Значение некорректно, нажмите любую клавишу, чтобы выйти");
+                        Console.Clear();
+                        Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти.");
                         Console.ReadKey();
                     }
                 }
-                else if (type == TypeOfUserInput.currence)
+                else if (type == TypeOfUserInput.currency)
                 {
                     if (userInput == hryvnia)
                     {
+                        valut = " грн.";
                         currentInput = hryvnia;
                     }
 
                     else if (userInput == dollar)
                     {
+                        valut = " дол.";
                         currentInput = dollar;
                     }
 
                     else if (userInput == euro)
                     {
+                        valut = " евр.";
                         currentInput = euro;
                     }
                     else
@@ -253,7 +242,7 @@ ___________________________________________";
                     }
                 }
                 return currentInput;
-            }
+            } 
         }
     }
 }
