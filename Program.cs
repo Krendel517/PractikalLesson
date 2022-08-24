@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,16 @@ namespace PractikalLesson_1
 {
     class Program
     {
-        enum TypeOfUserInput { year, currence, money, command };
+        enum TypeOfUserInput { year, currency, money, command };
         static void Main(string[] args)
         {
+
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
+            string valut = "";
 
             double kursDollar = 29.2;
-            double kursHruvnia = 1;
             double kursEuro = 30.7;
 
             double minimumWage = 6500;
@@ -27,95 +29,100 @@ namespace PractikalLesson_1
             string exit = "Exit";
             string calculatorAgain = "Calculate again";
             string wrongInput = "";
+            string input = " ";
 
-            Console.WriteLine(@"Введите свой год рождения
+            Console.WriteLine("Добро пожаловать вас в CalculateIncome :D");
+            Console.WriteLine("________________________________________________");
+            Console.WriteLine("Нажмите на любую клавишу, чтобы приступить к выполнению программы");
+
+            Console.ReadKey();
+            Console.Clear();
+
+            Start();
+
+            void Start()
+            {
+                Console.WriteLine(@"Введите свой год рождения
 _____________________________");
-
-            string input;
-            input = GetUserInput(TypeOfUserInput.year);
-
-            if (input != wrongInput)
-            {
-                Console.Clear();
-                IncomeForAnual();
+                input = GetUserInput(TypeOfUserInput.year);
             }
-           
-            void IncomeForAnual()
-            {
-                string[] moth = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-                string[] monthlySalary = new string[12];
-                int[] monthlySalaryInt = new int[12];
-                int annualIncome;
-
-                for (int count = 0; count <= 11; count++)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Введите ваш доход за " + moth[count]);
-                    monthlySalary[count] = GetUserInput(TypeOfUserInput.money);
-                    monthlySalaryInt[count] = Convert.ToInt32(monthlySalary[count]);
-                }
-                annualIncome = monthlySalaryInt[0] + monthlySalaryInt[1] + monthlySalaryInt[2] + monthlySalaryInt[3] + monthlySalaryInt[4] + monthlySalaryInt[5] + monthlySalaryInt[6]
-                + monthlySalaryInt[7] + monthlySalaryInt[8] + monthlySalaryInt[9] + monthlySalaryInt[10] + monthlySalaryInt[11];
-
-                Console.Clear();
-                Console.WriteLine("Ваш годовой доход состовляет " + annualIncome);
-                Console.WriteLine("____________________________________________");
-                Console.WriteLine("Нажмите на любую клавижу чтобы продолжить");
-
-                Console.ReadKey();
-                ChooseCurrency();
-            }
-
 
             void ChooseCurrency()
             {
                 Console.Clear();
-                Console.WriteLine("Введите валюту вашего дохода");
-                Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
-                Console.WriteLine(" ");
-                Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-                Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-                Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-                Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
+                Console.WriteLine("Нажмите любую клавишу чтобы присупить к вычислению годового дохода.");
 
-                string inputCur = GetUserInput(TypeOfUserInput.currence);
+                Console.ReadKey();
+                string ticket = "ticket";
 
-                Console.Clear();
-
-                //Вычисление суммы в гривнах
-                Console.WriteLine(@"Пожалуйста, введите сумму вашего дохода
-_____________________________________");
-
-                input = GetUserInput(TypeOfUserInput.money);
-                int inputMonye = Convert.ToInt32(input);
-
-                if (input != wrongInput)
+                while (input == calculatorAgain || ticket == "ticket")
                 {
-                    switch (inputCur)
-                    {
-                        case hryvnia:
-                            sumInHruvnia = inputMonye * kursHruvnia;
-                            break;
-
-                        case dollar:
-                            sumInHruvnia = inputMonye * kursDollar;
-                            break;
-
-                        case euro:
-                            sumInHruvnia = inputMonye * kursEuro;
-                            break;
-                    }
-                }
-                else
-                {
+                    ticket = "";
 
                     Console.Clear();
-                    Console.WriteLine("Значение некорректно, пропробуйте снова");
-                    ChooseCurrency();
-                    GetUserInput(TypeOfUserInput.money);
+                    Console.WriteLine("Введите валюту вашего дохода");
+                    Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+                    Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+                    Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+                    Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
+
+                    string inputCur = GetUserInput(TypeOfUserInput.currency);
+
+                    string[] moth = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
+                    string[] monthlySalary = new string[12];
+                    double[] monthlySalaryInt = new double[12];
+
+                    for (int count = 0; count <= 11; count++)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Введите ваш доход за " + moth[count]);
+                        monthlySalary[count] = Console.ReadLine();
+                        monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count]);
+                    }
+
+                    double annualIncome = 0;
+                    foreach (double annualIncomeInt in monthlySalaryInt)
+                    {
+                        annualIncome += annualIncomeInt;
+                    }
+
+                    if (input != wrongInput)
+                    {
+                        switch (inputCur)
+                        {
+                            case hryvnia:
+                                sumInHruvnia += annualIncome;
+                                break;
+
+                            case dollar:
+                                sumInHruvnia = annualIncome * kursDollar;
+                                break;
+
+                            case euro:
+                                sumInHruvnia = annualIncome * kursEuro;
+                                break;
+                        }
+                    }
+                    else
+                    {
+
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, пропробуйте снова");
+                        ChooseCurrency();
+                        GetUserInput(TypeOfUserInput.money);
+                    }
+
+                    Console.Clear();
+                    Console.WriteLine("Ваш годовой доход состовляет " + annualIncome + valut);
+                    Console.WriteLine("____________________________________________");
+                    Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
+
+                    Console.ReadKey();
+                    CalculateTax("");
                 }
 
-                CalculateTax("");
                 //Прибыль, за вычетом 
                 void CalculateTax(string hollowString)
                 {
@@ -128,10 +135,10 @@ ___________________________________________";
                     Console.WriteLine(" ");
                     Console.WriteLine("Сумма в гривнах " + sumInHruvnia + " грн.");
                     singleTax = sumInHruvnia * 0.05;
-                    Console.WriteLine($"Сумма единого налога равна {singleTax} грн.");
-                    Console.WriteLine($"Сумма единого социального взноса равна {singleSocialContribution} ");
+                    Console.WriteLine($"Сумма единого налога равна" + singleTax + " грн.");
+                    Console.WriteLine($"Сумма единого социального взноса равна" + singleSocialContribution + " грн.");
                     taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-                    Console.WriteLine($"Ваша прибыль, за вычетом налогов равна {taxDeduction} грн.");
+                    Console.WriteLine($"Ваша прибыль, за вычетом налогов равна" + taxDeduction + " грн.");
                     Console.WriteLine("_________________________________________");
                     Console.WriteLine("");
                     Console.WriteLine(hollowString);
@@ -139,13 +146,10 @@ ___________________________________________";
                     Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
                     input = GetUserInput(TypeOfUserInput.command);
-
-                    if (input == calculatorAgain)
+      
+                    if (input == exit)
                     {
-                        ChooseCurrency();
-                    }
-                    else if (input == exit)
-                    {
+                        Console.WriteLine("Нажмите на любую клавишу чтобы выйти.");
                         Console.ReadKey();
                     }
                     else
@@ -154,7 +158,6 @@ ___________________________________________";
                     }
                 }
             }
-
             string GetUserInput(TypeOfUserInput type)
             {
                 string currentInput = "";
@@ -168,33 +171,41 @@ ___________________________________________";
                     if (userInputInt <= adult && userInputInt >= questionableAge)
                     {
                         currentInput = userInput;
+                        ChooseCurrency();
                     }
                     else
                     {
-                        Console.WriteLine("Значение некорректно, нажмите любую клавишу, чтобы выйти");
+                        Console.Clear();
+                        Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти.");
                         Console.ReadKey();
                     }
                 }
-                else if (type == TypeOfUserInput.currence)
+                else if (type == TypeOfUserInput.currency)
                 {
                     if (userInput == hryvnia)
                     {
+                        valut = " грн.";
                         currentInput = hryvnia;
                     }
 
                     else if (userInput == dollar)
                     {
+                        valut = " дол.";
                         currentInput = dollar;
                     }
 
                     else if (userInput == euro)
                     {
+                        valut = " евр.";
                         currentInput = euro;
                     }
                     else
                     {
-                        Console.WriteLine("Значение некорректно, нажмите любую клавишу, чтобы выйти");
-                        Console.ReadKey();
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, попробуйте снова");
+                        Console.WriteLine("___________________________________________");
+
+                        ChooseCurrency();
                     }
                 }
                 else if (type == TypeOfUserInput.money)
@@ -206,8 +217,11 @@ ___________________________________________";
                     }
                     else
                     {
-                        Console.WriteLine("Значение некорректно, нажмите любую клавишу, чтобы выйти");
-                        Console.ReadKey();
+                        Console.Clear();
+                        Console.WriteLine("Значение некорректно, попробуйте снова");
+                        Console.WriteLine("___________________________________________");
+
+                        ChooseCurrency();
                     }
                 }
                 else if (type == TypeOfUserInput.command)
@@ -228,7 +242,7 @@ ___________________________________________";
                     }
                 }
                 return currentInput;
-            }
+            } 
         }
     }
 }
