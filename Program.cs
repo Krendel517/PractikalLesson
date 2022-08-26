@@ -12,7 +12,6 @@ namespace PractikalLesson_1
         enum TypeOfUserInput { year, currency, money, command };
         static void Main(string[] args)
         {
-
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
@@ -36,17 +35,14 @@ namespace PractikalLesson_1
 
             Console.ReadKey();
             Console.Clear();
-
             Console.WriteLine(@"Введите свой год рождения
 _____________________________");
-            input = GetUserInput(TypeOfUserInput.year);
 
+            input = GetUserInput(TypeOfUserInput.year);
 
             void ChooseCurrency()
             {
-                Console.Clear();
 
-                Console.Clear();
                 Console.WriteLine("Введите валюту вашего дохода");
                 Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
                 Console.WriteLine(" ");
@@ -74,7 +70,6 @@ _____________________________");
                 {
                     annualIncome += annualIncomeInt;
                 }
-
 
                 switch (inputCur)
                 {
@@ -126,12 +121,12 @@ ___________________________________________";
 
                 if (input == calculatorAgain)
                 {
+                    Console.Clear();
                     ChooseCurrency();
                 }
                 else if (input == exit)
                 {
-                    Console.WriteLine("Нажмите на любую клавишу чтобы выйти.");
-                    Console.ReadKey();
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -151,6 +146,7 @@ ___________________________________________";
                     if (userInputInt <= adult && userInputInt >= questionableAge)
                     {
                         currentInput = userInput;
+                        Console.Clear();
                         ChooseCurrency();
                     }
                     else
