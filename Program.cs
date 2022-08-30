@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
@@ -38,14 +35,10 @@ namespace PractikalLesson_1
             Console.ReadKey();
             Console.Clear();
 
-            Start();
-
-            void Start()
-            {
-                Console.WriteLine(@"Введите свой год рождения
+            Console.WriteLine(@"Введите свой год рождения
 _____________________________");
-                input = GetUserInput(TypeOfUserInput.year);
-            }
+
+            input = GetUserInput(TypeOfUserInput.year);
 
             void ChooseCurrency()
             {
@@ -93,12 +86,19 @@ _____________________________");
                     {
                         monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count], chekComma);
                     }
+                    else
+                    {
+                        monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count]);
+                    }
                 }
 
                 double annualIncome = 0;
+                double annualIncomeConv = 0;
                 foreach (double annualIncomeInt in monthlySalaryInt)
                 {
                     annualIncome += annualIncomeInt;
+                    annualIncomeConv = Convert.ToDouble(annualIncome);
+
                 }
 
                 if (input != wrongInput)
@@ -128,7 +128,8 @@ _____________________________");
                 }
 
                 Console.Clear();
-                Console.WriteLine("Ваш годовой доход состовляет " + annualIncome + valut);
+                Console.Write("Ваш годовой доход состовляет:" + "{0:N}", annualIncomeConv);
+                Console.WriteLine(valut);
                 Console.WriteLine("____________________________________________");
                 Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
 
@@ -192,8 +193,9 @@ ___________________________________________";
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти.");
+                        Console.WriteLine("Значение не корректно.");
                         Console.ReadKey();
+                        Environment.Exit(0);
                     }
                 }
                 else if (type == TypeOfUserInput.currency)
