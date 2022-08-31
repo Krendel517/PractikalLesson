@@ -13,6 +13,7 @@ namespace PractikalLesson_1
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
+            string formatMonye = "{0:N}";
             string valut = "";
 
             double kursDollar = 29.2;
@@ -128,7 +129,7 @@ _____________________________");
                 }
 
                 Console.Clear();
-                Console.Write("Ваш годовой доход состовляет:" + "{0:N}", annualIncomeConv);
+                Console.Write("Ваш годовой доход состовляет:" + formatMonye, annualIncomeConv);
                 Console.WriteLine(valut);
                 Console.WriteLine("____________________________________________");
                 Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
@@ -147,12 +148,16 @@ ___________________________________________";
                 Console.WriteLine("Вот ваш счет!");
                 Console.WriteLine("_________________________________________");
                 Console.WriteLine(" ");
-                Console.WriteLine("Сумма в гривнах " + "{0:N}", sumInHruvnia + " грн.");
+                Console.Write("Сумма в гривнах " + formatMonye, sumInHruvnia);
+                Console.WriteLine(" грн.");
                 singleTax = sumInHruvnia * 0.05;
-                Console.WriteLine($"Сумма единого налога равна " + "{0:N}", singleTax + " грн.");
-                Console.WriteLine($"Сумма единого социального взноса равна " + "{0:N}", singleSocialContribution + " грн.");
+                Console.Write($"Сумма единого налога равна " + "{0:N}", singleTax);
+                Console.WriteLine(" грн.");
+                Console.Write($"Сумма единого социального взноса равна " + "{0:N}", singleSocialContribution);
+                Console.WriteLine(" грн.");
                 taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-                Console.WriteLine($"Ваша прибыль, за вычетом налогов равна " + "{0:N}", taxDeduction + " грн.");
+                Console.Write($"Ваша прибыль, за вычетом налогов равна " + "{0:N}", taxDeduction);
+                Console.WriteLine(" грн.");
                 Console.WriteLine("_________________________________________");
                 Console.WriteLine("");
                 Console.WriteLine(hollowString);
