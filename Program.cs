@@ -25,6 +25,7 @@ namespace PractikalLesson_1
             double taxDeduction;
             string exit = "Exit";
             string calculatorAgain = "Calculate again";
+            string wrongInput = "";
             string input = " ";
 
             Console.WriteLine("Добро пожаловать вас в CalculateIncome :D");
