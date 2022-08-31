@@ -9,7 +9,6 @@ namespace PractikalLesson_1
         enum TypeOfUserInput { year, currency, money, command };
         static void Main(string[] args)
         {
-
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
@@ -26,7 +25,6 @@ namespace PractikalLesson_1
             double taxDeduction;
             string exit = "Exit";
             string calculatorAgain = "Calculate again";
-            string wrongInput = "";
             string input = " ";
 
             Console.WriteLine("Добро пожаловать вас в CalculateIncome :D");
@@ -43,12 +41,11 @@ _____________________________");
 
             void ChooseCurrency()
             {
-                Console.Clear();
-                Console.WriteLine("Нажмите любую клавишу чтобы присупить к вычислению годового дохода.");
 
                 Console.ReadKey();
 
                 Console.Clear();
+
                 Console.WriteLine("Введите валюту вашего дохода");
                 Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
                 Console.WriteLine(" ");
@@ -62,6 +59,7 @@ _____________________________");
                 string[] moth = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
                 string[] monthlySalary = new string[12];
                 double[] monthlySalaryInt = new double[12];
+
 
                 NumberFormatInfo chekPoint = new NumberFormatInfo()
                 {
@@ -135,6 +133,7 @@ _____________________________");
                 CalculateTax("");
             }
 
+
             //Прибыль, за вычетом 
             void CalculateTax(string hollowString)
             {
@@ -145,6 +144,7 @@ ___________________________________________";
                 Console.WriteLine("Вот ваш счет!");
                 Console.WriteLine("_________________________________________");
                 Console.WriteLine(" ");
+
                 Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
                 Console.WriteLine(" грн.");
                 singleTax = sumInHruvnia * 0.05;
@@ -190,6 +190,7 @@ ___________________________________________";
                     if (userInputInt <= adult && userInputInt >= questionableAge)
                     {
                         currentInput = userInput;
+                        Console.Clear();
                         ChooseCurrency();
                     }
                     else
