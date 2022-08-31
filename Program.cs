@@ -42,9 +42,7 @@ _____________________________");
 
             void ChooseCurrency()
             {
-
                 Console.ReadKey();
-
                 Console.Clear();
 
                 Console.WriteLine("Введите валюту вашего дохода");
@@ -117,7 +115,6 @@ _____________________________");
                 }
                 else
                 {
-
                     Console.Clear();
                     Console.WriteLine("Значение некорректно, пропробуйте снова");
                     ChooseCurrency();
@@ -133,7 +130,6 @@ _____________________________");
                 Console.ReadKey();
                 CalculateTax("");
             }
-
 
             //Прибыль, за вычетом 
             void CalculateTax(string hollowString)
@@ -176,7 +172,6 @@ ___________________________________________";
                 {
                     CalculateTax(InputFalse);
                 }
-
             }
             string GetUserInput(TypeOfUserInput type)
             {
