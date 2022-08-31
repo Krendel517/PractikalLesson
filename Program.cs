@@ -13,7 +13,7 @@ namespace PractikalLesson_1
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
-            string formatMonye = "{0:N}";
+            string formatMoney = "{0:N}";
             string valut = "";
 
             double kursDollar = 29.2;
@@ -94,12 +94,9 @@ _____________________________");
                 }
 
                 double annualIncome = 0;
-                double annualIncomeConv = 0;
                 foreach (double annualIncomeInt in monthlySalaryInt)
                 {
                     annualIncome += annualIncomeInt;
-                    annualIncomeConv = Convert.ToDouble(annualIncome);
-
                 }
 
                 if (input != wrongInput)
@@ -129,7 +126,7 @@ _____________________________");
                 }
 
                 Console.Clear();
-                Console.Write("Ваш годовой доход состовляет:" + formatMonye, annualIncomeConv);
+                Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
                 Console.WriteLine(valut);
                 Console.WriteLine("____________________________________________");
                 Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
@@ -148,15 +145,15 @@ ___________________________________________";
                 Console.WriteLine("Вот ваш счет!");
                 Console.WriteLine("_________________________________________");
                 Console.WriteLine(" ");
-                Console.Write("Сумма в гривнах " + formatMonye, sumInHruvnia);
+                Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
                 Console.WriteLine(" грн.");
                 singleTax = sumInHruvnia * 0.05;
-                Console.Write($"Сумма единого налога равна " + "{0:N}", singleTax);
+                Console.Write($"Сумма единого налога равна " + formatMoney, singleTax);
                 Console.WriteLine(" грн.");
-                Console.Write($"Сумма единого социального взноса равна " + "{0:N}", singleSocialContribution);
+                Console.Write($"Сумма единого социального взноса равна " + formatMoney, singleSocialContribution);
                 Console.WriteLine(" грн.");
                 taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-                Console.Write($"Ваша прибыль, за вычетом налогов равна " + "{0:N}", taxDeduction);
+                Console.Write($"Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
                 Console.WriteLine(" грн.");
                 Console.WriteLine("_________________________________________");
                 Console.WriteLine("");
