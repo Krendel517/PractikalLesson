@@ -8,8 +8,6 @@ namespace PractikalLesson_1
 {
     class MainMenu
     {
-        enum TypeOfUserInput { number, year, currency, money, command };
-
         private string firstCalc = "1";
         private string secCalc = "2";
         private string thirdCalc = "3";
