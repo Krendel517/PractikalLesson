@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    class TaxCalculatore
+    class TaxCalculator
     {
         enum TypeOfUserInput { year, currency, money, command };
 
@@ -23,18 +23,14 @@ namespace PractikalLesson_1
 
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
-
-        string wrongInput = "";
         string input = " ";
 
-        public void CalculateTheTax()
+        public void Calculate()
         {
-
             const double kursDollar = 29.2;
             const double kursEuro = 30.7;
             double sumInHruvnia = 0;
 
-            TaxCalculatore calculateAnswer = new TaxCalculatore();
             Console.Clear();
 
             Console.WriteLine("Введите валюту вашего дохода");
@@ -88,29 +84,19 @@ namespace PractikalLesson_1
                 annualIncome += annualIncomeInt;
             }
 
-            if (input != wrongInput)
+            switch (inputCur)
             {
-                switch (inputCur)
-                {
-                    case hryvnia:
-                        sumInHruvnia += annualIncome;
-                        break;
+                case hryvnia:
+                    sumInHruvnia += annualIncome;
+                    break;
 
-                    case dollar:
-                        sumInHruvnia = annualIncome * kursDollar;
-                        break;
+                case dollar:
+                    sumInHruvnia = annualIncome * kursDollar;
+                    break;
 
-                    case euro:
-                        sumInHruvnia = annualIncome * kursEuro;
-                        break;
-                }
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Значение некорректно, пропробуйте снова");
-                CalculateTheTax();
-                GetUserInput(TypeOfUserInput.money);
+                case euro:
+                    sumInHruvnia = annualIncome * kursEuro;
+                    break;
             }
 
             Console.Clear();
@@ -120,9 +106,9 @@ namespace PractikalLesson_1
             Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
 
             Console.ReadKey();
-            CalculateTax("");
+            AnswerTax("");
 
-            void CalculateTax(string hollowString)
+            void AnswerTax(string hollowString)
             {
                 string InputFalse = @"Значение не корректно, попробуйте снова
 ___________________________________________";
@@ -152,7 +138,7 @@ ___________________________________________";
 
                 if (input == calculatorAgain)
                 {
-                    CalculateTheTax();
+                    Calculate();
                 }
                 else if (input == exit)
                 {
@@ -160,7 +146,7 @@ ___________________________________________";
                 }
                 else
                 {
-                    CalculateTax(InputFalse);
+                    AnswerTax(InputFalse);
                 }
 
                 Console.ReadKey();
@@ -198,7 +184,7 @@ ___________________________________________";
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("___________________________________________");
 
-                    CalculateTheTax();
+                    Calculate();
                 }
             }
             else if (type == TypeOfUserInput.money)
@@ -214,7 +200,7 @@ ___________________________________________";
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("___________________________________________");
 
-                    CalculateTheTax();
+                    Calculate();
                 }
             }
             else if (type == TypeOfUserInput.command)

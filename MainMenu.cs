@@ -8,17 +8,15 @@ namespace PractikalLesson_1
 {
     class MainMenu
     {
-        TaxCalculator taxCalc = new TaxCalculator();
-        SimpleCalculator simpleCalc = new SimpleCalculator();
-        AgeCalculator ageCalc = new AgeCalculator();
+        enum TypeOfUserInput {number, year, currency, money, command};
 
-        private string firstCalc = "1";
+    private string firstCalc = "1";
         private string secCalc = "2";
         private string thirdCalc = "3";
         private string exit = "Exit";
         private string input;
 
-        public void ChooseCalculate()
+        public void CalculatorSelection()
         {
             Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите exit чтобы выйти.");
             Console.WriteLine("=====================================================================");
@@ -26,30 +24,43 @@ namespace PractikalLesson_1
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
 
-            input = Console.ReadLine();
+            input = GetUserInput(TypeOfUserInput.number);
 
-            if (input == firstCalc)
+            string GetUserInput(TypeOfUserInput type)
             {
-                ageCalc.AgeTheCalculatore();
-            }
-            else if (input == secCalc)
-            {
-                simpleCalc.SimpleTheCalculatore();
-            }
-            else if (input == thirdCalc)
-            {
-                taxCalc.CalculateTheTax();
-            }
-            else if (input == exit)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Значение не корректно, попроейте снова.");
-                Console.WriteLine("=========================================");
-                ChooseCalculate();
+                string currentInput = "";
+                string userInput = Console.ReadLine();
+
+                if (type == TypeOfUserInput.number)
+                {
+                    if (userInput == firstCalc)
+                    {
+                        SimpleCalculator simpleCalc = new SimpleCalculator();
+                        simpleCalc.SimpleTheCalculator();
+                    }
+                    else if (userInput == secCalc)
+                    {
+                        AgeCalculator ageCalc = new AgeCalculator();
+                        ageCalc.AgeTheCalculator();
+                    }
+                    else if (userInput == thirdCalc)
+                    {
+                        TaxCalculator taxCalc = new TaxCalculator();
+                        taxCalc.Calculate();
+                    }
+                    else if (userInput == exit)
+                    {
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Значение не корректно, попроейте снова.");
+                        Console.WriteLine("=========================================");
+                        CalculatorSelection();
+                    }
+                }
+                return currentInput;
             }
         }
     }

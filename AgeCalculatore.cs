@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    class AgeCalculatore
+    class AgeCalculator
     {
-        public void AgeTheCalculatore()
+        public void AgeTheCalculator()
         {
             Console.Clear();
             Console.WriteLine("На данный момент, этот калькулятор ещё не закончен, попробуйте вернутся позже.");

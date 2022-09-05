@@ -9,7 +9,6 @@ namespace PractikalLesson_1
         enum TypeOfUserInput { year, currency, money, command };
         static void Main(string[] args)
         {
-            MainMenu CalcChoose = new MainMenu();
             string input = " ";
 
             StartTheProgram();
@@ -28,7 +27,8 @@ _____________________________");
 
                 input = GetUserInput(TypeOfUserInput.year);
 
-                CalcChoose.ChooseCalculate();
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.CalculatorSelection();
             }
 
             string GetUserInput(TypeOfUserInput type)

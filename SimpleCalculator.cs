@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-        class SimpleCalculator
+    class SimpleCalculator
+    {
+        public void SimpleTheCalculator()
         {
-            public void SimpleTheCalculatore()
-            {
-                Console.Clear();
-                Console.WriteLine("На данный момент, этот калькулятор ещё не закончен, попробуйте вернутся позже.");
-                Console.WriteLine("Введите любую клавишу, чтобы выйти");
-                Console.ReadKey();
-            }
+            Console.Clear();
+            Console.WriteLine("Введите первое число ");
+            Console.WriteLine("Введите любую клавишу, чтобы выйти");
+            Console.ReadKey();
         }
     }
+}
