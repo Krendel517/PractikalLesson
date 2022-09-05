@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace PractikalLesson_1
 {
+    public enum TypeOfUserInput { number, year, currency, money, command };
     class Program
     {
-        enum TypeOfUserInput { year, currency, money, command };
         static void Main(string[] args)
         {
             string input = " ";
