@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace PractikalLesson_1
 {
-    public enum TypeOfUserInput { number, year, currency, money, command };
     class Program
     {
         static void Main(string[] args)
@@ -35,12 +34,24 @@ _____________________________");
             {
                 string currentInput = "";
                 string userInput = Console.ReadLine();
+                int userInputInt = 0;
 
                 if (type == TypeOfUserInput.year)
                 {
                     int adult = 2004;
                     int questionableAge = 1920;
-                    int userInputInt = Convert.ToInt32(userInput);
+                    if (userInput.All(Char.IsDigit))
+                    {
+                      userInputInt = Convert.ToInt32(userInput);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Значение не корректно, введите любую клавишу чтобы выйти.");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
+
                     if (userInputInt <= adult && userInputInt >= questionableAge)
                     {
                         currentInput = userInput;
@@ -49,7 +60,7 @@ _____________________________");
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Значение не корректно.");
+                        Console.WriteLine("Значение не корректно, введите любую клавишу чтобы выйти.");
                         Console.ReadKey();
                         Environment.Exit(0);
                     }

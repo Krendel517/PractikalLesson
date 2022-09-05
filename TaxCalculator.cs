@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace PractikalLesson_1
 {
     class TaxCalculator
-    {
-        enum TypeOfUserInput { year, currency, money, command };
-
+    { 
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
