@@ -29,8 +29,6 @@ namespace PractikalLesson_1
             const double kursEuro = 30.7;
             double sumInHruvnia = 0;
 
-            Console.Clear();
-
             Console.WriteLine("Введите валюту вашего дохода");
             Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
             Console.WriteLine(" ");
@@ -60,7 +58,7 @@ namespace PractikalLesson_1
             {
                 Console.Clear();
                 Console.WriteLine("Введите ваш доход за " + moth[count]);
-                monthlySalary[count] = Console.ReadLine();
+                monthlySalary[count] = GetUserInput(TypeOfUserInput.money);
 
                 if (monthlySalary[count].Contains("."))
                 {
@@ -187,8 +185,15 @@ ___________________________________________";
             }
             else if (type == TypeOfUserInput.money)
             {
-                bool isNumber = userInput.All(Char.IsDigit);
-                if (isNumber)
+                if (userInput.All(Char.IsDigit))
+                {
+                    currentInput = userInput;
+                }
+                else if (userInput.All(Char.IsDigit) && userInput.Contains("."))
+                {
+                    currentInput = userInput;
+                }
+                else if (userInput.All(Char.IsDigit) && userInput.Contains(","))
                 {
                     currentInput = userInput;
                 }

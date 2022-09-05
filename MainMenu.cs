@@ -34,16 +34,19 @@ namespace PractikalLesson_1
                     if (userInput == firstCalc)
                     {
                         SimpleCalculator simpleCalc = new SimpleCalculator();
+                        Console.Clear();
                         simpleCalc.SimpleTheCalculator();
                     }
                     else if (userInput == secCalc)
                     {
                         AgeCalculator ageCalc = new AgeCalculator();
+                        Console.Clear();
                         ageCalc.AgeTheCalculator();
                     }
                     else if (userInput == thirdCalc)
                     {
                         TaxCalculator taxCalc = new TaxCalculator();
+                        Console.Clear();
                         taxCalc.Calculate();
                     }
                     else if (userInput == exit)
