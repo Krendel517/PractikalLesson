@@ -37,7 +37,8 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
             Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
 
-            string inputCur = GetUserInput(TypeOfUserInput.currency);
+            UserInput chekInput = new UserInput();
+            string inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
 
             string[] moth = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
             string[] monthlySalary = new string[12];
@@ -58,7 +59,7 @@ namespace PractikalLesson_1
             {
                 Console.Clear();
                 Console.WriteLine("Введите ваш доход за " + moth[count]);
-                monthlySalary[count] = GetUserInput(TypeOfUserInput.money);
+                monthlySalary[count] = chekInput.GetUserInput(TypeOfUserInput.money);
 
                 if (monthlySalary[count].Contains("."))
                 {
@@ -130,7 +131,7 @@ ___________________________________________";
                 Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
                 Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
-                input = GetUserInput(TypeOfUserInput.command);
+                input = chekInput.GetUserInput(TypeOfUserInput.command);
 
                 if (input == calculatorAgain)
                 {
@@ -148,77 +149,6 @@ ___________________________________________";
                 Console.ReadKey();
 
             }
-        }
-
-        string GetUserInput(TypeOfUserInput type)
-        {
-            string currentInput = "";
-            string userInput = Console.ReadLine();
-
-            if (type == TypeOfUserInput.currency)
-            {
-                if (userInput == hryvnia)
-                {
-                    valut = " грн.";
-                    currentInput = hryvnia;
-                }
-
-                else if (userInput == dollar)
-                {
-                    valut = " дол.";
-                    currentInput = dollar;
-                }
-
-                else if (userInput == euro)
-                {
-                    valut = " евро";
-                    currentInput = euro;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("___________________________________________");
-
-                    Calculate();
-                }
-            }
-            else if (type == TypeOfUserInput.money)
-            {
-                if (userInput.All(Char.IsDigit))
-                {
-                    currentInput = userInput;
-                }
-                else if (userInput.All(Char.IsDigit) && userInput.Contains("."))
-                {
-                    currentInput = userInput;
-                }
-                else if (userInput.All(Char.IsDigit) && userInput.Contains(","))
-                {
-                    currentInput = userInput;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("___________________________________________");
-
-                    Calculate();
-                }
-            }
-            else if (type == TypeOfUserInput.command)
-            {
-                if (userInput == calculatorAgain)
-                {
-                    currentInput = userInput;
-                }
-                else if (userInput == exit)
-
-                {
-                    currentInput = userInput;
-                }
-            }
-            return currentInput;
         }
     }
 }

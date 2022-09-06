@@ -16,52 +16,36 @@ namespace PractikalLesson_1
 
         public void CalculatorSelection()
         {
-            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите exit чтобы выйти.");
+            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
             Console.WriteLine("=====================================================================");
             Console.WriteLine("1. Простой калькулятор");
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
 
-            input = GetUserInput(TypeOfUserInput.number);
+            UserInput chekInput = new UserInput();
+            input = chekInput.GetUserInput(TypeOfUserInput.number);
 
-            string GetUserInput(TypeOfUserInput type)
+            if (input == firstCalc)
             {
-                string currentInput = "";
-                string userInput = Console.ReadLine();
-
-                if (type == TypeOfUserInput.number)
-                {
-                    if (userInput == firstCalc)
-                    {
-                        SimpleCalculator simpleCalc = new SimpleCalculator();
-                        Console.Clear();
-                        simpleCalc.SimpleTheCalculator();
-                    }
-                    else if (userInput == secCalc)
-                    {
-                        AgeCalculator ageCalc = new AgeCalculator();
-                        Console.Clear();
-                        ageCalc.AgeTheCalculator();
-                    }
-                    else if (userInput == thirdCalc)
-                    {
-                        TaxCalculator taxCalc = new TaxCalculator();
-                        Console.Clear();
-                        taxCalc.Calculate();
-                    }
-                    else if (userInput == exit)
-                    {
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Значение не корректно, попроейте снова.");
-                        Console.WriteLine("=========================================");
-                        CalculatorSelection();
-                    }
-                }
-                return currentInput;
+                SimpleCalculator simpleCalc = new SimpleCalculator();
+                Console.Clear();
+                simpleCalc.SimpleTheCalculator();
+            }
+            else if (input == secCalc)
+            {
+                AgeCalculator ageCalc = new AgeCalculator();
+                Console.Clear();
+                ageCalc.AgeTheCalculator();
+            }
+            else if (input == thirdCalc)
+            {
+                TaxCalculator taxCalc = new TaxCalculator();
+                Console.Clear();
+                taxCalc.Calculate();
+            }
+            else if (input == exit)
+            {
+                Environment.Exit(0);
             }
         }
     }
