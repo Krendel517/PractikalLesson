@@ -26,6 +26,7 @@ namespace PractikalLesson_1
 
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
+        private string exitToMainMenu = "Return";
         string input = " ";
 
         public void TaxCalculate()
@@ -161,6 +162,7 @@ namespace PractikalLesson_1
             Console.WriteLine("");
             Console.WriteLine(hollowString);
             Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
+            Console.WriteLine("Введите Return чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
             UserInput chekInput = new UserInput();
@@ -168,7 +170,13 @@ namespace PractikalLesson_1
 
             if (input == calculatorAgain)
             {
+                Console.Clear();
                 ChooseCurrency();
+            }
+            else if (input == exitToMainMenu)
+            {
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.CalculatorSelection();
             }
             else if (input == exit)
             {

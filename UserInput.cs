@@ -12,11 +12,18 @@ namespace PractikalLesson_1
         TaxCalculator taxAgain = new TaxCalculator();
 
         private string currentInput;
-        public string chekedInput;
+
+        private string chekedInput;
+        public string MyProperty
+        {
+            get { return currentInput; }
+            private set { currentInput = value; }
+        }
+
 
         private string firstCalc = "1";
         private string secCalc = "2";
-        private string thirdCalc = "3";    
+        private string thirdCalc = "3";
 
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
@@ -24,25 +31,18 @@ namespace PractikalLesson_1
 
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
+        private string exitToMainMenu = "Return";
         private string InputFalse = @"Значение не корректно, попробуйте снова
 ___________________________________________";
 
-        NumberFormatInfo chekPoint = new NumberFormatInfo()
-        {
-            NumberDecimalSeparator = "."
-        };
-
-        public string GetUserInput(TypeOfUserInput type,bool showWarning = true)
+        public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
         {
             currentInput = Console.ReadLine();
 
             if (type == TypeOfUserInput.year)
             {
-                int currentInputInt = 0;
-
                 if (currentInput.All(Char.IsDigit))
                 {
-                    currentInputInt = Convert.ToInt32(currentInput);
                     chekedInput = currentInput;
                 }
                 else if (showWarning == true)
@@ -120,6 +120,10 @@ ___________________________________________";
                 {
                     chekedInput = currentInput;
                 }
+                else if (currentInput == exitToMainMenu)
+                {
+                    chekedInput = currentInput;
+                }
                 else
                 {
                     taxAgain.AnswerTax(InputFalse);
@@ -137,7 +141,7 @@ ___________________________________________";
 
                 Console.ReadKey();
                 Environment.Exit(0);
-            } 
+            }
             else
             {
                 Console.WriteLine("Ввод успешен, но все же нажмите любую клавишу чтобы выйти :)");
