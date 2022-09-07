@@ -41,7 +41,7 @@ namespace PractikalLesson_1
             {
                 TaxCalculator taxCalc = new TaxCalculator();
                 Console.Clear();
-                taxCalc.Calculate();
+                taxCalc.TaxCalculate();
             }
             else if (input == exit)
             {

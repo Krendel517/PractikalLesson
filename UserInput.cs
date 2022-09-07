@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace PractikalLesson_1
 {
     class UserInput
     {
+        TaxCalculator taxAgain = new TaxCalculator();
+
         private string currentInput;
         public string chekedInput;
 
@@ -18,12 +21,16 @@ namespace PractikalLesson_1
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
-        private string valut;
 
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
+        private string InputFalse = @"Значение не корректно, попробуйте снова
+___________________________________________";
 
-
+        NumberFormatInfo chekPoint = new NumberFormatInfo()
+        {
+            NumberDecimalSeparator = "."
+        };
 
         public string GetUserInput(TypeOfUserInput type,bool showWarning = true)
         {
@@ -31,40 +38,25 @@ namespace PractikalLesson_1
 
             if (type == TypeOfUserInput.year)
             {
-                int adult = 2004;
-                int questionableAge = 1920;
                 int currentInputInt = 0;
 
                 if (currentInput.All(Char.IsDigit))
                 {
                     currentInputInt = Convert.ToInt32(currentInput);
+                    chekedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
                     Console.Clear();
-                    Console.WriteLine("Значение не корректно, введите любую клавишу чтобы выйти.");
+                    Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
                     Console.WriteLine("===============================================================");
 
-                    Console.ReadKey();
-                    Environment.Exit(0);
-                }
-
-                if (currentInputInt <= adult && currentInputInt >= questionableAge)
-                {
-                    chekedInput = currentInput;
-                    Console.Clear();
-                }
-                else if (showWarning == true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение не корректно, введите любую клавишу чтобы выйти.");
-                    Console.ReadKey();
                     Environment.Exit(0);
                 }
             }
             if (type == TypeOfUserInput.number)
             {
-                if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc || currentInput == exit)
+                if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
                 {
                     chekedInput = currentInput;
                 }
@@ -74,28 +66,25 @@ namespace PractikalLesson_1
                     Console.WriteLine("Значение не корректно, попробуйте снова.");
                     Console.WriteLine("=========================================");
 
-                    Console.ReadKey();
-                    Environment.Exit(0);
+                    MainMenu chooseCalc = new MainMenu();
+                    chooseCalc.CalculatorSelection();
                 }
             }
             if (type == TypeOfUserInput.currency)
             {
                 if (currentInput == hryvnia)
                 {
-                    valut = " грн.";
-                    currentInput = hryvnia;
+                    chekedInput = currentInput;
                 }
 
                 else if (currentInput == dollar)
                 {
-                    valut = " дол.";
-                    currentInput = dollar;
+                    chekedInput = currentInput;
                 }
 
                 else if (currentInput == euro)
                 {
-                    valut = " евро";
-                    currentInput = euro;
+                    chekedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -103,21 +92,12 @@ namespace PractikalLesson_1
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("___________________________________________");
 
-                    Console.ReadKey();
-                    Environment.Exit(0);
+                    taxAgain.ChooseCurrency();
                 }
             }
             else if (type == TypeOfUserInput.money)
             {
-                if (currentInput.All(Char.IsDigit))
-                {
-                    chekedInput = currentInput;
-                }
-                else if (currentInput.All(Char.IsDigit) && currentInput.Contains("."))
-                {
-                    chekedInput = currentInput;
-                }
-                else if (currentInput.All(Char.IsDigit) && currentInput.Contains(","))
+                if (double.TryParse(currentInput, out double number))
                 {
                     chekedInput = currentInput;
                 }
@@ -127,8 +107,7 @@ namespace PractikalLesson_1
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("___________________________________________");
 
-                    Console.ReadKey();
-                    Environment.Exit(0);
+                    taxAgain.YearIncome();
                 }
             }
             else if (type == TypeOfUserInput.command)
@@ -140,7 +119,11 @@ namespace PractikalLesson_1
                 else if (currentInput == exit)
                 {
                     chekedInput = currentInput;
-                }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                }
+                else
+                {
+                    taxAgain.AnswerTax(InputFalse);
+                }
             }
             return currentInput;
         }

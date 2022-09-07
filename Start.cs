@@ -8,6 +8,9 @@ namespace PractikalLesson_1
     {
         static void Main(string[] args)
         {
+            int adult = 2004;
+            int questionableAge = 1920;
+
             string input;
 
             Preview();
@@ -29,12 +32,23 @@ namespace PractikalLesson_1
 _____________________________");
 
                 UserInput chekInput = new UserInput();
-                input = chekInput.GetUserInput(TypeOfUserInput.year,false);
+                input = chekInput.GetUserInput(TypeOfUserInput.year);
+                int inputYear = Convert.ToInt32(input);
 
+                if (inputYear < adult && inputYear > questionableAge)
+                {
+                    Console.Clear();
 
-                Console.Clear();
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.CalculatorSelection();
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.CalculatorSelection();
+                }
+                else
+                {
+                    Console.WriteLine("На данный момент вы не можете воспользоваться данными услагами, введите люблую клавишу, чтобы выйти.");
+
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
             }
         }
     }
