@@ -32,7 +32,7 @@ namespace PractikalLesson_1
 _____________________________");
 
                 UserInput chekInput = new UserInput();
-                input = chekInput.GetUserInput(TypeOfUserInput.year);
+                input = chekInput.GetUserInput(TypeOfUserInput.year, TypeOfUserInput.command);
                 int inputYear = Convert.ToInt32(input);
 
                 if (inputYear < adult && inputYear > questionableAge)

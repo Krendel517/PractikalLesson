@@ -13,13 +13,12 @@ namespace PractikalLesson_1
 
         private string currentInput;
 
-        private string chekedInput;
-        public string MyProperty
+        public string СhekedInput
         {
             get { return currentInput; }
+
             private set { currentInput = value; }
         }
-
 
         private string firstCalc = "1";
         private string secCalc = "2";
@@ -35,6 +34,103 @@ namespace PractikalLesson_1
         private string InputFalse = @"Значение не корректно, попробуйте снова
 ___________________________________________";
 
+        public string GetUserInput(TypeOfUserInput type, TypeOfUserInput type1)
+        {
+            currentInput = Console.ReadLine();
+
+            if (type == TypeOfUserInput.year || type1 == TypeOfUserInput.year)
+            {
+                if (currentInput.All(Char.IsDigit))
+                {
+                    СhekedInput = currentInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
+                    Console.WriteLine("===============================================================");
+
+                    Environment.Exit(0);
+                }
+            }
+            if (type == TypeOfUserInput.number || type1 == TypeOfUserInput.number)
+            {
+                if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
+                {
+                    СhekedInput = currentInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение не корректно, попробуйте снова.");
+                    Console.WriteLine("=========================================");
+
+                    MainMenu chooseCalc = new MainMenu();
+                    chooseCalc.CalculatorSelection();
+                }
+            }
+            if (type == TypeOfUserInput.currency || type1 == TypeOfUserInput.currency)
+            {
+                if (currentInput == hryvnia)
+                {
+                    СhekedInput = currentInput;
+                }
+
+                else if (currentInput == dollar)
+                {
+                    СhekedInput = currentInput;
+                }
+
+                else if (currentInput == euro)
+                {
+                    СhekedInput = currentInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение некорректно, попробуйте снова");
+                    Console.WriteLine("___________________________________________");
+
+                    taxAgain.ChooseCurrency();
+                }
+            }
+            else if (type == TypeOfUserInput.money || type1 == TypeOfUserInput.money)
+            {
+                if (double.TryParse(currentInput, out double number))
+                {
+                    СhekedInput = currentInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение некорректно, попробуйте снова");
+                    Console.WriteLine("___________________________________________");
+
+                    taxAgain.YearIncome();
+                }
+            }
+            else if (type == TypeOfUserInput.command || type1 == TypeOfUserInput.command)
+            {
+                if (currentInput == calculatorAgain)
+                {
+                    СhekedInput = currentInput;
+                }
+                else if (currentInput == exit)
+                {
+                    СhekedInput = currentInput;
+                }
+                else if (currentInput == exitToMainMenu)
+                {
+                    СhekedInput = currentInput;
+                }
+                else
+                {
+                    taxAgain.AnswerTax(InputFalse);
+                }
+            }
+            return currentInput;
+        }
+
         public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
         {
             currentInput = Console.ReadLine();
@@ -43,7 +139,7 @@ ___________________________________________";
             {
                 if (currentInput.All(Char.IsDigit))
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -58,7 +154,7 @@ ___________________________________________";
             {
                 if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -74,17 +170,17 @@ ___________________________________________";
             {
                 if (currentInput == hryvnia)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
 
                 else if (currentInput == dollar)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
 
                 else if (currentInput == euro)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -99,7 +195,7 @@ ___________________________________________";
             {
                 if (double.TryParse(currentInput, out double number))
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -114,23 +210,24 @@ ___________________________________________";
             {
                 if (currentInput == calculatorAgain)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
                 else if (currentInput == exit)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
                 else if (currentInput == exitToMainMenu)
                 {
-                    chekedInput = currentInput;
+                    СhekedInput = currentInput;
                 }
-                else
+                else if (showWarning == true)
                 {
                     taxAgain.AnswerTax(InputFalse);
                 }
             }
             return currentInput;
         }
+
         public string GetUserInput()
         {
             currentInput = Console.ReadLine();

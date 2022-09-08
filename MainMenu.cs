@@ -23,7 +23,7 @@ namespace PractikalLesson_1
             Console.WriteLine("3. Калькулятор налогов");
 
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.number);
+            input = chekInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
 
             if (input == firstCalc)
             {
