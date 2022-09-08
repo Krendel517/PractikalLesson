@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PractikalLesson_1
+namespace MultyCalculator
 {
     class UserInput
     {
-        TaxCalculator taxAgain = new TaxCalculator();
-
         private string currentInput;
 
         public string СhekedInput
@@ -31,11 +29,12 @@ namespace PractikalLesson_1
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
-        private string InputFalse = @"Значение не корректно, попробуйте снова
-___________________________________________";
 
         public string GetUserInput(TypeOfUserInput type, TypeOfUserInput type1)
         {
+            MainMenu mainMenu = new MainMenu();
+            TaxCalculator taxAgain = new TaxCalculator();
+
             currentInput = Console.ReadLine();
 
             if (type == TypeOfUserInput.year || type1 == TypeOfUserInput.year)
@@ -50,7 +49,7 @@ ___________________________________________";
                     Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
                     Console.WriteLine("===============================================================");
 
-                    Environment.Exit(0);
+                    mainMenu.TheMainMenu();
                 }
             }
             if (type == TypeOfUserInput.number || type1 == TypeOfUserInput.number)
@@ -65,8 +64,7 @@ ___________________________________________";
                     Console.WriteLine("Значение не корректно, попробуйте снова.");
                     Console.WriteLine("=========================================");
 
-                    MainMenu chooseCalc = new MainMenu();
-                    chooseCalc.CalculatorSelection();
+                    mainMenu.CalculatorSelection();
                 }
             }
             if (type == TypeOfUserInput.currency || type1 == TypeOfUserInput.currency)
@@ -123,18 +121,16 @@ ___________________________________________";
                 {
                     СhekedInput = currentInput;
                 }
-                else
-                {
-                    taxAgain.AnswerTax(InputFalse);
-                }
             }
             return currentInput;
         }
 
         public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
         {
-            currentInput = Console.ReadLine();
+            TaxCalculator taxAgain = new TaxCalculator();
+            MainMenu mainMenu = new MainMenu();
 
+            currentInput = Console.ReadLine();
             if (type == TypeOfUserInput.year)
             {
                 if (currentInput.All(Char.IsDigit))
@@ -147,7 +143,7 @@ ___________________________________________";
                     Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
                     Console.WriteLine("===============================================================");
 
-                    Environment.Exit(0);
+                    mainMenu.TheMainMenu();
                 }
             }
             if (type == TypeOfUserInput.number)
@@ -162,8 +158,7 @@ ___________________________________________";
                     Console.WriteLine("Значение не корректно, попробуйте снова.");
                     Console.WriteLine("=========================================");
 
-                    MainMenu chooseCalc = new MainMenu();
-                    chooseCalc.CalculatorSelection();
+                    mainMenu.CalculatorSelection();
                 }
             }
             if (type == TypeOfUserInput.currency)
@@ -219,10 +214,6 @@ ___________________________________________";
                 else if (currentInput == exitToMainMenu)
                 {
                     СhekedInput = currentInput;
-                }
-                else if (showWarning == true)
-                {
-                    taxAgain.AnswerTax(InputFalse);
                 }
             }
             return currentInput;

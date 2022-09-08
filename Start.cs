@@ -2,19 +2,13 @@
 using System.Globalization;
 using System.Linq;
 
-namespace PractikalLesson_1
+namespace MultyCalculator
 {
     class Start
     {
         static void Main(string[] args)
         {
-            int adult = 2004;
-            int questionableAge = 1920;
-
-            string input;
-
             Preview();
-            Start();
 
             void Preview()
             {
@@ -24,31 +18,9 @@ namespace PractikalLesson_1
 
                 Console.ReadKey();
                 Console.Clear();
-            }
 
-            void Start()
-            {
-                Console.WriteLine(@"Введите свой год рождения
-_____________________________");
-
-                UserInput chekInput = new UserInput();
-                input = chekInput.GetUserInput(TypeOfUserInput.year, TypeOfUserInput.command);
-                int inputYear = Convert.ToInt32(input);
-
-                if (inputYear < adult && inputYear > questionableAge)
-                {
-                    Console.Clear();
-
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.CalculatorSelection();
-                }
-                else
-                {
-                    Console.WriteLine("На данный момент вы не можете воспользоваться данными услагами, введите люблую клавишу, чтобы выйти.");
-
-                    Console.ReadKey();
-                    Environment.Exit(0);
-                }
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.TheMainMenu();
             }
         }
     }

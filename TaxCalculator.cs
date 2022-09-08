@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PractikalLesson_1
+namespace MultyCalculator
 {
     public class TaxCalculator
     {
+        UserInput chekInput = new UserInput();
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
@@ -40,8 +41,9 @@ namespace PractikalLesson_1
         public void Show()
         {
             Console.WriteLine("Вы выбрали калькулятор дохода, нажмите любую кнопку чтобы приступить к вычисления дохода.");
-            Console.ReadKey();
 
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public void ChooseCurrency()
@@ -54,8 +56,7 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
             Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
 
-            UserInput chekInput = new UserInput();
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
+            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.money);
 
             if (inputCur == hryvnia)
             {
@@ -93,7 +94,6 @@ namespace PractikalLesson_1
                 Console.Clear();
                 Console.WriteLine("Введите ваш доход за " + moth[count]);
 
-                UserInput chekInput = new UserInput();
                 monthlySalary[count] = chekInput.GetUserInput(TypeOfUserInput.money);
 
                 if (monthlySalary[count].Contains("."))
@@ -142,8 +142,10 @@ namespace PractikalLesson_1
 
         public void AnswerTax(string hollowString)
         {
+            string InputFalse = @"Значение не корректно, попробуйте снова
+___________________________________________";
 
-            Console.Clear();
+        Console.Clear();
             Console.WriteLine("Вот ваш счет!");
             Console.WriteLine("_________________________________________");
             Console.WriteLine(" ");
@@ -165,7 +167,6 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите Return чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
-            UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
@@ -176,11 +177,17 @@ namespace PractikalLesson_1
             else if (input == exitToMainMenu)
             {
                 MainMenu mainMenu = new MainMenu();
+
+                Console.Clear();
                 mainMenu.CalculatorSelection();
             }
             else if (input == exit)
             {
                 Environment.Exit(0);
+            }
+            else
+            {
+                AnswerTax(InputFalse);
             }
 
             Console.ReadKey();
