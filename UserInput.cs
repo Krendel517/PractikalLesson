@@ -10,12 +10,10 @@ namespace MultyCalculator
     class UserInput
     {
         private string currentInput;
-
+        private string checkedInput;
         public string СhekedInput
         {
             get { return currentInput; }
-
-            private set { currentInput = value; }
         }
 
         private string firstCalc = "1";
@@ -30,18 +28,18 @@ namespace MultyCalculator
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
 
-        public string GetUserInput(TypeOfUserInput type, TypeOfUserInput type1)
-        {
-            MainMenu mainMenu = new MainMenu();
-            TaxCalculator taxAgain = new TaxCalculator();
-
-            currentInput = Console.ReadLine();
-
-            if (type == TypeOfUserInput.year || type1 == TypeOfUserInput.year)
+        public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType)
+        {   
+            if (firstType == TypeOfUserInput.year || secondType == TypeOfUserInput.year)
             {
+                Console.WriteLine("Введите свой год рождения");
+                Console.WriteLine("===============================");
+
+                currentInput = Console.ReadLine();
+
                 if (currentInput.All(Char.IsDigit))
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
@@ -49,14 +47,22 @@ namespace MultyCalculator
                     Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
                     Console.WriteLine("===============================================================");
 
-                    mainMenu.TheMainMenu();
+                    GetUserInput(TypeOfUserInput.year);
                 }
             }
-            if (type == TypeOfUserInput.number || type1 == TypeOfUserInput.number)
+            if (firstType == TypeOfUserInput.number || secondType == TypeOfUserInput.number)
             {
+                Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
+                Console.WriteLine("=====================================================================");
+                Console.WriteLine("1. Простой калькулятор");
+                Console.WriteLine("2. Калькулятор возраста");
+                Console.WriteLine("3. Калькулятор налогов");
+
+                currentInput = Console.ReadLine();
+
                 if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
@@ -64,78 +70,89 @@ namespace MultyCalculator
                     Console.WriteLine("Значение не корректно, попробуйте снова.");
                     Console.WriteLine("=========================================");
 
-                    mainMenu.CalculatorSelection();
+                    GetUserInput(TypeOfUserInput.number);
                 }
             }
-            if (type == TypeOfUserInput.currency || type1 == TypeOfUserInput.currency)
+            if (firstType == TypeOfUserInput.currency || secondType == TypeOfUserInput.currency)
             {
+                Console.WriteLine("Введите валюту вашего дохода");
+                Console.WriteLine("==========================================");//Декоративная часть интерфейса
+                Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+                Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+                Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+                Console.WriteLine("==========================================");//Декоративная часть интерфейса
+
+                currentInput = Console.ReadLine();
+
                 if (currentInput == hryvnia)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
 
                 else if (currentInput == dollar)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
 
                 else if (currentInput == euro)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
                     Console.Clear();
                     Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("___________________________________________");
+                    Console.WriteLine("=======================================");
 
-                    taxAgain.ChooseCurrency();
+                    GetUserInput(TypeOfUserInput.currency);
                 }
             }
-            else if (type == TypeOfUserInput.money || type1 == TypeOfUserInput.money)
+            else if (firstType == TypeOfUserInput.money || secondType == TypeOfUserInput.money)
             {
+                currentInput = Console.ReadLine();
+
                 if (double.TryParse(currentInput, out double number))
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
-                    Console.Clear();
                     Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("___________________________________________");
+                    Console.WriteLine("========================================");
 
-                    taxAgain.YearIncome();
+                    GetUserInput(TypeOfUserInput.money);
                 }
             }
-            else if (type == TypeOfUserInput.command || type1 == TypeOfUserInput.command)
+            else if (firstType == TypeOfUserInput.command || secondType == TypeOfUserInput.command)
             {
                 if (currentInput == calculatorAgain)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (currentInput == exit)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (currentInput == exitToMainMenu)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
             }
-            return currentInput;
+            return checkedInput;
         }
 
-        public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
+        public string GetUserInput(TypeOfUserInput firstType, bool showWarning = true)
         {
-            TaxCalculator taxAgain = new TaxCalculator();
-            MainMenu mainMenu = new MainMenu();
-
-            currentInput = Console.ReadLine();
-            if (type == TypeOfUserInput.year)
+            if (firstType == TypeOfUserInput.year)
             {
+                Console.WriteLine("Введите свой год рождения");
+                Console.WriteLine("===============================");
+
+                currentInput = Console.ReadLine();
+
                 if (currentInput.All(Char.IsDigit))
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -143,14 +160,24 @@ namespace MultyCalculator
                     Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
                     Console.WriteLine("===============================================================");
 
-                    mainMenu.TheMainMenu();
+                    GetUserInput(TypeOfUserInput.year);
                 }
             }
-            if (type == TypeOfUserInput.number)
+
+
+            if (firstType == TypeOfUserInput.number)
             {
+                Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
+                Console.WriteLine("=====================================================================");
+                Console.WriteLine("1. Простой калькулятор");
+                Console.WriteLine("2. Калькулятор возраста");
+                Console.WriteLine("3. Калькулятор налогов");
+
+                currentInput = Console.ReadLine();
+
                 if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
@@ -158,65 +185,74 @@ namespace MultyCalculator
                     Console.WriteLine("Значение не корректно, попробуйте снова.");
                     Console.WriteLine("=========================================");
 
-                    mainMenu.CalculatorSelection();
+                    GetUserInput(TypeOfUserInput.number);
                 }
             }
-            if (type == TypeOfUserInput.currency)
+            if (firstType == TypeOfUserInput.currency)
             {
+                Console.WriteLine("Введите валюту вашего дохода");
+                Console.WriteLine("==========================================");//Декоративная часть интерфейса
+                Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+                Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+                Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+                Console.WriteLine("==========================================");//Декоративная часть интерфейса
+
+                currentInput = Console.ReadLine();
+
                 if (currentInput == hryvnia)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
 
                 else if (currentInput == dollar)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
 
                 else if (currentInput == euro)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
                     Console.Clear();
                     Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("___________________________________________");
 
-                    taxAgain.ChooseCurrency();
+                    GetUserInput(TypeOfUserInput.currency);
                 }
             }
-            else if (type == TypeOfUserInput.money)
+            else if (firstType == TypeOfUserInput.money)
             {
+                currentInput = Console.ReadLine();
+
                 if (double.TryParse(currentInput, out double number))
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (showWarning == true)
                 {
-                    Console.Clear();
                     Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("___________________________________________");
+                    Console.WriteLine("========================================");
 
-                    taxAgain.YearIncome();
+                    GetUserInput(TypeOfUserInput.money);
                 }
             }
-            else if (type == TypeOfUserInput.command)
+            else if (firstType == TypeOfUserInput.command)
             {
                 if (currentInput == calculatorAgain)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (currentInput == exit)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (currentInput == exitToMainMenu)
                 {
-                    СhekedInput = currentInput;
+                    checkedInput = currentInput;
                 }
             }
-            return currentInput;
+            return checkedInput;
         }
 
         public string GetUserInput()

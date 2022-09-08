@@ -18,7 +18,7 @@ namespace MultyCalculator
         private string exit = "Exit";
         private string input;
 
-        public void TheMainMenu()
+        public void Show()
         {
             Start();
             CalculatorSelection();
@@ -26,19 +26,15 @@ namespace MultyCalculator
 
         void Start()
         {
-            Console.WriteLine(@"Введите свой год рождения
-_____________________________");
-
             UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.year);
+
             int inputYear = Convert.ToInt32(input);
 
             if (inputYear < adult && inputYear > questionableAge)
             {
                 Console.Clear();
-
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.CalculatorSelection();
+                CalculatorSelection();
             }
             else
             {
@@ -51,14 +47,8 @@ _____________________________");
 
         public void CalculatorSelection()
         {
-            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
-            Console.WriteLine("=====================================================================");
-            Console.WriteLine("1. Простой калькулятор");
-            Console.WriteLine("2. Калькулятор возраста");
-            Console.WriteLine("3. Калькулятор налогов");
-
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
+            input = chekInput.GetUserInput(TypeOfUserInput.number);
 
             if (input == firstCalc)
             {

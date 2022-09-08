@@ -9,7 +9,6 @@ namespace MultyCalculator
 {
     public class TaxCalculator
     {
-        UserInput chekInput = new UserInput();
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
@@ -34,8 +33,8 @@ namespace MultyCalculator
         {
             Show();
             ChooseCurrency();
-            YearIncome();
-            AnswerTax("");
+            CalculateIncome();
+            ShowResult();
         }
 
         public void Show()
@@ -48,15 +47,8 @@ namespace MultyCalculator
 
         public void ChooseCurrency()
         {
-            Console.WriteLine("Введите валюту вашего дохода");
-            Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
-            Console.WriteLine(" ");
-            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-            Console.WriteLine("_________________________________________");//Декоративная часть интерфейса
-
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.money);
+            UserInput chekInput = new UserInput();
+            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
 
             if (inputCur == hryvnia)
             {
@@ -72,11 +64,11 @@ namespace MultyCalculator
             }
         }
 
-        public void YearIncome()
+        public void CalculateIncome()
         {
-            string[] moth = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
-            string[] monthlySalary = new string[12];
-            double[] monthlySalaryInt = new double[12];
+            string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
+            string[] monthlySalaryStr = new string[12];
+            double[] monthlySalaryDouble = new double[12];
 
 
             NumberFormatInfo chekPoint = new NumberFormatInfo()
@@ -92,26 +84,28 @@ namespace MultyCalculator
             for (int count = 0; count <= 11; count++)
             {
                 Console.Clear();
-                Console.WriteLine("Введите ваш доход за " + moth[count]);
+                Console.WriteLine("Введите ваш доход за " + mothStr[count]);
+                Console.WriteLine("======================================");
 
-                monthlySalary[count] = chekInput.GetUserInput(TypeOfUserInput.money);
+                UserInput chekInput = new UserInput();
+                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money);
 
-                if (monthlySalary[count].Contains("."))
+                if (monthlySalaryStr[count].Contains("."))
                 {
-                    monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count], chekPoint);
+                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekPoint);
                 }
-                else if (monthlySalary[count].Contains(","))
+                else if (monthlySalaryStr[count].Contains(","))
                 {
-                    monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count], chekComma);
+                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekComma);
                 }
                 else
                 {
-                    monthlySalaryInt[count] = Convert.ToDouble(monthlySalary[count]);
+                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count]);
                 }
             }
 
             double annualIncome = 0;
-            foreach (double annualIncomeInt in monthlySalaryInt)
+            foreach (double annualIncomeInt in monthlySalaryDouble)
             {
                 annualIncome += annualIncomeInt;
             }
@@ -138,18 +132,13 @@ namespace MultyCalculator
             Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
 
             Console.ReadKey();
+            Console.Clear();
         }
 
-        public void AnswerTax(string hollowString)
+        public void ShowResult()
         {
-            string InputFalse = @"Значение не корректно, попробуйте снова
-___________________________________________";
-
-        Console.Clear();
             Console.WriteLine("Вот ваш счет!");
-            Console.WriteLine("_________________________________________");
-            Console.WriteLine(" ");
-
+            Console.WriteLine("============================================");
             Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
             Console.WriteLine(" грн.");
             singleTax = sumInHruvnia * 0.05;
@@ -160,18 +149,19 @@ ___________________________________________";
             taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
-            Console.WriteLine("_________________________________________");
-            Console.WriteLine("");
-            Console.WriteLine(hollowString);
+            Console.WriteLine("============================================");
             Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
             Console.WriteLine("Введите Return чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
-            input = chekInput.GetUserInput(TypeOfUserInput.command);
+            input = Console.ReadLine();
 
             if (input == calculatorAgain)
             {
                 Console.Clear();
+                Console.WriteLine(@"Значение не корректно, попробуйте снова
+___________________________________________");
+
                 ChooseCurrency();
             }
             else if (input == exitToMainMenu)
@@ -187,7 +177,10 @@ ___________________________________________";
             }
             else
             {
-                AnswerTax(InputFalse);
+                Console.Clear();
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                Console.WriteLine("============================================");
+                ShowResult();
             }
 
             Console.ReadKey();
