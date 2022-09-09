@@ -46,10 +46,11 @@
     <Compile Include="AgeCalculator.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="MainMenu.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleCalculator.cs" />
     <Compile Include="TaxCalculator.cs" />
+    <Compile Include="UserInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
