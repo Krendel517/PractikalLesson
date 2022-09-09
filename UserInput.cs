@@ -11,10 +11,6 @@ namespace MultyCalculator
     {
         private string currentInput;
         private string checkedInput;
-        public string СhekedInput
-        {
-            get { return currentInput; }
-        }
 
         private string firstCalc = "1";
         private string secCalc = "2";
@@ -28,8 +24,17 @@ namespace MultyCalculator
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
 
+        NumberFormatInfo chekPoint = new NumberFormatInfo()
+        {
+            NumberDecimalSeparator = "."
+        };
+        NumberFormatInfo chekComma = new NumberFormatInfo()
+        {
+            NumberDecimalSeparator = ","
+        };
+
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType)
-        {   
+        {
             if (firstType == TypeOfUserInput.year || secondType == TypeOfUserInput.year)
             {
                 Console.WriteLine("Введите свой год рождения");
@@ -110,8 +115,13 @@ namespace MultyCalculator
             else if (firstType == TypeOfUserInput.money || secondType == TypeOfUserInput.money)
             {
                 currentInput = Console.ReadLine();
+                bool isLetter = currentInput.All(Char.IsLetter);
 
-                if (double.TryParse(currentInput, out double number))
+                if (double.TryParse(currentInput, out double number) && currentInput.Contains(","))
+                {
+                    checkedInput = currentInput;
+                }
+                else if (isLetter == false && currentInput.Contains("."))
                 {
                     checkedInput = currentInput;
                 }
@@ -224,8 +234,13 @@ namespace MultyCalculator
             else if (firstType == TypeOfUserInput.money)
             {
                 currentInput = Console.ReadLine();
-
-                if (double.TryParse(currentInput, out double number))
+                bool isLetter = currentInput.All(Char.IsLetter);
+                
+                if (double.TryParse(currentInput, out double number) && currentInput.Contains(","))
+                {
+                    checkedInput = currentInput;
+                }
+                else if (isLetter == false && currentInput.Contains("."))
                 {
                     checkedInput = currentInput;
                 }
