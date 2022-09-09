@@ -54,7 +54,7 @@ namespace MultyCalculator
             {
                 SimpleCalculator simpleCalc = new SimpleCalculator();
                 Console.Clear();
-                simpleCalc.SimpleTheCalculator();
+                simpleCalc.Order();
             }
             else if (input == secCalc)
             {

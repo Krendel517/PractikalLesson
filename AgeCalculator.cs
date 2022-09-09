@@ -14,6 +14,7 @@ namespace MultyCalculator
             Console.WriteLine("На данный момент, этот калькулятор ещё не закончен, попробуйте вернутся позже.");
             Console.WriteLine("Введите любую клавишу, чтобы выйти");
             Console.ReadKey();
+            Environment.Exit(0);
         }
     }
 }
