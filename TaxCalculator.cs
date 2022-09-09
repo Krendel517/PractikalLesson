@@ -154,14 +154,12 @@ namespace MultyCalculator
             Console.WriteLine("Введите Return чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
-            input = Console.ReadLine();
+            UserInput chekInput = new UserInput();
+            input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
             {
                 Console.Clear();
-                Console.WriteLine(@"Значение не корректно, попробуйте снова
-___________________________________________");
-
                 ChooseCurrency();
             }
             else if (input == exitToMainMenu)

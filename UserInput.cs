@@ -24,15 +24,6 @@ namespace MultyCalculator
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
 
-        NumberFormatInfo chekPoint = new NumberFormatInfo()
-        {
-            NumberDecimalSeparator = "."
-        };
-        NumberFormatInfo chekComma = new NumberFormatInfo()
-        {
-            NumberDecimalSeparator = ","
-        };
-
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType)
         {
             if (firstType == TypeOfUserInput.year || secondType == TypeOfUserInput.year)
@@ -117,7 +108,7 @@ namespace MultyCalculator
                 currentInput = Console.ReadLine();
                 bool isLetter = currentInput.All(Char.IsLetter);
 
-                if (double.TryParse(currentInput, out double number) && currentInput.Contains(","))
+                if (double.TryParse(currentInput, out double number))
                 {
                     checkedInput = currentInput;
                 }
@@ -135,6 +126,8 @@ namespace MultyCalculator
             }
             else if (firstType == TypeOfUserInput.command || secondType == TypeOfUserInput.command)
             {
+                currentInput = Console.ReadLine();
+
                 if (currentInput == calculatorAgain)
                 {
                     checkedInput = currentInput;
@@ -236,7 +229,7 @@ namespace MultyCalculator
                 currentInput = Console.ReadLine();
                 bool isLetter = currentInput.All(Char.IsLetter);
                 
-                if (double.TryParse(currentInput, out double number) && currentInput.Contains(","))
+                if (double.TryParse(currentInput, out double number))
                 {
                     checkedInput = currentInput;
                 }
@@ -254,6 +247,8 @@ namespace MultyCalculator
             }
             else if (firstType == TypeOfUserInput.command)
             {
+                currentInput = Console.ReadLine();
+
                 if (currentInput == calculatorAgain)
                 {
                     checkedInput = currentInput;
