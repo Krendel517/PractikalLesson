@@ -159,8 +159,9 @@ namespace MultyCalculator
 
             if (input == calculatorAgain)
             {
+                TaxCalculate();
                 Console.Clear();
-                ChooseCurrency();
+                Console.WriteLine("Введите любую клавишу чтобы приступить к вычисления годового дохода.");
             }
             else if (input == exitToMainMenu)
             {
