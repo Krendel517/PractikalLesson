@@ -16,6 +16,12 @@ namespace MultyCalculator
         private string secCalc = "2";
         private string thirdCalc = "3";
 
+        private string plus = "+";
+        private string substruction = "-";
+        private string division = "/";
+        private string multiplication = "*";
+        private string persent = "%";
+
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
@@ -103,7 +109,7 @@ namespace MultyCalculator
                     GetUserInput(TypeOfUserInput.currency);
                 }
             }
-            else if (firstType == TypeOfUserInput.money || secondType == TypeOfUserInput.money)
+            else if (firstType == TypeOfUserInput.numberForCalculate || secondType == TypeOfUserInput.numberForCalculate)
             {
                 currentInput = Console.ReadLine();
                 bool isLetter = currentInput.All(Char.IsLetter);
@@ -121,7 +127,7 @@ namespace MultyCalculator
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("========================================");
 
-                    GetUserInput(TypeOfUserInput.money);
+                    GetUserInput(TypeOfUserInput.numberForCalculate);
                 }
             }
             else if (firstType == TypeOfUserInput.command || secondType == TypeOfUserInput.command)
@@ -139,6 +145,37 @@ namespace MultyCalculator
                 else if (currentInput == exitToMainMenu)
                 {
                     checkedInput = currentInput;
+                }
+            }
+            else if (firstType == TypeOfUserInput.mathematicalActions || secondType == TypeOfUserInput.mathematicalActions)
+            {
+                currentInput = Console.ReadLine();
+                if (currentInput == plus)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == substruction)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == division)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == multiplication)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == persent)
+                {
+                    checkedInput = currentInput;
+                }
+                else
+                {
+                    GetUserInput(TypeOfUserInput.mathematicalActions);
+
+                    Console.WriteLine("Значение не верно, попробуйте снова.");
+                    Console.WriteLine("========================================");
                 }
             }
             return checkedInput;
@@ -220,15 +257,16 @@ namespace MultyCalculator
                 {
                     Console.Clear();
                     Console.WriteLine("Значение некорректно, попробуйте снова");
+                    Console.WriteLine("==========================================");
 
                     GetUserInput(TypeOfUserInput.currency);
                 }
             }
-            else if (firstType == TypeOfUserInput.money)
+            else if (firstType == TypeOfUserInput.numberForCalculate)
             {
                 currentInput = Console.ReadLine();
                 bool isLetter = currentInput.All(Char.IsLetter);
-                
+
                 if (double.TryParse(currentInput, out double number))
                 {
                     checkedInput = currentInput;
@@ -242,7 +280,38 @@ namespace MultyCalculator
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("========================================");
 
-                    GetUserInput(TypeOfUserInput.money);
+                    GetUserInput(TypeOfUserInput.numberForCalculate);
+                }
+            }
+            else if (firstType == TypeOfUserInput.mathematicalActions)
+            {
+                currentInput = Console.ReadLine();
+                if (currentInput == plus)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == substruction)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == division)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == multiplication)
+                {
+                    checkedInput = currentInput;
+                }
+                else if (currentInput == persent)
+                {
+                    checkedInput = currentInput;
+                }
+                else
+                {
+                    Console.WriteLine("Значение не верно, попробуйте снова.");
+                    Console.WriteLine("========================================");
+
+                    GetUserInput(TypeOfUserInput.mathematicalActions);
                 }
             }
             else if (firstType == TypeOfUserInput.command)

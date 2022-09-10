@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace MultyCalculator
         private const string division = "/";
         private const string multiplication = "*";
         private const string percent = "%";
-        private double oneTenth;
+        private string formatMoney = "{0:N}";
 
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
@@ -43,25 +44,65 @@ namespace MultyCalculator
         {
             Console.Clear();
             Console.WriteLine("Вы выбрали простой калькулятор, нажмите любую клавишу, чтобы приступить к работе");
+            Console.WriteLine("=================================================================================");
 
             Console.ReadKey();
         }
 
         public void InputNumbers()
         {
+            UserInput chekInput = new UserInput();
+
+            NumberFormatInfo chekPoint = new NumberFormatInfo()
+            {
+                NumberDecimalSeparator = "."
+            };
+
+            NumberFormatInfo chekComma = new NumberFormatInfo()
+            {
+                NumberDecimalSeparator = ","
+            };
+
             Console.Clear();
             Console.WriteLine("Выберете первое число");
-            firstNumber = Console.ReadLine();
-            firstNumberConv = Convert.ToDouble(firstNumber);
+            Console.WriteLine("======================");
+            firstNumber = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
+
+            if (firstNumber.Contains("."))
+            {
+                firstNumberConv = Convert.ToDouble(firstNumber, chekPoint);
+            }
+            else if (firstNumber.Contains(","))
+            {
+                firstNumberConv = Convert.ToDouble(firstNumber, chekComma);
+            }
+            else
+            {
+                firstNumberConv = Convert.ToDouble(firstNumber);
+            }
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
-            action = Console.ReadLine();
+            Console.WriteLine("========================================================================================================================");
+            action = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions);
 
             Console.Clear();
             Console.WriteLine("Выберете второе число");
-            secondNumber = Console.ReadLine();
-            secondNumberConv = Convert.ToDouble(secondNumber);
+            Console.WriteLine("======================");
+            secondNumber = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
+
+            if (secondNumber.Contains("."))
+            {
+                secondNumberConv = Convert.ToDouble(secondNumber, chekPoint);
+            }
+            else if (secondNumber.Contains(","))
+            {
+                secondNumberConv = Convert.ToDouble(secondNumber, chekComma);
+            }
+            else
+            {
+                secondNumberConv = Convert.ToDouble(secondNumber);
+            }
         }
 
         public void CalculateNumbers()
@@ -89,8 +130,12 @@ namespace MultyCalculator
                     break;
 
                 case percent:
-                    answer = firstNumberConv * (secondNumberConv / 100);
-                    Console.WriteLine($"Резльтать выражения {firstNumberConv} и {secondNumberConv}: " + answer);
+                    answer = firstNumberConv / secondNumberConv * 100;
+
+                    Console.Clear();
+                    Console.Write($"Резльтать выражения {firstNumberConv} и {secondNumberConv}: ");
+                    Console.Write(formatMoney, answer);
+                    Console.WriteLine("%");
                     break;
             }
             Console.WriteLine("Введите любую клавишу,чтобы продолжить.");

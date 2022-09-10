@@ -88,7 +88,7 @@ namespace MultyCalculator
                 Console.WriteLine("======================================");
 
                 UserInput chekInput = new UserInput();
-                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money);
+                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
 
                 if (monthlySalaryStr[count].Contains("."))
                 {
