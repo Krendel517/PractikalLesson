@@ -22,7 +22,7 @@ namespace MultyCalculator
         private const string division = "/";
         private const string multiplication = "*";
         private const string percent = "%";
-        private string formatMoney = "{0:N}";
+        private string formatAnswer = "{0:N}";
 
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
@@ -111,22 +111,26 @@ namespace MultyCalculator
             {
                 case addition:
                     answer = firstNumberConv + secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} + {secondNumberConv}: " + answer);
+                    Console.Write($"Резльтать вычисления {firstNumberConv} + {secondNumberConv}: ");
+                    Console.WriteLine(formatAnswer, answer);
                     break;
 
                 case subtraction:
                     answer = firstNumberConv - secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} - {secondNumberConv}: " + answer);
+                    Console.Write($"Резльтать вычисления {firstNumberConv} - {secondNumberConv}: ");
+                    Console.WriteLine(formatAnswer, answer);
                     break;
 
                 case division:
                     answer = firstNumberConv / secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} : {secondNumberConv}: " + answer);
+                    Console.Write($"Резльтать вычисления {firstNumberConv} : {secondNumberConv}: ");
+                    Console.WriteLine(formatAnswer, answer);
                     break;
 
                 case multiplication:
                     answer = firstNumberConv * secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} * {secondNumberConv}: " + answer);
+                    Console.Write($"Резльтать вычисления {firstNumberConv} * {secondNumberConv}: ");
+                    Console.WriteLine(formatAnswer, answer);
                     break;
 
                 case percent:
@@ -134,10 +138,11 @@ namespace MultyCalculator
 
                     Console.Clear();
                     Console.Write($"Резльтать выражения {firstNumberConv} и {secondNumberConv}: ");
-                    Console.Write(formatMoney, answer);
+                    Console.Write(formatAnswer, answer);
                     Console.WriteLine("%");
                     break;
             }
+            Console.WriteLine("========================================");
             Console.WriteLine("Введите любую клавишу,чтобы продолжить.");
 
             Console.ReadKey();
