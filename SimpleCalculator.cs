@@ -103,6 +103,8 @@ namespace MultyCalculator
             {
                 secondNumberConv = Convert.ToDouble(secondNumber);
             }
+
+            Console.Clear();
         }
 
         public void CalculateNumbers()
@@ -111,33 +113,29 @@ namespace MultyCalculator
             {
                 case addition:
                     answer = firstNumberConv + secondNumberConv;
-                    Console.Write($"Резльтать вычисления {firstNumberConv} + {secondNumberConv}: ");
-                    Console.WriteLine(formatAnswer, answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} + {secondNumberConv}: " + answer);
                     break;
 
                 case subtraction:
                     answer = firstNumberConv - secondNumberConv;
-                    Console.Write($"Резльтать вычисления {firstNumberConv} - {secondNumberConv}: ");
-                    Console.WriteLine(formatAnswer, answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} - {secondNumberConv}: " + answer);
                     break;
 
                 case division:
                     answer = firstNumberConv / secondNumberConv;
-                    Console.Write($"Резльтать вычисления {firstNumberConv} : {secondNumberConv}: ");
-                    Console.WriteLine(formatAnswer, answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} : {secondNumberConv}: " + answer);
                     break;
 
                 case multiplication:
                     answer = firstNumberConv * secondNumberConv;
-                    Console.Write($"Резльтать вычисления {firstNumberConv} * {secondNumberConv}: ");
-                    Console.WriteLine(formatAnswer, answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} * {secondNumberConv}: " + answer);
                     break;
 
                 case percent:
                     answer = firstNumberConv / secondNumberConv * 100;
 
                     Console.Clear();
-                    Console.Write($"Резльтать выражения {firstNumberConv} и {secondNumberConv}: ");
+                    Console.Write($"Процентное соотношение чисел {firstNumberConv} и {secondNumberConv}: ");
                     Console.Write(formatAnswer, answer);
                     Console.WriteLine("%");
                     break;
