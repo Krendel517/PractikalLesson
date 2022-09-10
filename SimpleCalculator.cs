@@ -113,29 +113,29 @@ namespace MultyCalculator
             {
                 case addition:
                     answer = firstNumberConv + secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} + {secondNumberConv}: " + answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} + {secondNumberConv} = " + answer);
                     break;
 
                 case subtraction:
                     answer = firstNumberConv - secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} - {secondNumberConv}: " + answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} - {secondNumberConv} = " + answer);
                     break;
 
                 case division:
                     answer = firstNumberConv / secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} : {secondNumberConv}: " + answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} : {secondNumberConv} = " + answer);
                     break;
 
                 case multiplication:
                     answer = firstNumberConv * secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} * {secondNumberConv}: " + answer);
+                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} * {secondNumberConv} = " + answer);
                     break;
 
                 case percent:
                     answer = firstNumberConv / secondNumberConv * 100;
 
                     Console.Clear();
-                    Console.Write($"Процентное соотношение чисел {firstNumberConv} и {secondNumberConv}: ");
+                    Console.Write($"Процентное соотношение {firstNumberConv} от {secondNumberConv} составляет -");
                     Console.Write(formatAnswer, answer);
                     Console.WriteLine("%");
                     break;
