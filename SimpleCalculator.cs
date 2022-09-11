@@ -9,12 +9,13 @@ namespace MultyCalculator
 {
     class SimpleCalculator
     {
-        private string firstNumber;
-        private string secondNumber;
-        private double firstNumberConv;
-        private double secondNumberConv;
+        private string firstNumberStr;
+        private string secondNumberStr;
+        private double firstNumber;
+        private double secondNumber;
         private string action;
         private double answer;
+        private string answerMessege = "Ответ на ваше уровнение: ";
         private string input;
 
         private const string addition = "+";
@@ -22,14 +23,11 @@ namespace MultyCalculator
         private const string division = "/";
         private const string multiplication = "*";
         private const string percent = "%";
-        private string formatAnswer = "{0:N}";
+        private const string formatAnswer = "{0:N}";
 
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
         private string exit = "Exit";
-
-
-
 
         public void Order()
         {
@@ -53,33 +51,11 @@ namespace MultyCalculator
         {
             UserInput chekInput = new UserInput();
 
-            NumberFormatInfo chekPoint = new NumberFormatInfo()
-            {
-                NumberDecimalSeparator = "."
-            };
-
-            NumberFormatInfo chekComma = new NumberFormatInfo()
-            {
-                NumberDecimalSeparator = ","
-            };
-
             Console.Clear();
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
-            firstNumber = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
-
-            if (firstNumber.Contains("."))
-            {
-                firstNumberConv = Convert.ToDouble(firstNumber, chekPoint);
-            }
-            else if (firstNumber.Contains(","))
-            {
-                firstNumberConv = Convert.ToDouble(firstNumber, chekComma);
-            }
-            else
-            {
-                firstNumberConv = Convert.ToDouble(firstNumber);
-            }
+            firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
+            firstNumber = chekInput.NumberConv;
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
@@ -89,20 +65,8 @@ namespace MultyCalculator
             Console.Clear();
             Console.WriteLine("Выберете второе число");
             Console.WriteLine("======================");
-            secondNumber = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
-
-            if (secondNumber.Contains("."))
-            {
-                secondNumberConv = Convert.ToDouble(secondNumber, chekPoint);
-            }
-            else if (secondNumber.Contains(","))
-            {
-                secondNumberConv = Convert.ToDouble(secondNumber, chekComma);
-            }
-            else
-            {
-                secondNumberConv = Convert.ToDouble(secondNumber);
-            }
+            secondNumberStr = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
+            secondNumber = chekInput.NumberConv;
 
             Console.Clear();
         }
@@ -112,34 +76,37 @@ namespace MultyCalculator
             switch (action)
             {
                 case addition:
-                    answer = firstNumberConv + secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} + {secondNumberConv} = " + answer);
+                    answer = firstNumber + secondNumber;
                     break;
 
                 case subtraction:
-                    answer = firstNumberConv - secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} - {secondNumberConv} = " + answer);
+                    answer = firstNumber - secondNumber;
                     break;
 
                 case division:
-                    answer = firstNumberConv / secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} : {secondNumberConv} = " + answer);
+                    answer = firstNumber / secondNumber;
                     break;
 
                 case multiplication:
-                    answer = firstNumberConv * secondNumberConv;
-                    Console.WriteLine($"Резльтать вычисления {firstNumberConv} * {secondNumberConv} = " + answer);
+                    answer = firstNumber * secondNumber;
                     break;
 
                 case percent:
-                    answer = firstNumberConv / secondNumberConv * 100;
-
-                    Console.Clear();
-                    Console.Write($"Процентное соотношение {firstNumberConv} от {secondNumberConv} составляет -");
-                    Console.Write(formatAnswer, answer);
-                    Console.WriteLine("%");
+                    answer = firstNumber / secondNumber * 100;
                     break;
             }
+
+            if (action == percent)
+            {
+                Console.Write($"Процентное соотношение {firstNumberStr} от {secondNumberStr} составляет - ");
+                Console.Write(formatAnswer, answer);
+                Console.WriteLine("%");
+            }
+            else
+            {
+                Console.WriteLine($"Резльтать вычисления {firstNumberStr} + {secondNumberStr} = " + answer);
+            }
+
             Console.WriteLine("========================================");
             Console.WriteLine("Введите любую клавишу,чтобы продолжить.");
 

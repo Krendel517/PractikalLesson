@@ -21,6 +21,7 @@ namespace MultyCalculator
         private string division = "/";
         private string multiplication = "*";
         private string persent = "%";
+        public double NumberConv;
 
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
@@ -29,6 +30,16 @@ namespace MultyCalculator
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
+
+        NumberFormatInfo chekPoint = new NumberFormatInfo()
+        {
+            NumberDecimalSeparator = "."
+        };
+
+        NumberFormatInfo chekComma = new NumberFormatInfo()
+        {
+            NumberDecimalSeparator = ","
+        };
 
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType)
         {
@@ -116,10 +127,24 @@ namespace MultyCalculator
 
                 if (double.TryParse(currentInput, out double number))
                 {
+                    if (currentInput.Contains(","))
+                    {
+                        NumberConv = Convert.ToDouble(currentInput, chekComma);
+                    }
+                    else
+                    {
+                        NumberConv = Convert.ToDouble(currentInput);
+                    }
+
                     checkedInput = currentInput;
                 }
                 else if (isLetter == false && currentInput.Contains("."))
                 {
+                    if (currentInput.Contains("."))
+                    {
+                        NumberConv = Convert.ToDouble(currentInput, chekPoint);
+                    }
+
                     checkedInput = currentInput;
                 }
                 else
@@ -269,13 +294,27 @@ namespace MultyCalculator
 
                 if (double.TryParse(currentInput, out double number))
                 {
+                    if (currentInput.Contains(","))
+                    {
+                        NumberConv = Convert.ToDouble(currentInput, chekComma);
+                    }
+                    else
+                    {
+                        NumberConv = Convert.ToDouble(currentInput);
+                    }
+
                     checkedInput = currentInput;
                 }
                 else if (isLetter == false && currentInput.Contains("."))
                 {
+                    if (currentInput.Contains("."))
+                    {
+                        NumberConv = Convert.ToDouble(currentInput, chekPoint);
+                    }
+
                     checkedInput = currentInput;
                 }
-                else if (showWarning == true)
+                else
                 {
                     Console.WriteLine("Значение некорректно, попробуйте снова");
                     Console.WriteLine("========================================");
