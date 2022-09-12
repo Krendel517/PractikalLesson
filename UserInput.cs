@@ -262,6 +262,30 @@ namespace MultyCalculator
                     checkedInput = currentInput;
                 }
             }
+            else if (firstType == TypeOfUserInput.ageDateFormat)
+            {
+                currentInput = Console.ReadLine();
+
+                CultureInfo culture;
+                DateTimeStyles styles;
+                DateTime dateResult;
+
+                culture = CultureInfo.CreateSpecificCulture("en-US");
+                styles = DateTimeStyles.None;
+
+                if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
+                {
+                    DateTime birthDayInput = DateTime.Parse(currentInput);
+                    checkedInput = currentInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение не корректно, введите даду в формате дд.мм.гггг");
+
+                    GetUserInput(TypeOfUserInput.ageDateFormat);
+                }
+            }
             return checkedInput;
         }
 

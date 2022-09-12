@@ -60,7 +60,7 @@ namespace MultyCalculator
             {
                 AgeCalculator ageCalc = new AgeCalculator();
                 Console.Clear();
-                ageCalc.AgeTheCalculator();
+                ageCalc.OrderCalculateAge();
             }
             else if (input == thirdCalc)
             {
