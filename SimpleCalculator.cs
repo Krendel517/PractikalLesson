@@ -15,7 +15,6 @@ namespace MultyCalculator
         private double secondNumber;
         private string action;
         private double answer;
-        private string answerMessege = "Ответ на ваше уровнение: ";
         private string input;
 
         private const string addition = "+";
@@ -25,9 +24,9 @@ namespace MultyCalculator
         private const string percent = "%";
         private const string formatAnswer = "{0:N}";
 
-        private string calculatorAgain = "Calculate again";
-        private string exitToMainMenu = "Return";
-        private string exit = "Exit";
+        private const string calculatorAgain = "Calculate again";
+        private const string exitToMainMenu = "Return";
+        private const string exit = "Exit";
 
         public void Order()
         {
@@ -95,7 +94,9 @@ namespace MultyCalculator
                     answer = firstNumber / secondNumber * 100;
                     break;
             }
-
+        }
+        void ShowCommand()
+        {
             if (action == percent)
             {
                 Console.Write($"Процентное соотношение {firstNumberStr} от {secondNumberStr} составляет - ");
@@ -112,13 +113,11 @@ namespace MultyCalculator
 
             Console.ReadKey();
             Console.Clear();
-        }
-        void ShowCommand()
-        {
+
             Console.WriteLine("======================================================");
-            Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
-            Console.WriteLine("Введите Return чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine("Если же вы желаете выйти, введите Exit");
+            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
+            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
+            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
             Console.WriteLine("======================================================");
 
             UserInput chekInput = new UserInput();
