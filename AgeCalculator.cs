@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
     class AgeCalculator
     {
@@ -19,7 +19,7 @@ namespace MultyCalculator
         private string exit = "Exit";
         private string exitToMainMenu = "Return";
 
-        public void OrderCalculateAge()
+        public void ShowAllCalculator()
         {
             CalculateAge();
             ShowAnswer();
@@ -61,7 +61,7 @@ namespace MultyCalculator
             if (input == calculatorAgain)
             {
                 Console.Clear();
-                OrderCalculateAge();
+                ShowAllCalculator();
             }
             else if (input == exitToMainMenu)
             {

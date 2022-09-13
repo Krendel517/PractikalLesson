@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
     class UserInput
     {
@@ -270,7 +270,7 @@ namespace MultyCalculator
                 DateTimeStyles styles;
                 DateTime dateResult;
 
-                culture = CultureInfo.CreateSpecificCulture("en-US");
+                culture = CultureInfo.CreateSpecificCulture("fr-FR");
                 styles = DateTimeStyles.None;
 
                 if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
@@ -281,7 +281,7 @@ namespace MultyCalculator
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Значение не корректно, введите даду в формате дд.мм.гггг");
+                    Console.WriteLine("Значение не корректно, введите дату в формате дд.мм.гггг");
 
                     GetUserInput(TypeOfUserInput.ageDateFormat);
                 }
