@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
     class UserInput
     {
@@ -152,8 +152,7 @@ namespace MultyCalculator
                 Console.WriteLine("===============================");
 
                 currentInput = Console.ReadLine();
-
-                if (currentInput.All(Char.IsDigit))
+                if (int.TryParse(currentInput, out int number))
                 {
                     checkedInput = currentInput;
                 }
@@ -165,8 +164,9 @@ namespace MultyCalculator
 
                     GetUserInput(TypeOfUserInput.year);
                 }
-            }
 
+            }
+           
 
             if (firstType == TypeOfUserInput.number)
             {
@@ -229,7 +229,7 @@ namespace MultyCalculator
                 currentInput = Console.ReadLine();
                 bool isLetter = currentInput.All(Char.IsLetter);
                 
-                if (double.TryParse(currentInput, out double number))
+                if (double.TryParse(currentInput, out double numberForMoney))
                 {
                     checkedInput = currentInput;
                 }
@@ -260,6 +260,30 @@ namespace MultyCalculator
                 else if (currentInput == exitToMainMenu)
                 {
                     checkedInput = currentInput;
+                }
+            }
+            else if (firstType == TypeOfUserInput.ageDateFormat)
+            {
+                currentInput = Console.ReadLine();
+
+                CultureInfo culture;
+                DateTimeStyles styles;
+                DateTime dateResult;
+
+                culture = CultureInfo.CreateSpecificCulture("fr-FR");
+                styles = DateTimeStyles.None;
+
+                if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
+                {
+                    DateTime birthDayInput = DateTime.Parse(currentInput);
+                    checkedInput = currentInput;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Значение не корректно, введите дату в формате дд.мм.гггг");
+
+                    GetUserInput(TypeOfUserInput.ageDateFormat);
                 }
             }
             return checkedInput;

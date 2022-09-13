@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
-    public enum TypeOfUserInput { number, year, currency, money, command };
+    public enum TypeOfUserInput { number, year, currency, money, command, ageDateFormat };
 }
