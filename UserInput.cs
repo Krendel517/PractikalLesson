@@ -152,8 +152,7 @@ namespace MultiCalculator
                 Console.WriteLine("===============================");
 
                 currentInput = Console.ReadLine();
-
-                if (currentInput.All(Char.IsDigit))
+                if (int.TryParse(currentInput, out int number))
                 {
                     checkedInput = currentInput;
                 }
@@ -165,8 +164,9 @@ namespace MultiCalculator
 
                     GetUserInput(TypeOfUserInput.year);
                 }
-            }
 
+            }
+           
 
             if (firstType == TypeOfUserInput.number)
             {
@@ -229,7 +229,7 @@ namespace MultiCalculator
                 currentInput = Console.ReadLine();
                 bool isLetter = currentInput.All(Char.IsLetter);
                 
-                if (double.TryParse(currentInput, out double number))
+                if (double.TryParse(currentInput, out double numberForMoney))
                 {
                     checkedInput = currentInput;
                 }
