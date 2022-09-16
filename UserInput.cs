@@ -41,334 +41,213 @@ namespace MultyCalculator
             NumberDecimalSeparator = ","
         };
 
-        public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType)
+        public string GetUserInputYear(bool showWarning = true)
         {
-            if (firstType == TypeOfUserInput.year || secondType == TypeOfUserInput.year)
+            Console.WriteLine("Введите свой год рождения");
+            Console.WriteLine("===============================");
+
+            currentInput = Console.ReadLine();
+
+            if (currentInput.All(Char.IsDigit))
             {
-                Console.WriteLine("Введите свой год рождения");
-                Console.WriteLine("===============================");
-
-                currentInput = Console.ReadLine();
-
-                if (currentInput.All(Char.IsDigit))
-                {
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
-                    Console.WriteLine("===============================================================");
-
-                    GetUserInput(TypeOfUserInput.year);
-                }
+                checkedInput = currentInput;
             }
-            if (firstType == TypeOfUserInput.number || secondType == TypeOfUserInput.number)
+            else if (showWarning == true)
             {
-                Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
-                Console.WriteLine("=====================================================================");
-                Console.WriteLine("1. Простой калькулятор");
-                Console.WriteLine("2. Калькулятор возраста");
-                Console.WriteLine("3. Калькулятор налогов");
+                Console.Clear();
+                Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
+                Console.WriteLine("===============================================================");
 
-                currentInput = Console.ReadLine();
-
-                if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
-                {
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение не корректно, попробуйте снова.");
-                    Console.WriteLine("=========================================");
-
-                    GetUserInput(TypeOfUserInput.number);
-                }
-            }
-            if (firstType == TypeOfUserInput.currency || secondType == TypeOfUserInput.currency)
-            {
-                Console.WriteLine("Введите валюту вашего дохода");
-                Console.WriteLine("==========================================");//Декоративная часть интерфейса
-                Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-                Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-                Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-                Console.WriteLine("==========================================");//Декоративная часть интерфейса
-
-                currentInput = Console.ReadLine();
-
-                if (currentInput == hryvnia)
-                {
-                    checkedInput = currentInput;
-                }
-
-                else if (currentInput == dollar)
-                {
-                    checkedInput = currentInput;
-                }
-
-                else if (currentInput == euro)
-                {
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("=======================================");
-
-                    GetUserInput(TypeOfUserInput.currency);
-                }
-            }
-            else if (firstType == TypeOfUserInput.numberForCalculate || secondType == TypeOfUserInput.numberForCalculate)
-            {
-                currentInput = Console.ReadLine();
-                bool isLetter = currentInput.All(Char.IsLetter);
-
-                if (double.TryParse(currentInput, out double number))
-                {
-                    if (currentInput.Contains(","))
-                    {
-                        NumberConv = Convert.ToDouble(currentInput, chekComma);
-                    }
-                    else
-                    {
-                        NumberConv = Convert.ToDouble(currentInput);
-                    }
-
-                    checkedInput = currentInput;
-                }
-                else if (isLetter == false && currentInput.Contains("."))
-                {
-                    if (currentInput.Contains("."))
-                    {
-                        NumberConv = Convert.ToDouble(currentInput, chekPoint);
-                    }
-
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("========================================");
-
-                    GetUserInput(TypeOfUserInput.numberForCalculate);
-                }
-            }
-            else if (firstType == TypeOfUserInput.command || secondType == TypeOfUserInput.command)
-            {
-                currentInput = Console.ReadLine();
-
-                if (currentInput == calculatorAgain)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == exit)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == exitToMainMenu)
-                {
-                    checkedInput = currentInput;
-                }
-            }
-            else if (firstType == TypeOfUserInput.mathematicalActions || secondType == TypeOfUserInput.mathematicalActions)
-            {
-                currentInput = Console.ReadLine();
-                if (currentInput == plus)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == substruction)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == division)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == multiplication)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == persent)
-                {
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    GetUserInput(TypeOfUserInput.mathematicalActions);
-
-                    Console.WriteLine("Значение не верно, попробуйте снова.");
-                    Console.WriteLine("========================================");
-                }
+                GetUserInputYear();
             }
             return checkedInput;
         }
 
-        public string GetUserInput(TypeOfUserInput firstType, bool showWarning = true)
+        public string GetUserInputNumbAndCommand(bool showWarning = true)
         {
-            if (firstType == TypeOfUserInput.year)
+
+            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
+            Console.WriteLine("=====================================================================");
+            Console.WriteLine("1. Простой калькулятор");
+            Console.WriteLine("2. Калькулятор возраста");
+            Console.WriteLine("3. Калькулятор налогов");
+
+            currentInput = Console.ReadLine();
+
+            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc || currentInput == exit)
             {
-                Console.WriteLine("Введите свой год рождения");
-                Console.WriteLine("===============================");
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                Console.Clear();
+                Console.WriteLine("Значение не корректно, попробуйте снова.");
+                Console.WriteLine("=========================================");
 
-                currentInput = Console.ReadLine();
-
-                if (currentInput.All(Char.IsDigit))
-                {
-                    checkedInput = currentInput;
-                }
-                else if (showWarning == true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
-                    Console.WriteLine("===============================================================");
-
-                    GetUserInput(TypeOfUserInput.year);
-                }
+                GetUserInputNumbAndCommand();
             }
 
+            return checkedInput;
+        }
 
-            if (firstType == TypeOfUserInput.number)
+        public string GetUserInputCurrency(bool showWarning = true)
+        {
+            Console.WriteLine("Введите валюту вашего дохода");
+            Console.WriteLine("==========================================");//Декоративная часть интерфейса
+            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+            Console.WriteLine("==========================================");//Декоративная часть интерфейса
+
+            currentInput = Console.ReadLine();
+
+            if (currentInput == hryvnia)
             {
-                Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
-                Console.WriteLine("=====================================================================");
-                Console.WriteLine("1. Простой калькулятор");
-                Console.WriteLine("2. Калькулятор возраста");
-                Console.WriteLine("3. Калькулятор налогов");
-
-                currentInput = Console.ReadLine();
-
-                if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (showWarning == true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение не корректно, попробуйте снова.");
-                    Console.WriteLine("=========================================");
-
-                    GetUserInput(TypeOfUserInput.number);
-                }
+                checkedInput = currentInput;
             }
-            if (firstType == TypeOfUserInput.currency)
+
+            else if (currentInput == dollar)
             {
-                Console.WriteLine("Введите валюту вашего дохода");
-                Console.WriteLine("==========================================");//Декоративная часть интерфейса
-                Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-                Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-                Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-                Console.WriteLine("==========================================");//Декоративная часть интерфейса
-
-                currentInput = Console.ReadLine();
-
-                if (currentInput == hryvnia)
-                {
-                    checkedInput = currentInput;
-                }
-
-                else if (currentInput == dollar)
-                {
-                    checkedInput = currentInput;
-                }
-
-                else if (currentInput == euro)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (showWarning == true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("==========================================");
-
-                    GetUserInput(TypeOfUserInput.currency);
-                }
+                checkedInput = currentInput;
             }
-            else if (firstType == TypeOfUserInput.numberForCalculate)
+
+            else if (currentInput == euro)
             {
-                currentInput = Console.ReadLine();
-                bool isLetter = currentInput.All(Char.IsLetter);
-
-                if (double.TryParse(currentInput, out double number))
-                {
-                    if (currentInput.Contains(","))
-                    {
-                        NumberConv = Convert.ToDouble(currentInput, chekComma);
-                    }
-                    else
-                    {
-                        NumberConv = Convert.ToDouble(currentInput);
-                    }
-
-                    checkedInput = currentInput;
-                }
-                else if (isLetter == false && currentInput.Contains("."))
-                {
-                    if (currentInput.Contains("."))
-                    {
-                        NumberConv = Convert.ToDouble(currentInput, chekPoint);
-                    }
-
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    Console.WriteLine("Значение некорректно, попробуйте снова");
-                    Console.WriteLine("========================================");
-
-                    GetUserInput(TypeOfUserInput.numberForCalculate);
-                }
+                checkedInput = currentInput;
             }
-            else if (firstType == TypeOfUserInput.mathematicalActions)
+            else if (showWarning == true)
             {
-                currentInput = Console.ReadLine();
-                if (currentInput == plus)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == substruction)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == division)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == multiplication)
-                {
-                    checkedInput = currentInput;
-                }
-                else if (currentInput == persent)
-                {
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    Console.WriteLine("Значение не верно, попробуйте снова.");
-                    Console.WriteLine("========================================");
+                Console.Clear();
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                Console.WriteLine("==========================================");
 
-                    GetUserInput(TypeOfUserInput.mathematicalActions);
-                }
+                GetUserInputCurrency();
             }
-            else if (firstType == TypeOfUserInput.command)
-            {
-                currentInput = Console.ReadLine();
+            return checkedInput;
+        }
 
-                if (currentInput == calculatorAgain)
+        public string GetUserInputMoney(bool showWarning = true)
+        {
+            currentInput = Console.ReadLine();
+            bool isLetter = currentInput.All(Char.IsLetter);
+
+            if (double.TryParse(currentInput, out double number))
+            {
+                NumberConv = Convert.ToDouble(currentInput);
+
+                checkedInput = currentInput;
+            }
+            else if (isLetter == false && currentInput.Contains("."))
+            {
+                if (currentInput.Contains("."))
                 {
-                    checkedInput = currentInput;
+                    NumberConv = Convert.ToDouble(currentInput, chekPoint);
                 }
-                else if (currentInput == exit)
+
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                Console.WriteLine("========================================");
+
+                GetUserInputMoney();
+            }
+            return checkedInput;
+        }
+
+        public string GetUserInputSimpleNumb(bool showWarning = true)
+        {
+            currentInput = Console.ReadLine();
+            bool isLetter = currentInput.All(Char.IsLetter);
+
+            if (double.TryParse(currentInput, out double number))
+            {   
+                NumberConv = Convert.ToDouble(currentInput);
+
+                checkedInput = currentInput;
+            }
+            else if (isLetter == false && currentInput.Contains("."))
+            {
+                if (currentInput.Contains("."))
                 {
-                    checkedInput = currentInput;
+                    NumberConv = Convert.ToDouble(currentInput, chekPoint);
                 }
-                else if (currentInput == exitToMainMenu)
-                {
-                    checkedInput = currentInput;
-                }
+
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                Console.WriteLine("========================================");
+
+                GetUserInputSimpleNumb();
+            }
+            return checkedInput;
+        }
+
+        public string GetUserInputMathAction(bool showWarning = true)
+        {
+            currentInput = Console.ReadLine();
+            if (currentInput == plus)
+            {
+                checkedInput = currentInput;
+            }
+            else if (currentInput == substruction)
+            {
+                checkedInput = currentInput;
+            }
+            else if (currentInput == division)
+            {
+                checkedInput = currentInput;
+            }
+            else if (currentInput == multiplication)
+            {
+                checkedInput = currentInput;
+            }
+            else if (currentInput == persent)
+            {
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                Console.WriteLine("Значение не верно, попробуйте снова.");
+                Console.WriteLine("========================================");
+
+                GetUserInputMathAction();
+            }
+            return checkedInput;
+        }
+
+        public string GetUserInputCommand(bool showWarning = true)
+        {
+            Console.Clear();
+
+            Console.WriteLine("======================================================");
+            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
+            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
+            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
+            Console.WriteLine("======================================================");
+
+            currentInput = Console.ReadLine();
+
+            if (currentInput == calculatorAgain)
+            {
+                checkedInput = currentInput;
+            }
+            else if (currentInput == exit)
+            {
+                checkedInput = currentInput;
+            }
+            else if (currentInput == exitToMainMenu)
+            {
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                Console.Clear();
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                GetUserInputCommand();
             }
             return checkedInput;
         }
