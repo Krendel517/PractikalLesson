@@ -48,7 +48,7 @@ namespace MultyCalculator
         public void ChooseCurrency()
         {
             UserInput chekInput = new UserInput();
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
+            inputCur = chekInput.GetUserInputCurrency();
 
             if (inputCur == hryvnia)
             {
@@ -88,7 +88,7 @@ namespace MultyCalculator
                 Console.WriteLine("======================================");
 
                 UserInput chekInput = new UserInput();
-                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
+                monthlySalaryStr[count] = chekInput.GetUserInputMoney();
 
                 if (monthlySalaryStr[count].Contains("."))
                 {
@@ -155,7 +155,7 @@ namespace MultyCalculator
             Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.command);
+            input = chekInput.GetUserInputCommand();
 
             if (input == calculatorAgain)
             {
