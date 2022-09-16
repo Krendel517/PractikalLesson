@@ -9,22 +9,26 @@ namespace MultyCalculator
 {
     class SimpleCalculator
     {
-        UserInput chekInput = new UserInput();
-
         private string firstNumberStr;
         private string secondNumberStr;
         private double firstNumber;
         private double secondNumber;
         private string action;
-        private string input;
         private double answer;
+        private string input;
+
+        private const string addition = "+";
+        private const string subtraction = "-";
+        private const string division = "/";
+        private const string multiplication = "*";
+        private const string percent = "%";
         private const string formatAnswer = "{0:N}";
 
         private const string calculatorAgain = "Calculate again";
         private const string exitToMainMenu = "Return";
         private const string exit = "Exit";
 
-        public void Start()
+        public void Order()
         {
             ShowTheCalculator();
             InputNumbers();
@@ -43,23 +47,24 @@ namespace MultyCalculator
         }
 
         public void InputNumbers()
-        {       
-            Console.Clear();
+        {
+            UserInput chekInput = new UserInput();
 
+            Console.Clear();
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
-            firstNumberStr = chekInput.GetUserInputSimpleNumb();
+            firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
             firstNumber = chekInput.NumberConv;
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
             Console.WriteLine("========================================================================================================================");
-            action = chekInput.GetUserInputMathAction();
+            action = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions);
 
             Console.Clear();
             Console.WriteLine("Выберете второе число");
             Console.WriteLine("======================");
-            secondNumberStr = chekInput.GetUserInputSimpleNumb(); ;
+            secondNumberStr = chekInput.GetUserInput(TypeOfUserInput.numberForCalculate);
             secondNumber = chekInput.NumberConv;
 
             Console.Clear();
@@ -69,30 +74,30 @@ namespace MultyCalculator
         {
             switch (action)
             {
-                case "+":
+                case addition:
                     answer = firstNumber + secondNumber;
                     break;
 
-                case "-":
+                case subtraction:
                     answer = firstNumber - secondNumber;
                     break;
 
-                case "/":
+                case division:
                     answer = firstNumber / secondNumber;
                     break;
 
-                case "*":
+                case multiplication:
                     answer = firstNumber * secondNumber;
                     break;
 
-                case "%":
+                case percent:
                     answer = firstNumber / secondNumber * 100;
                     break;
             }
         }
         void ShowCommand()
         {
-            if (action == "%")
+            if (action == percent)
             {
                 Console.Write($"Процентное соотношение {firstNumberStr} от {secondNumberStr} составляет - ");
                 Console.Write(formatAnswer, answer);
@@ -100,18 +105,27 @@ namespace MultyCalculator
             }
             else
             {
-                Console.WriteLine($"Результать вычисления {firstNumberStr} + {secondNumberStr} = " + answer);
+                Console.WriteLine($"Резльтать вычисления {firstNumberStr} + {secondNumberStr} = " + answer);
             }
 
             Console.WriteLine("========================================");
             Console.WriteLine("Введите любую клавишу,чтобы продолжить.");
+
             Console.ReadKey();
-          
-            input = chekInput.GetUserInputCommand();
+            Console.Clear();
+
+            Console.WriteLine("======================================================");
+            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
+            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
+            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
+            Console.WriteLine("======================================================");
+
+            UserInput chekInput = new UserInput();
+            input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
             {
-                Start();
+                Order();
                 Console.Clear();
                 Console.WriteLine("Нажмите любую клавишу, чтобы приступить к работе");
             }
@@ -125,6 +139,12 @@ namespace MultyCalculator
             else if (input == exit)
             {
                 Environment.Exit(0);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                ShowCommand();
             }
         }
     }
