@@ -48,18 +48,18 @@ namespace MultyCalculator
 
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
-            firstNumberStr = chekInput.GetUserInputSimpleNumb();
+            firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
             firstNumber = chekInput.NumberConv;
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
             Console.WriteLine("========================================================================================================================");
-            action = chekInput.GetUserInputMathAction();
+            action = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions);
 
             Console.Clear();
             Console.WriteLine("Выберете второе число");
             Console.WriteLine("======================");
-            secondNumberStr = chekInput.GetUserInputSimpleNumb(); ;
+            secondNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
             secondNumber = chekInput.NumberConv;
 
             Console.Clear();
@@ -107,7 +107,7 @@ namespace MultyCalculator
             Console.WriteLine("Введите любую клавишу,чтобы продолжить.");
             Console.ReadKey();
           
-            input = chekInput.GetUserInputCommand();
+            input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
             {

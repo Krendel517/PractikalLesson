@@ -41,7 +41,43 @@ namespace MultyCalculator
             NumberDecimalSeparator = ","
         };
 
-        public string GetUserInputYear(bool showWarning = true)
+
+        public string GetUserInput(TypeOfUserInput type)
+        {
+            if (type == TypeOfUserInput.year)
+            {
+                GetUserInputYear();
+            }
+
+            else if (type == TypeOfUserInput.number)
+            {
+                GetUserInputNumbAndCommand();
+            }
+
+            else if (type == TypeOfUserInput.currency)
+            {
+                GetUserInputCurrency();
+            }
+
+            else if (type == TypeOfUserInput.money)
+            {
+                GetUserInputMoney();
+            }
+
+            else if (type == TypeOfUserInput.simpleNumber)
+            {
+                GetUserInputSimpleNumb();
+            }
+
+            else if (type == TypeOfUserInput.mathematicalActions)
+            {
+                GetUserInputMathAction();
+            }
+
+            return checkedInput;
+        }
+
+        private string GetUserInputYear(bool showWarning = true)
         {
             Console.WriteLine("Введите свой год рождения");
             Console.WriteLine("===============================");
@@ -63,10 +99,10 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInputNumbAndCommand(bool showWarning = true)
+        private string GetUserInputNumbAndCommand(bool showWarning = true)
         {
 
-            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру, или введите Exit чтобы выйти.");
+            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру.");
             Console.WriteLine("=====================================================================");
             Console.WriteLine("1. Простой калькулятор");
             Console.WriteLine("2. Калькулятор возраста");
@@ -74,7 +110,7 @@ namespace MultyCalculator
 
             currentInput = Console.ReadLine();
 
-            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc || currentInput == exit)
+            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
             {
                 checkedInput = currentInput;
             }
@@ -90,7 +126,7 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInputCurrency(bool showWarning = true)
+        private string GetUserInputCurrency(bool showWarning = true)
         {
             Console.WriteLine("Введите валюту вашего дохода");
             Console.WriteLine("==========================================");//Декоративная часть интерфейса
@@ -126,7 +162,7 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInputMoney(bool showWarning = true)
+        private string GetUserInputMoney(bool showWarning = true)
         {
             currentInput = Console.ReadLine();
             bool isLetter = currentInput.All(Char.IsLetter);
@@ -156,7 +192,7 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInputSimpleNumb(bool showWarning = true)
+        private string GetUserInputSimpleNumb(bool showWarning = true)
         {
             currentInput = Console.ReadLine();
             bool isLetter = currentInput.All(Char.IsLetter);
@@ -186,7 +222,7 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInputMathAction(bool showWarning = true)
+        private string GetUserInputMathAction(bool showWarning = true)
         {
             currentInput = Console.ReadLine();
             if (currentInput == plus)
@@ -219,7 +255,7 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInputCommand(bool showWarning = true)
+        private string GetUserInputCommand(bool showWarning = true)
         {
             Console.Clear();
 
@@ -252,7 +288,7 @@ namespace MultyCalculator
             return checkedInput;
         }
 
-        public string GetUserInput()
+        string GetUserInput()
         {
             currentInput = Console.ReadLine();
 
