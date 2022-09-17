@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace MultyCalculator
 {
-    public enum TypeOfUserInput { number, year, currency, money, numberForCalculate, mathematicalActions, command };
+    public enum TypeOfUserInput { number, year, currency, money, simpleNumber, mathematicalActions, command };
 }

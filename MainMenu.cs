@@ -27,7 +27,7 @@ namespace MultyCalculator
         void Start()
         {
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInputYear(true);
+            input = chekInput.GetUserInput(TypeOfUserInput.year);
 
             int inputYear = Convert.ToInt32(input);
 
@@ -48,7 +48,7 @@ namespace MultyCalculator
         public void CalculatorSelection()
         {
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInputNumbAndCommand();
+            input = chekInput.GetUserInput(TypeOfUserInput.number);
 
             if (input == firstCalc)
             {
