@@ -149,10 +149,6 @@ namespace MultyCalculator
             taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
-            Console.WriteLine("============================================");
-            Console.WriteLine("Введите Calculate again, чтобы посчитать заново.");
-            Console.WriteLine("Введите Return чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine("Если же вы желаете выйти, введите Exit");
 
             UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.command);

@@ -73,6 +73,10 @@ namespace MultyCalculator
             {
                 GetUserInputMathAction();
             }
+            else if (type == TypeOfUserInput.command)
+            {
+                GetUserInputCommand();
+            }
 
             return checkedInput;
         }
@@ -83,8 +87,7 @@ namespace MultyCalculator
             Console.WriteLine("===============================");
 
             currentInput = Console.ReadLine();
-
-            if (currentInput.All(Char.IsDigit))
+            if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
             }
@@ -257,8 +260,6 @@ namespace MultyCalculator
 
         private string GetUserInputCommand(bool showWarning = true)
         {
-            Console.Clear();
-
             Console.WriteLine("======================================================");
             Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
             Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
@@ -281,7 +282,6 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
-                Console.Clear();
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 GetUserInputCommand();
             }

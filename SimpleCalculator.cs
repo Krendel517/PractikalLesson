@@ -100,7 +100,7 @@ namespace MultyCalculator
             }
             else
             {
-                Console.WriteLine($"Результать вычисления {firstNumberStr} + {secondNumberStr} = " + answer);
+                Console.WriteLine($"Результать вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
             }
 
             Console.WriteLine("========================================");
