@@ -11,71 +11,100 @@ namespace MultyCalculator
     {
         private string currentInput;
         private string checkedInput;
-
-        private string firstCalc = "1";
-        private string secCalc = "2";
-        private string thirdCalc = "3";
-
-        private string plus = "+";
-        private string substruction = "-";
-        private string division = "/";
-        private string multiplication = "*";
-        private string persent = "%";
-        public double NumberConv;
-
-        private const string hryvnia = "UAH";
-        private const string dollar = "USD";
-        private const string euro = "EUR";
-
-        private string exit = "Exit";
-        private string calculatorAgain = "Calculate again";
-        private string exitToMainMenu = "Return";
+        public double numberConv;
 
         NumberFormatInfo chekPoint = new NumberFormatInfo()
         {
             NumberDecimalSeparator = "."
         };
 
-        NumberFormatInfo chekComma = new NumberFormatInfo()
+        public string GetUserInput()
         {
-            NumberDecimalSeparator = ","
-        };
+            currentInput = Console.ReadLine();
 
+            if (currentInput.Contains(""))
+            {
+                Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти");
+
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Ввод успешен, но все же нажмите любую клавишу чтобы выйти :)");
+
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+
+            return currentInput;
+        }
 
         public string GetUserInput(TypeOfUserInput type)
         {
-            if (type == TypeOfUserInput.year)
+            switch (type)
             {
-                GetUserInputYear();
+                case TypeOfUserInput.year:
+                    GetUserInputYear();
+                    break;
+
+                case TypeOfUserInput.number:
+                    GetUserInputNumberCalc();
+                    break;
+
+                case TypeOfUserInput.currency:
+                    GetUserInputCurrency();
+                    break;
+
+                case TypeOfUserInput.money:
+                    GetUserInputMoney();
+                    break;
+
+                case TypeOfUserInput.simpleNumber:
+                    GetUserInputSimpleNumb();
+                    break;
+
+                case TypeOfUserInput.mathematicalActions:
+                    GetUserInputMathAction();
+                    break;
+
+                case TypeOfUserInput.command:
+                    GetUserInputCommand();
+                    break;
             }
 
-            else if (type == TypeOfUserInput.number)
-            {
-                GetUserInputNumbAndCommand();
-            }
+            return checkedInput;
+        }
 
-            else if (type == TypeOfUserInput.currency)
-            {
-                GetUserInputCurrency();
-            }
+        public string GetUserInputTwoType(TypeOfUserInput firstType, TypeOfUserInput secondType)
+        {
+            string firstCalc = "1";
+            string secCalc = "2";
+            string thirdCalc = "3";
+            string exit = "Exit";
 
-            else if (type == TypeOfUserInput.money)
-            {
-                GetUserInputMoney();
-            }
+            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру.");
+            Console.WriteLine("=====================================================================");
+            Console.WriteLine("1. Простой калькулятор");
+            Console.WriteLine("2. Калькулятор возраста");
+            Console.WriteLine("3. Калькулятор налогов");
 
-            else if (type == TypeOfUserInput.simpleNumber)
+            currentInput = Console.ReadLine();
+            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
             {
-                GetUserInputSimpleNumb();
+                checkedInput = currentInput;
             }
+            else if (currentInput == exit)
+            {
+                checkedInput = currentInput;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Значение не корректно, попробуйте снова.");
+                Console.WriteLine("=========================================");
 
-            else if (type == TypeOfUserInput.mathematicalActions)
-            {
-                GetUserInputMathAction();
-            }
-            else if (type == TypeOfUserInput.command)
-            {
-                GetUserInputCommand();
+                GetUserInputTwoType(firstType, secondType);
             }
 
             return checkedInput;
@@ -99,11 +128,15 @@ namespace MultyCalculator
 
                 GetUserInputYear();
             }
+
             return checkedInput;
         }
 
-        private string GetUserInputNumbAndCommand(bool showWarning = true)
+        private string GetUserInputNumberCalc(bool showWarning = true)
         {
+            string firstCalc = "1";
+            string secCalc = "2";
+            string thirdCalc = "3";
 
             Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру.");
             Console.WriteLine("=====================================================================");
@@ -112,7 +145,6 @@ namespace MultyCalculator
             Console.WriteLine("3. Калькулятор налогов");
 
             currentInput = Console.ReadLine();
-
             if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
             {
                 checkedInput = currentInput;
@@ -123,7 +155,7 @@ namespace MultyCalculator
                 Console.WriteLine("Значение не корректно, попробуйте снова.");
                 Console.WriteLine("=========================================");
 
-                GetUserInputNumbAndCommand();
+                GetUserInputNumberCalc();
             }
 
             return checkedInput;
@@ -131,6 +163,10 @@ namespace MultyCalculator
 
         private string GetUserInputCurrency(bool showWarning = true)
         {
+            const string hryvnia = "UAH";
+            const string dollar = "USD";
+            const string euro = "EUR";
+
             Console.WriteLine("Введите валюту вашего дохода");
             Console.WriteLine("==========================================");//Декоративная часть интерфейса
             Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
@@ -139,17 +175,14 @@ namespace MultyCalculator
             Console.WriteLine("==========================================");//Декоративная часть интерфейса
 
             currentInput = Console.ReadLine();
-
             if (currentInput == hryvnia)
             {
                 checkedInput = currentInput;
             }
-
             else if (currentInput == dollar)
             {
                 checkedInput = currentInput;
             }
-
             else if (currentInput == euro)
             {
                 checkedInput = currentInput;
@@ -162,6 +195,7 @@ namespace MultyCalculator
 
                 GetUserInputCurrency();
             }
+
             return checkedInput;
         }
 
@@ -172,7 +206,7 @@ namespace MultyCalculator
 
             if (double.TryParse(currentInput, out double number))
             {
-                NumberConv = Convert.ToDouble(currentInput);
+                numberConv = Convert.ToDouble(currentInput);
 
                 checkedInput = currentInput;
             }
@@ -180,7 +214,7 @@ namespace MultyCalculator
             {
                 if (currentInput.Contains("."))
                 {
-                    NumberConv = Convert.ToDouble(currentInput, chekPoint);
+                    numberConv = Convert.ToDouble(currentInput, chekPoint);
                 }
 
                 checkedInput = currentInput;
@@ -192,6 +226,7 @@ namespace MultyCalculator
 
                 GetUserInputMoney();
             }
+
             return checkedInput;
         }
 
@@ -201,8 +236,8 @@ namespace MultyCalculator
             bool isLetter = currentInput.All(Char.IsLetter);
 
             if (double.TryParse(currentInput, out double number))
-            {   
-                NumberConv = Convert.ToDouble(currentInput);
+            {
+                numberConv = Convert.ToDouble(currentInput);
 
                 checkedInput = currentInput;
             }
@@ -210,7 +245,7 @@ namespace MultyCalculator
             {
                 if (currentInput.Contains("."))
                 {
-                    NumberConv = Convert.ToDouble(currentInput, chekPoint);
+                    numberConv = Convert.ToDouble(currentInput, chekPoint);
                 }
 
                 checkedInput = currentInput;
@@ -222,11 +257,18 @@ namespace MultyCalculator
 
                 GetUserInputSimpleNumb();
             }
+
             return checkedInput;
         }
 
         private string GetUserInputMathAction(bool showWarning = true)
         {
+            string plus = "+";
+            string substruction = "-";
+            string division = "/";
+            string multiplication = "*";
+            string persent = "%";
+
             currentInput = Console.ReadLine();
             if (currentInput == plus)
             {
@@ -255,11 +297,16 @@ namespace MultyCalculator
 
                 GetUserInputMathAction();
             }
+
             return checkedInput;
         }
 
         private string GetUserInputCommand(bool showWarning = true)
         {
+            string exit = "Exit";
+            string calculatorAgain = "Calculate again";
+            string exitToMainMenu = "Return";
+
             Console.WriteLine("======================================================");
             Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
             Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
@@ -267,7 +314,6 @@ namespace MultyCalculator
             Console.WriteLine("======================================================");
 
             currentInput = Console.ReadLine();
-
             if (currentInput == calculatorAgain)
             {
                 checkedInput = currentInput;
@@ -285,29 +331,8 @@ namespace MultyCalculator
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 GetUserInputCommand();
             }
+
             return checkedInput;
-        }
-
-        string GetUserInput()
-        {
-            currentInput = Console.ReadLine();
-
-            if (currentInput.Contains(""))
-            {
-                Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти");
-
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Ввод успешен, но все же нажмите любую клавишу чтобы выйти :)");
-
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
-
-            return currentInput;
         }
     }
 }

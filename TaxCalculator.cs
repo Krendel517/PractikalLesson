@@ -37,7 +37,7 @@ namespace MultyCalculator
             ShowResult();
         }
 
-        public void Show()
+        private void Show()
         {
             Console.WriteLine("Вы выбрали калькулятор дохода, нажмите любую кнопку чтобы приступить к вычисления дохода.");
 
@@ -45,7 +45,7 @@ namespace MultyCalculator
             Console.Clear();
         }
 
-        public void ChooseCurrency()
+        private void ChooseCurrency()
         {
             UserInput chekInput = new UserInput();
             inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
@@ -64,7 +64,7 @@ namespace MultyCalculator
             }
         }
 
-        public void CalculateIncome()
+        private void CalculateIncome()
         {
             string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
             string[] monthlySalaryStr = new string[12];
@@ -135,7 +135,7 @@ namespace MultyCalculator
             Console.Clear();
         }
 
-        public void ShowResult()
+        private void ShowResult()
         {
             Console.WriteLine("Вот ваш счет!");
             Console.WriteLine("============================================");

@@ -24,11 +24,10 @@ namespace MultyCalculator
             CalculatorSelection();
         }
 
-        void Start()
+        private void Start()
         {
             UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.year);
-
             int inputYear = Convert.ToInt32(input);
 
             if (inputYear < adult && inputYear > questionableAge)
@@ -48,7 +47,7 @@ namespace MultyCalculator
         public void CalculatorSelection()
         {
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.number);
+            input = chekInput.GetUserInputTwoType(TypeOfUserInput.number, TypeOfUserInput.exit);
 
             if (input == firstCalc)
             {

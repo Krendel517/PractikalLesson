@@ -18,20 +18,14 @@ namespace MultyCalculator
         private string action;
         private string input;
         private double answer;
-        private const string formatAnswer = "{0:N}";
-
-        private const string calculatorAgain = "Calculate again";
-        private const string exitToMainMenu = "Return";
-        private const string exit = "Exit";
 
         public void Start()
         {
             ShowTheCalculator();
             InputNumbers();
             CalculateNumbers();
-            ShowCommand();
+            ShowResult();
         }
-
 
         private void ShowTheCalculator()
         {
@@ -42,14 +36,14 @@ namespace MultyCalculator
             Console.ReadKey();
         }
 
-        public void InputNumbers()
-        {       
+        private void InputNumbers()
+        {
             Console.Clear();
 
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
             firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
-            firstNumber = chekInput.NumberConv;
+            firstNumber = chekInput.numberConv;
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
@@ -60,12 +54,12 @@ namespace MultyCalculator
             Console.WriteLine("Выберете второе число");
             Console.WriteLine("======================");
             secondNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
-            secondNumber = chekInput.NumberConv;
+            secondNumber = chekInput.numberConv;
 
             Console.Clear();
         }
 
-        public void CalculateNumbers()
+        private void CalculateNumbers()
         {
             switch (action)
             {
@@ -90,8 +84,13 @@ namespace MultyCalculator
                     break;
             }
         }
-        void ShowCommand()
+        private void ShowResult()
         {
+            const string calculatorAgain = "Calculate again";
+            const string exitToMainMenu = "Return";
+            const string exit = "Exit";
+            const string formatAnswer = "{0:N}";
+
             if (action == "%")
             {
                 Console.Write($"Процентное соотношение {firstNumberStr} от {secondNumberStr} составляет - ");
@@ -100,13 +99,13 @@ namespace MultyCalculator
             }
             else
             {
-                Console.WriteLine($"Результать вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
+                Console.WriteLine($"Результат вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
             }
 
             Console.WriteLine("========================================");
             Console.WriteLine("Введите любую клавишу,чтобы продолжить.");
             Console.ReadKey();
-          
+
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
