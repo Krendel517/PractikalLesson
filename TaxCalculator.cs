@@ -47,6 +47,13 @@ namespace MultyCalculator
 
         private void ChooseCurrency()
         {
+            Console.WriteLine("Введите валюту вашего дохода");
+            Console.WriteLine("==========================================");//Декоративная часть интерфейса
+            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+            Console.WriteLine("==========================================");//Декоративная часть
+
             UserInput chekInput = new UserInput();
             inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
 
@@ -150,14 +157,19 @@ namespace MultyCalculator
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
 
+            Console.WriteLine("======================================================");
+            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
+            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
+            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
+            Console.WriteLine("======================================================");
+
             UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
             {
-                TaxCalculate();
                 Console.Clear();
-                Console.WriteLine("Введите любую клавишу чтобы приступить к вычисления годового дохода.");
+                TaxCalculate();
             }
             else if (input == exitToMainMenu)
             {
@@ -179,7 +191,6 @@ namespace MultyCalculator
             }
 
             Console.ReadKey();
-
         }
     }
 }

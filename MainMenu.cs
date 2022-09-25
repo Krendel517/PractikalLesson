@@ -26,16 +26,26 @@ namespace MultyCalculator
 
         private void Start()
         {
+            Console.WriteLine("Введите свой год рождения");
+            Console.WriteLine("===============================");
+
             UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.year);
             int inputYear = Convert.ToInt32(input);
 
-            if (inputYear < adult && inputYear > questionableAge)
+            bool isNumber = double.TryParse(input, out double number);
+            bool comingOfAge = inputYear < adult && inputYear > questionableAge;
+
+            if (comingOfAge)
             {
                 Console.Clear();
                 CalculatorSelection();
             }
-            else
+            else if (!isNumber)
+            {
+                Show();
+            }
+            else if (!comingOfAge)
             {
                 Console.WriteLine("На данный момент вы не можете воспользоваться данными услагами, введите люблую клавишу, чтобы выйти.");
 
@@ -46,8 +56,14 @@ namespace MultyCalculator
 
         public void CalculatorSelection()
         {
+            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру.");
+            Console.WriteLine("=====================================================================");
+            Console.WriteLine("1. Простой калькулятор");
+            Console.WriteLine("2. Калькулятор возраста");
+            Console.WriteLine("3. Калькулятор налогов");
+
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInputTwoType(TypeOfUserInput.number, TypeOfUserInput.exit);
+            input = chekInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
 
             if (input == firstCalc)
             {
@@ -70,6 +86,10 @@ namespace MultyCalculator
             else if (input == exit)
             {
                 Environment.Exit(0);
+            }
+            else
+            {
+                CalculatorSelection();
             }
         }
     }
