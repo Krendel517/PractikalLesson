@@ -51,7 +51,7 @@ namespace MultyCalculator
 
         public void CalculatorSelection()
         {
-            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру.");
+            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру или Exit, чтобы выйти.");
             Console.WriteLine("=====================================================================");
             Console.WriteLine("1. Простой калькулятор");
             Console.WriteLine("2. Калькулятор возраста");

@@ -39,7 +39,7 @@ namespace MultyCalculator
 
         private void Show()
         {
-            Console.WriteLine("Вы выбрали калькулятор дохода, нажмите любую кнопку чтобы приступить к вычисления дохода.");
+            Console.WriteLine("Вы выбрали калькулятор дохода, нажмите любую кнопку чтобы приступить к вычислению дохода.");
 
             Console.ReadKey();
             Console.Clear();
