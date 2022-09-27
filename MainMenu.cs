@@ -31,19 +31,14 @@ namespace MultyCalculator
 
             UserInput chekInput = new UserInput();
             input = chekInput.GetUserInput(TypeOfUserInput.year);
-            int inputYear = Convert.ToInt32(input);
 
-            bool isNumber = double.TryParse(input, out double number);
+            int inputYear = Convert.ToInt32(input);
             bool comingOfAge = inputYear < adult && inputYear > questionableAge;
 
             if (comingOfAge)
             {
                 Console.Clear();
                 CalculatorSelection();
-            }
-            else if (!isNumber)
-            {
-                Show();
             }
             else if (!comingOfAge)
             {
@@ -86,10 +81,6 @@ namespace MultyCalculator
             else if (input == exit)
             {
                 Environment.Exit(0);
-            }
-            else
-            {
-                CalculatorSelection();
             }
         }
     }

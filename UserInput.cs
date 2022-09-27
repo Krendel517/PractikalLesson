@@ -12,6 +12,7 @@ namespace MultyCalculator
         private string currentInput;
         private string checkedInput;
         public double numberConv;
+        string invalidValue = "invalid value";
 
         NumberFormatInfo chekPoint = new NumberFormatInfo()
         {
@@ -40,14 +41,14 @@ namespace MultyCalculator
             return currentInput;
         }
 
-        public string GetUserInput(TypeOfUserInput type,bool showWarning = true )
+        public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
         {
             currentInput = Console.ReadLine();
 
             switch (type)
             {
                 case TypeOfUserInput.year:
-                    GetUserInputYear(true) ;
+                    GetUserInputYear();
                     break;
 
                 case TypeOfUserInput.number:
@@ -75,12 +76,18 @@ namespace MultyCalculator
                     break;
             }
 
+            if (checkedInput == invalidValue)
+            {
+                GetUserInput(type);
+            }
+
             return checkedInput;
         }
 
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = true)
         {
             currentInput = Console.ReadLine();
+
             switch (firstType)
             {
                 case TypeOfUserInput.year:
@@ -88,7 +95,7 @@ namespace MultyCalculator
                     break;
 
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc(false);
+                    GetUserInputNumberCalc();
                     break;
 
                 case TypeOfUserInput.currency:
@@ -112,6 +119,16 @@ namespace MultyCalculator
                     break;
             }
 
+            if (checkedInput == invalidValue)
+            {
+                GetUserInputSeondType(firstType, secondType);
+            }
+
+            return checkedInput;
+        }
+
+        private string GetUserInputSeondType(TypeOfUserInput firstType, TypeOfUserInput secondType)
+        {
             switch (secondType)
             {
                 case TypeOfUserInput.year:
@@ -143,18 +160,25 @@ namespace MultyCalculator
                     break;
             }
 
+            if (checkedInput == invalidValue)
+            {
+                GetUserInput(firstType, secondType);
+            }
+
             return checkedInput;
         }
 
         private string GetUserInputYear(bool showWarning = true)
         {
-         
+
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
             }
             else if (showWarning == true)
             {
+                checkedInput = "invalid value";
+
                 Console.Clear();
                 Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
                 Console.WriteLine("===============================================================");
@@ -175,7 +199,8 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
-                Console.Clear();
+                checkedInput = "invalid value";
+
                 Console.WriteLine("Значение не корректно, попробуйте снова.");
                 Console.WriteLine("=========================================");
             }
@@ -203,7 +228,8 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
-                Console.Clear();
+                checkedInput = "invalid value";
+
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 Console.WriteLine("==========================================");
             }
@@ -212,7 +238,7 @@ namespace MultyCalculator
         }
 
         private string GetUserInputMoney(bool showWarning = true)
-        { 
+        {
             bool isLetter = currentInput.All(Char.IsLetter);
 
             if (double.TryParse(currentInput, out double number))
@@ -232,10 +258,11 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
+                checkedInput = "invalid value";
+
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 Console.WriteLine("========================================");
-
-                GetUserInputMoney();
+                GetUserInput(TypeOfUserInput.money);
             }
 
             return checkedInput;
@@ -262,6 +289,8 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
+                checkedInput = "invalid value";
+
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 Console.WriteLine("========================================");
                 GetUserInput(TypeOfUserInput.simpleNumber);
@@ -300,6 +329,8 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
+                checkedInput = "invalid value";
+
                 Console.WriteLine("Значение не верно, попробуйте снова.");
                 Console.WriteLine("========================================");
                 GetUserInput(TypeOfUserInput.mathematicalActions);
@@ -328,7 +359,8 @@ namespace MultyCalculator
             }
             else if (showWarning == true)
             {
-                Console.Clear();
+                checkedInput = "invalid value";
+
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 Console.WriteLine("=======================================");
             }
