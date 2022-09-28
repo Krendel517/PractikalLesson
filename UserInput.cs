@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
     class UserInput
     {
@@ -296,7 +296,14 @@ namespace MultyCalculator
             }
             else if (!isLetter && currentInput.Contains("."))
             {
-                if (currentInput.Contains("."))
+                currentInput = Console.ReadLine();
+                bool isLetter = currentInput.All(Char.IsLetter);
+                
+                if (double.TryParse(currentInput, out double numberForMoney))
+                {
+                    checkedInput = currentInput;
+                }
+                else if (isLetter == false && currentInput.Contains("."))
                 {
                     numberConv = Convert.ToDouble(currentInput, chekPoint);
                 }

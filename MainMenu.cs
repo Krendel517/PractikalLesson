@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
     class MainMenu
     {
@@ -70,13 +70,13 @@ namespace MultyCalculator
             {
                 AgeCalculator ageCalc = new AgeCalculator();
                 Console.Clear();
-                ageCalc.AgeTheCalculator();
+                ageCalc.ShowAllCalculator();
             }
             else if (input == thirdCalc)
             {
                 TaxCalculator taxCalc = new TaxCalculator();
                 Console.Clear();
-                taxCalc.TaxCalculate();
+                taxCalc.ShowAllCalculator();
             }
             else if (input == exit)
             {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultyCalculator
+namespace MultiCalculator
 {
     public class TaxCalculator
     {
@@ -29,7 +29,7 @@ namespace MultyCalculator
         private string exitToMainMenu = "Return";
         string input = " ";
 
-        public void TaxCalculate()
+        public void ShowAllCalculator()
         {
             Show();
             ChooseCurrency();
@@ -168,6 +168,7 @@ namespace MultyCalculator
 
             if (input == calculatorAgain)
             {
+                ShowAllCalculator();
                 Console.Clear();
                 TaxCalculate();
             }
