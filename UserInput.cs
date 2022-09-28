@@ -121,13 +121,13 @@ namespace MultyCalculator
 
             if (checkedInput == invalidValue)
             {
-                GetUserInputSeondType(firstType, secondType);
+                GetUserInputTwoType(firstType, secondType);
             }
 
             return checkedInput;
         }
 
-        private string GetUserInputSeondType(TypeOfUserInput firstType, TypeOfUserInput secondType)
+        private string GetUserInputTwoType(TypeOfUserInput firstType, TypeOfUserInput secondType)
         {
             switch (secondType)
             {
