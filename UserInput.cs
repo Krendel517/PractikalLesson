@@ -71,6 +71,10 @@ namespace MultiCalculator
                     GetUserInputMathAction();
                     break;
 
+                case TypeOfUserInput.ageDateFormat:
+                    GetUserInputGetData();
+                    break;
+
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
                     break;
@@ -297,7 +301,7 @@ namespace MultiCalculator
             else if (!isLetter && currentInput.Contains("."))
             {
                 currentInput = Console.ReadLine();
-                bool isLetter = currentInput.All(Char.IsLetter);
+                isLetter = currentInput.All(Char.IsLetter);
                 
                 if (double.TryParse(currentInput, out double numberForMoney))
                 {
@@ -366,6 +370,32 @@ namespace MultiCalculator
             {
                 checkedInput = invalidValue;
             }
+
+            return checkedInput;
+        }
+
+        private string GetUserInputGetData(bool showWarning = true)
+        {
+            CultureInfo culture;
+            DateTimeStyles styles;
+            DateTime dateResult;
+
+            culture = CultureInfo.CreateSpecificCulture("fr-FR");
+            styles = DateTimeStyles.None;
+
+            if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
+            {
+                DateTime birthDayInput = DateTime.Parse(currentInput);
+                checkedInput = currentInput;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Значение не корректно, введите дату в формате дд.мм.гггг");
+
+                GetUserInput(TypeOfUserInput.ageDateFormat);
+            }
+
 
             return checkedInput;
         }

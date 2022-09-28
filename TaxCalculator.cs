@@ -170,7 +170,7 @@ namespace MultiCalculator
             {
                 ShowAllCalculator();
                 Console.Clear();
-                TaxCalculate();
+                ShowAllCalculator();
             }
             else if (input == exitToMainMenu)
             {
