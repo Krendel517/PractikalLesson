@@ -48,7 +48,7 @@ namespace MultiCalculator
             Console.WriteLine("======================");
             firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
             firstNumber = chekInput.numberConv;
-           
+
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
             Console.WriteLine("========================================================================================================================");

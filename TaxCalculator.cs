@@ -29,7 +29,7 @@ namespace MultiCalculator
         private string exitToMainMenu = "Return";
         string input = " ";
 
-        public void ShowAllCalculator()
+        public void Start()
         {
             Show();
             ChooseCurrency();
@@ -168,9 +168,9 @@ namespace MultiCalculator
 
             if (input == calculatorAgain)
             {
-                ShowAllCalculator();
+                Start();
                 Console.Clear();
-                ShowAllCalculator();
+                Start();
             }
             else if (input == exitToMainMenu)
             {

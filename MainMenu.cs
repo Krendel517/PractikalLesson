@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PractikalLesson_1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace MultiCalculator
 {
     class MainMenu
     {
+        BaseCalculator baseCalculator = new BaseCalculator();
         private string firstCalc = "1";
         private string secCalc = "2";
         private string thirdCalc = "3";
@@ -62,21 +64,18 @@ namespace MultiCalculator
 
             if (input == firstCalc)
             {
-                SimpleCalculator simpleCalc = new SimpleCalculator();
                 Console.Clear();
-                simpleCalc.Start();
+                baseCalculator.BaseSimpleCalculator();
             }
             else if (input == secCalc)
             {
-                AgeCalculator ageCalc = new AgeCalculator();
                 Console.Clear();
-                ageCalc.ShowAllCalculator();
+                baseCalculator.BaseAgeCalculator();
             }
             else if (input == thirdCalc)
             {
-                TaxCalculator taxCalc = new TaxCalculator();
                 Console.Clear();
-                taxCalc.ShowAllCalculator();
+                baseCalculator.BaseTaxCalculator();
             }
             else if (input == exit)
             {

@@ -19,7 +19,7 @@ namespace MultiCalculator
         private string exit = "Exit";
         private string exitToMainMenu = "Return";
 
-        public void ShowAllCalculator()
+        public void Start()
         {
             CalculateAge();
             ShowAnswer();
@@ -61,7 +61,7 @@ namespace MultiCalculator
             if (input == calculatorAgain)
             {
                 Console.Clear();
-                ShowAllCalculator();
+                Start();
             }
             else if (input == exitToMainMenu)
             {

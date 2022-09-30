@@ -300,7 +300,6 @@ namespace MultiCalculator
             }
             else if (!isLetter && currentInput.Contains("."))
             {
-                currentInput = Console.ReadLine();
                 isLetter = currentInput.All(Char.IsLetter);
                 
                 if (double.TryParse(currentInput, out double numberForMoney))
