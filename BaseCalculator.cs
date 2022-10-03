@@ -14,11 +14,13 @@ namespace PractikalLesson_1
 
         protected void Show(string name)
         {
+            Console.Clear();
+
             Console.WriteLine($"Вы выбрали {name}");
             Console.WriteLine("Введите любую клавишу, чтобы продолжить.");
 
-            Console.Clear();
             Console.ReadKey();
+            Console.Clear();
         }
 
         protected void ExitToMainMenu()

@@ -161,12 +161,10 @@ namespace PractikalLesson_1
             if (input == calculatorAgain)
             {
                 Start();
-                Console.Clear();
-                Start();
             }
             else if (input == exitToMainMenu)
             {
-                ExitToMainMenu();
+               ExitToMainMenu();
             }
             else if (input == exit)
             {
