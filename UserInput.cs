@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
     class UserInput
     {

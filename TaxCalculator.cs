@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
-    public class TaxCalculator
+    class TaxCalculator : BaseCalculator
     {
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
@@ -31,18 +31,10 @@ namespace MultiCalculator
 
         public void Start()
         {
-            Show();
+            Show(name = "калькулятор налогов");
             ChooseCurrency();
             CalculateIncome();
             ShowResult();
-        }
-
-        private void Show()
-        {
-            Console.WriteLine("Вы выбрали калькулятор дохода, нажмите любую кнопку чтобы приступить к вычислению дохода.");
-
-            Console.ReadKey();
-            Console.Clear();
         }
 
         private void ChooseCurrency()
@@ -174,10 +166,7 @@ namespace MultiCalculator
             }
             else if (input == exitToMainMenu)
             {
-                MainMenu mainMenu = new MainMenu();
-
-                Console.Clear();
-                mainMenu.CalculatorSelection();
+                ExitToMainMenu();
             }
             else if (input == exit)
             {

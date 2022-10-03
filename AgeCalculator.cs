@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
-    class AgeCalculator
+    class AgeCalculator : BaseCalculator
     {
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
@@ -21,8 +21,9 @@ namespace MultiCalculator
 
         public void Start()
         {
+            Show(name = "калькулятор возвраста");
             CalculateAge();
-            ShowAnswer();
+            InputCommand();
         }
 
         public void CalculateAge()
@@ -47,7 +48,7 @@ namespace MultiCalculator
             Console.Clear();
         }
 
-        public void ShowAnswer()
+        public void InputCommand()
         {
             Console.WriteLine("======================================================");
             Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
@@ -65,10 +66,7 @@ namespace MultiCalculator
             }
             else if (input == exitToMainMenu)
             {
-                MainMenu mainMenu = new MainMenu();
-
-                Console.Clear();
-                mainMenu.CalculatorSelection();
+                ExitToMainMenu();
             }
             else if (input == exit)
             {
@@ -79,7 +77,7 @@ namespace MultiCalculator
                 Console.Clear();
                 Console.WriteLine("Значение некорректно, попробуйте снова");
 
-                ShowAnswer();
+                InputCommand();
             }
 
             Console.ReadKey();

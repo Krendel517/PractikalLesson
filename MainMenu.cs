@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
     class MainMenu
     {
@@ -64,18 +64,24 @@ namespace MultiCalculator
 
             if (input == firstCalc)
             {
+                SimpleCalculator simpleCalculator = new SimpleCalculator();
+
                 Console.Clear();
-                baseCalculator.BaseSimpleCalculator();
+                simpleCalculator.Start();
             }
             else if (input == secCalc)
             {
+                AgeCalculator ageCalculator = new AgeCalculator();
+
                 Console.Clear();
-                baseCalculator.BaseAgeCalculator();
+                ageCalculator.Start();
             }
             else if (input == thirdCalc)
             {
+                TaxCalculator taxCalculator = new TaxCalculator();
+
                 Console.Clear();
-                baseCalculator.BaseTaxCalculator();
+                taxCalculator.Start();
             }
             else if (input == exit)
             {

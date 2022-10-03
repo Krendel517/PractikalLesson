@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1 
 {
-    class SimpleCalculator
+    class SimpleCalculator : BaseCalculator
     {
         UserInput chekInput = new UserInput();
 
@@ -23,23 +23,13 @@ namespace MultiCalculator
         private const string division = "/";
         private const string multiplicatoins = "*";
         private const string percent = "%";
-
+       
         public void Start()
         {
-            ShowTheCalculator();
+            Show(name = "простой калькулятор");
             InputNumbers();
             CalculateNumbers();
             ShowResult();
-        }
-
-        private void ShowTheCalculator()
-        {
-            Console.Clear();
-            Console.WriteLine("Вы выбрали простой калькулятор, нажмите любую клавишу, чтобы приступить к работе");
-            Console.WriteLine("=================================================================================");
-
-            Console.ReadKey();
-            Console.Clear();
         }
 
         private void InputNumbers()
@@ -122,10 +112,7 @@ namespace MultiCalculator
             }
             else if (input == exitToMainMenu)
             {
-                MainMenu mainMenu = new MainMenu();
-
-                Console.Clear();
-                mainMenu.CalculatorSelection();
+                ExitToMainMenu();
             }
             else if (input == exit)
             {
