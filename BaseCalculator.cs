@@ -12,24 +12,13 @@ namespace PractikalLesson_1
         protected int id;
         protected string name;
 
-        protected void Show()
+        protected void Show(string name)
         {
-            int id;
-            string name "";
             Console.WriteLine($"Вы выбрали {name}");
             Console.WriteLine("Введите любую клавишу, чтобы продолжить.");
 
             Console.Clear();
             Console.ReadKey();
-        }
-
-        protected void CalculateAgain()
-        {
-            TaxCalculator taxCalculator = new TaxCalculator();
-
-            taxCalculator.Start();
-            Console.Clear();
-            Console.WriteLine("Нажмите любую клавишу, чтобы приступить к работе");
         }
 
         protected void ExitToMainMenu()
