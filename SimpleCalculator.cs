@@ -9,8 +9,12 @@ namespace PractikalLesson_1
 {
     class SimpleCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
+        public SimpleCalculator(string name, int id) : base(name, id)
+        {
+        }
 
+        UserInput chekInput = new UserInput();
+  
         private string firstNumberStr;
         private string secondNumberStr;
         private double firstNumber;
@@ -26,7 +30,7 @@ namespace PractikalLesson_1
        
         public void Start()
         {
-            Show(name = "простой калькулятор");
+            Show();
             InputNumbers();
             CalculateNumbers();
             ShowResult();
@@ -96,12 +100,7 @@ namespace PractikalLesson_1
                 Console.WriteLine($"Результат вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
             }
 
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
-
+            ShowCommand();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)

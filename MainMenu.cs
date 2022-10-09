@@ -9,7 +9,6 @@ namespace PractikalLesson_1
 {
     class MainMenu
     {
-        BaseCalculator baseCalculator = new BaseCalculator();
         private string firstCalc = "1";
         private string secCalc = "2";
         private string thirdCalc = "3";
@@ -64,21 +63,21 @@ namespace PractikalLesson_1
 
             if (input == firstCalc)
             {
-                SimpleCalculator simpleCalculator = new SimpleCalculator();
+                SimpleCalculator simpleCalculator = new SimpleCalculator("простой калькулятор", 1);
 
                 Console.Clear();
                 simpleCalculator.Start();
             }
             else if (input == secCalc)
             {
-                AgeCalculator ageCalculator = new AgeCalculator();
+                AgeCalculator ageCalculator = new AgeCalculator("калькулятор возраста", 2);
 
                 Console.Clear();
                 ageCalculator.Start();
             }
             else if (input == thirdCalc)
             {
-                TaxCalculator taxCalculator = new TaxCalculator();
+                TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
 
                 Console.Clear();
                 taxCalculator.Start();

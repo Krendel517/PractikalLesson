@@ -9,6 +9,11 @@ namespace PractikalLesson_1
 {
     class TaxCalculator : BaseCalculator
     {
+        UserInput chekInput = new UserInput();
+        public TaxCalculator(string name, int id) : base(name, id)
+        { 
+        }
+
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
@@ -31,7 +36,7 @@ namespace PractikalLesson_1
 
         public void Start()
         {
-            Show(name = "калькулятор налогов");
+            Show();
             ChooseCurrency();
             CalculateIncome();
             ShowResult();
@@ -46,7 +51,6 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
             Console.WriteLine("==========================================");//Декоративная часть
 
-            UserInput chekInput = new UserInput();
             inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
 
             if (inputCur == hryvnia)
@@ -86,7 +90,6 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введите ваш доход за " + mothStr[count]);
                 Console.WriteLine("======================================");
 
-                UserInput chekInput = new UserInput();
                 monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money);
 
                 if (monthlySalaryStr[count].Contains("."))
@@ -136,6 +139,8 @@ namespace PractikalLesson_1
 
         private void ShowResult()
         {
+
+
             Console.WriteLine("Вот ваш счет!");
             Console.WriteLine("============================================");
             Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
@@ -149,13 +154,7 @@ namespace PractikalLesson_1
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
 
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
-
-            UserInput chekInput = new UserInput();
+            ShowCommand();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)

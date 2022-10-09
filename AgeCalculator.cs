@@ -8,6 +8,11 @@ namespace PractikalLesson_1
 {
     class AgeCalculator : BaseCalculator
     {
+        UserInput chekInput = new UserInput();
+        public AgeCalculator(string name, int id) : base(name, id)
+        {
+        }
+
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
         private string birthDayInput;
@@ -21,7 +26,7 @@ namespace PractikalLesson_1
 
         public void Start()
         {
-            Show(name = "калькулятор возвраста");
+            Show();
             CalculateAge();
             InputCommand();
         }
@@ -30,8 +35,7 @@ namespace PractikalLesson_1
         {
             Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
             Console.WriteLine("===========================================");
-  
-            UserInput chekInput = new UserInput();
+
             birthDayInput = chekInput.GetUserInput(TypeOfUserInput.ageDateFormat);
             birthDay = Convert.ToDateTime(birthDayInput);
 
@@ -50,13 +54,7 @@ namespace PractikalLesson_1
 
         public void InputCommand()
         {
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
-
-            UserInput chekInput = new UserInput();
+            ShowCommand();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
@@ -66,6 +64,7 @@ namespace PractikalLesson_1
             }
             else if (input == exitToMainMenu)
             {
+                Console.Clear();
                 ExitToMainMenu();
             }
             else if (input == exit)
