@@ -11,7 +11,7 @@ namespace PractikalLesson_1
     {
         UserInput chekInput = new UserInput();
         public TaxCalculator(string name, int id) : base(name, id)
-        { 
+        {
         }
 
         private const string hryvnia = "UAH";

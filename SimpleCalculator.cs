@@ -9,11 +9,11 @@ namespace PractikalLesson_1
 {
     class SimpleCalculator : BaseCalculator
     {
-        public SimpleCalculator(string name, int id) : base(name, id)
-        {
-        }
-
         UserInput chekInput = new UserInput();
+        public SimpleCalculator(string name, int id) : base (name, id)
+        {
+               
+        }
   
         private string firstNumberStr;
         private string secondNumberStr;

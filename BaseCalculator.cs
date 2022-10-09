@@ -7,34 +7,21 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    public class BaseCalculator
+    abstract public class BaseCalculator
     {
-        protected string _name;
-        protected int _id;
-
-        protected BaseCalculator(string name, int id)
+        protected string Name { get; }
+        protected int Id { get; }
+        protected BaseCalculator(string name,int id)
         {
-            _name = name;
-            _id = id;
-        }
-
-        protected string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        protected int Id
-        {
-            get { return _id; }
-            set { _id = value; }
+            Name = name;
+            Id = id;
         }
 
         protected void Show()
         {
             Console.Clear();
 
-            Console.WriteLine($"Вы выбрали {_name}");
+            Console.WriteLine($"Вы выбрали {Name}");
             Console.WriteLine("Введите любую клавишу, чтобы продолжить.");
 
             Console.ReadKey();
