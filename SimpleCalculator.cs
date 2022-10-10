@@ -5,29 +5,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PractikalLesson_1 
+namespace PractikalLesson_1
 {
     class SimpleCalculator : BaseCalculator
     {
         UserInput chekInput = new UserInput();
-        public SimpleCalculator(string name, int id) : base (name, id)
+        public SimpleCalculator(string name, int id) : base(name, id)
         {
-               
         }
-  
-        private string firstNumberStr;
-        private string secondNumberStr;
+
+        protected override void Show()
+        {
+            Console.WriteLine($"Вы выбрали {Name}");
+            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
+            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
+            Console.WriteLine("=========================================");
+
+            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
+
+            if (input == "Return")
+            {
+                ExitToMainMenu();
+            }
+            else if (input == "")
+            {
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("Введенное значение не верно, попробуйте снова");
+                Console.WriteLine("=========================================");
+
+                Show();
+            }
+        }
+
         private double firstNumber;
         private double secondNumber;
         private string action;
-        private string input;
         private double answer;
         private const string plus = "+";
         private const string distribuctions = "-";
         private const string division = "/";
         private const string multiplicatoins = "*";
         private const string percent = "%";
-       
+
         public void Start()
         {
             Show();
@@ -40,18 +64,22 @@ namespace PractikalLesson_1
         {
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
-            firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
+            input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.returnInMainMenu);
+            CheckReturnInput();
             firstNumber = chekInput.numberConv;
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
             Console.WriteLine("========================================================================================================================");
-            action = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions);
+            input = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.returnInMainMenu);
+            CheckReturnInput();
+            action = input;
 
             Console.Clear();
             Console.WriteLine("Выберете второе число");
             Console.WriteLine("======================");
-            secondNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
+            input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.returnInMainMenu);
+            CheckReturnInput();
             secondNumber = chekInput.numberConv;
         }
 
@@ -90,14 +118,14 @@ namespace PractikalLesson_1
             if (action == "%")
             {
                 Console.Clear();
-                Console.Write($"Процентное соотношение {firstNumberStr} от {secondNumberStr} составляет - ");
+                Console.Write($"Процентное соотношение {firstNumber} от {secondNumber} составляет - ");
                 Console.Write(formatAnswer, answer);
                 Console.WriteLine("%");
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine($"Результат вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
+                Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = " + answer);
             }
 
             ShowCommand();

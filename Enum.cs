@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    public enum TypeOfUserInput { number, year, currency, money, simpleNumber, mathematicalActions, command, exit, ageDateFormat };
+    public enum TypeOfUserInput { number, year, currency, money, simpleNumber, mathematicalActions, command, exit, returnInMainMenu, empty, ageDateFormat};
 }

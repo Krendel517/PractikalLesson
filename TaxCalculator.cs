@@ -14,6 +14,34 @@ namespace PractikalLesson_1
         {
         }
 
+        protected override void Show()
+        {
+            Console.WriteLine($"Вы выбрали {Name}");
+            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
+            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
+            Console.WriteLine("=========================================");
+
+            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
+
+            if (input == "Return")
+            {
+                ExitToMainMenu();
+            }
+            else if (input == "")
+            {
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("Введенное значение не верно, попробуйте снова");
+                Console.WriteLine("=========================================");
+
+                Show();
+            }
+        }
+
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
@@ -32,7 +60,6 @@ namespace PractikalLesson_1
         private string exit = "Exit";
         private string calculatorAgain = "Calculate again";
         private string exitToMainMenu = "Return";
-        string input = " ";
 
         public void Start()
         {
@@ -51,7 +78,9 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
             Console.WriteLine("==========================================");//Декоративная часть
 
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
+            input = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.returnInMainMenu);
+            CheckReturnInput();
+            inputCur = input;
 
             if (inputCur == hryvnia)
             {
@@ -90,7 +119,9 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введите ваш доход за " + mothStr[count]);
                 Console.WriteLine("======================================");
 
-                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money);
+                input = chekInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.returnInMainMenu);
+                CheckReturnInput();
+                monthlySalaryStr[count] = input;
 
                 if (monthlySalaryStr[count].Contains("."))
                 {
@@ -155,8 +186,8 @@ namespace PractikalLesson_1
             Console.WriteLine(" грн.");
 
             ShowCommand();
-            input = chekInput.GetUserInput(TypeOfUserInput.command);
-
+            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.returnInMainMenu);
+           
             if (input == calculatorAgain)
             {
                 Start();

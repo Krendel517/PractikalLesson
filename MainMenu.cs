@@ -44,7 +44,7 @@ namespace PractikalLesson_1
             else if (!comingOfAge)
             {
                 Console.WriteLine("На данный момент вы не можете воспользоваться данными услагами, введите люблую клавишу, чтобы выйти.");
-
+                
                 Console.ReadKey();
                 Environment.Exit(0);
             }
@@ -59,7 +59,7 @@ namespace PractikalLesson_1
             Console.WriteLine("3. Калькулятор налогов");
 
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
+            input = chekInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.exit);
 
             if (input == firstCalc)
             {

@@ -13,13 +13,39 @@ namespace PractikalLesson_1
         {
         }
 
+        protected override void Show()
+        {
+            Console.WriteLine($"Вы выбрали {Name}");
+            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
+            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
+            Console.WriteLine("=========================================");
+
+            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
+
+            if (input == "Return")
+            {
+                ExitToMainMenu();
+            }
+            else if (input == "")
+            {
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("Введенное значение не верно, попробуйте снова");
+                Console.WriteLine("=========================================");
+
+                Show();
+            }
+        }
+
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
-        private string birthDayInput;
         private const double daysInYear = 365.2425;
         private double agePerson;
         private double ageInDays;
-        private string input;
         private string calculatorAgain = "Calculate again";
         private string exit = "Exit";
         private string exitToMainMenu = "Return";
@@ -36,15 +62,17 @@ namespace PractikalLesson_1
             Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
             Console.WriteLine("===========================================");
 
-            birthDayInput = chekInput.GetUserInput(TypeOfUserInput.ageDateFormat);
-            birthDay = Convert.ToDateTime(birthDayInput);
+            inputDataTime = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.ageDateFormat);
+            CheckReturnInput();
+
+            birthDay = Convert.ToDateTime(inputDataTime);
 
             TimeSpan ageForYears = todayData - birthDay;
             ageInDays = ageForYears.TotalDays;
             agePerson = ageInDays / daysInYear;
 
             Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {birthDayInput} составляет " + Math.Truncate(agePerson));
+            Console.WriteLine($"Возраст человека, который родился {inputDataTime} составляет " + Math.Truncate(agePerson));
             Console.WriteLine("==================================================");
             Console.WriteLine("Введите любую клавишу чтобы продолжить.");
 

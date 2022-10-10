@@ -9,6 +9,9 @@ namespace PractikalLesson_1
 {
     abstract public class BaseCalculator
     {
+        protected string input;
+        protected string inputDataTime;
+
         protected string Name { get; }
         protected int Id { get; }
         protected BaseCalculator(string name,int id)
@@ -17,16 +20,7 @@ namespace PractikalLesson_1
             Id = id;
         }
 
-        protected void Show()
-        {
-            Console.Clear();
-
-            Console.WriteLine($"Вы выбрали {Name}");
-            Console.WriteLine("Введите любую клавишу, чтобы продолжить.");
-
-            Console.ReadKey();
-            Console.Clear();
-        }
+        protected abstract void Show();
 
         protected void ShowCommand()
         {
@@ -39,6 +33,18 @@ namespace PractikalLesson_1
             Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
             Console.WriteLine("======================================================");
+        }
+
+        protected void CheckReturnInput()
+        {
+            if (inputDataTime == "Return")
+            {
+                ExitToMainMenu();
+            }
+            if (input == "Return")
+            {
+                ExitToMainMenu();
+            }
         }
 
         protected void ExitToMainMenu()
