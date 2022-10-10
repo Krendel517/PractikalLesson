@@ -9,6 +9,8 @@ namespace PractikalLesson_1
 {
     abstract public class BaseCalculator
     {
+        UserInput checkInput = new UserInput();
+
         protected string input;
         protected string inputDataTime;
 
@@ -20,7 +22,35 @@ namespace PractikalLesson_1
             Id = id;
         }
 
-        protected abstract void Show();
+        protected void Show()
+        {
+            Console.WriteLine($"Вы выбрали {Name}");
+            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
+            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
+            Console.WriteLine("=========================================");
+
+            input = checkInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
+
+            if (input == "Return")
+            {
+                ExitToMainMenu();
+            }
+            else if (input == "")
+            {
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("Введенное значение не верно, попробуйте снова");
+                Console.WriteLine("=========================================");
+
+                Show();
+            }
+        }
+
+        protected abstract void Calculate();
 
         protected void ShowCommand()
         {

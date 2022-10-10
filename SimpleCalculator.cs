@@ -14,31 +14,30 @@ namespace PractikalLesson_1
         {
         }
 
-        protected override void Show()
+        protected override void Calculate()
         {
-            Console.WriteLine($"Вы выбрали {Name}");
-            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
-            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
-            Console.WriteLine("=========================================");
 
-            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
-
-            if (input == "Return")
+            switch (action)
             {
-                ExitToMainMenu();
-            }
-            else if (input == "")
-            {
-                Console.Clear();
-            }
-            else
-            {
-                Console.Clear();
+                case plus:
+                    answer = firstNumber + secondNumber;
+                    break;
 
-                Console.WriteLine("Введенное значение не верно, попробуйте снова");
-                Console.WriteLine("=========================================");
+                case distribuctions:
+                    answer = firstNumber - secondNumber;
+                    break;
 
-                Show();
+                case division:
+                    answer = firstNumber / secondNumber;
+                    break;
+
+                case multiplicatoins:
+                    answer = firstNumber * secondNumber;
+                    break;
+
+                case percent:
+                    answer = firstNumber / secondNumber * 100;
+                    break;
             }
         }
 
@@ -56,7 +55,7 @@ namespace PractikalLesson_1
         {
             Show();
             InputNumbers();
-            CalculateNumbers();
+            Calculate();
             ShowResult();
         }
 
@@ -83,31 +82,6 @@ namespace PractikalLesson_1
             secondNumber = chekInput.numberConv;
         }
 
-        private void CalculateNumbers()
-        {
-            switch (action)
-            {
-                case plus:
-                    answer = firstNumber + secondNumber;
-                    break;
-
-                case distribuctions:
-                    answer = firstNumber - secondNumber;
-                    break;
-
-                case division:
-                    answer = firstNumber / secondNumber;
-                    break;
-
-                case multiplicatoins:
-                    answer = firstNumber * secondNumber;
-                    break;
-
-                case percent:
-                    answer = firstNumber / secondNumber * 100;
-                    break;
-            }
-        }
         private void ShowResult()
         {
             const string calculatorAgain = "Calculate again";

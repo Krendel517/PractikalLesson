@@ -13,32 +13,13 @@ namespace PractikalLesson_1
         {
         }
 
-        protected override void Show()
+        protected override void Calculate()
         {
-            Console.WriteLine($"Вы выбрали {Name}");
-            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
-            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
-            Console.WriteLine("=========================================");
+            birthDay = Convert.ToDateTime(inputDataTime);
 
-            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
-
-            if (input == "Return")
-            {
-                ExitToMainMenu();
-            }
-            else if (input == "")
-            {
-                Console.Clear();
-            }
-            else
-            {
-                Console.Clear();
-
-                Console.WriteLine("Введенное значение не верно, попробуйте снова");
-                Console.WriteLine("=========================================");
-
-                Show();
-            }
+            TimeSpan ageForYears = todayData - birthDay;
+            ageInDays = ageForYears.TotalDays;
+            agePerson = ageInDays / daysInYear;
         }
 
         private DateTime todayData = DateTime.Today;
@@ -65,11 +46,7 @@ namespace PractikalLesson_1
             inputDataTime = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.ageDateFormat);
             CheckReturnInput();
 
-            birthDay = Convert.ToDateTime(inputDataTime);
-
-            TimeSpan ageForYears = todayData - birthDay;
-            ageInDays = ageForYears.TotalDays;
-            agePerson = ageInDays / daysInYear;
+            Calculate();
 
             Console.Clear();
             Console.WriteLine($"Возраст человека, который родился {inputDataTime} составляет " + Math.Truncate(agePerson));
