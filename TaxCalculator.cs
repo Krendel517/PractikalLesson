@@ -163,9 +163,6 @@ namespace PractikalLesson_1
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
 
-            annualIncome = 0;
-            sumInHruvnia = 0;
-
             ShowCommand();
             input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.returnInMainMenu);
 

@@ -25,7 +25,7 @@ namespace PractikalLesson_1
         {
             Console.WriteLine($"Вы выбрали {Name}");
             Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
-            Console.WriteLine("В любой момент вы можете ввести Return, чтобы вернутся к екрану выбора калькулятора.");
+            Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
             Console.WriteLine("=========================================");
 
             input = checkInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
