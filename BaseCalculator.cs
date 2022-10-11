@@ -12,8 +12,7 @@ namespace PractikalLesson_1
         UserInput checkInput = new UserInput();
 
         protected string input;
-        protected string inputDataTime;
-
+       
         protected string Name { get; }
         protected int Id { get; }
         protected BaseCalculator(string name,int id)
@@ -67,10 +66,6 @@ namespace PractikalLesson_1
 
         protected void CheckReturnInput()
         {
-            if (inputDataTime == "Return")
-            {
-                ExitToMainMenu();
-            }
             if (input == "Return")
             {
                 ExitToMainMenu();

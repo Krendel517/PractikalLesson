@@ -15,7 +15,7 @@ namespace PractikalLesson_1
 
         protected override void Calculate()
         {
-            birthDay = Convert.ToDateTime(inputDataTime);
+            birthDay = Convert.ToDateTime(input);
 
             TimeSpan ageForYears = todayData - birthDay;
             ageInDays = ageForYears.TotalDays;
@@ -43,13 +43,13 @@ namespace PractikalLesson_1
             Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
             Console.WriteLine("===========================================");
 
-            inputDataTime = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.ageDateFormat);
+            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.ageDateFormat);
             CheckReturnInput();
 
             Calculate();
 
             Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {inputDataTime} составляет " + Math.Truncate(agePerson));
+            Console.WriteLine($"Возраст человека, который родился {input} составляет " + Math.Truncate(agePerson));
             Console.WriteLine("==================================================");
             Console.WriteLine("Введите любую клавишу чтобы продолжить.");
 

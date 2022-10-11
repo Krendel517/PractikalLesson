@@ -64,6 +64,7 @@ namespace PractikalLesson_1
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
             input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.returnInMainMenu);
+
             CheckReturnInput();
             firstNumber = chekInput.numberConv;
 
@@ -107,9 +108,8 @@ namespace PractikalLesson_1
 
             if (input == calculatorAgain)
             {
-                Start();
                 Console.Clear();
-                Console.WriteLine("Нажмите любую клавишу, чтобы приступить к работе");
+                Start();
             }
             else if (input == exitToMainMenu)
             {
