@@ -59,7 +59,7 @@ namespace PractikalLesson_1
             Console.WriteLine("3. Калькулятор налогов");
 
             UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.exit);
+            input = chekInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
 
             if (input == firstCalc)
             {
@@ -85,6 +85,12 @@ namespace PractikalLesson_1
             else if (input == exit)
             {
                 Environment.Exit(0);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Введена неверная команда, попробуйте снова.");
+                CalculatorSelection();
             }
         }
     }

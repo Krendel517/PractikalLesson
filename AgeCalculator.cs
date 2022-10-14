@@ -8,7 +8,6 @@ namespace PractikalLesson_1
 {
     class AgeCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
         public AgeCalculator(string name, int id) : base(name, id)
         {
         }
@@ -43,7 +42,7 @@ namespace PractikalLesson_1
             Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
             Console.WriteLine("===========================================");
 
-            input = chekInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.ageDateFormat);
+            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
             CheckReturnInput();
 
             Calculate();

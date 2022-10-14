@@ -9,14 +9,12 @@ namespace PractikalLesson_1
 {
     class SimpleCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
         public SimpleCalculator(string name, int id) : base(name, id)
         {
         }
 
         protected override void Calculate()
         {
-
             switch (action)
             {
                 case plus:
@@ -63,22 +61,21 @@ namespace PractikalLesson_1
         {
             Console.WriteLine("Выберете первое число");
             Console.WriteLine("======================");
-            input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.returnInMainMenu);
-
+            input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
             CheckReturnInput();
             firstNumber = chekInput.numberConv;
 
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
             Console.WriteLine("========================================================================================================================");
-            input = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.returnInMainMenu);
+            input = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
             CheckReturnInput();
             action = input;
 
             Console.Clear();
             Console.WriteLine("Выберете второе число");
             Console.WriteLine("======================");
-            input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.returnInMainMenu);
+            input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
             CheckReturnInput();
             secondNumber = chekInput.numberConv;
         }

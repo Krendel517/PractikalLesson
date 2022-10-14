@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    abstract public class BaseCalculator
+    abstract class BaseCalculator
     {
-        UserInput checkInput = new UserInput();
-
+        public UserInput chekInput = new UserInput();
         protected string input;
-       
+
         protected string Name { get; }
         protected int Id { get; }
-        protected BaseCalculator(string name,int id)
+        protected BaseCalculator(string name, int id)
         {
+            UserInput chekInput = new UserInput();
+
             Name = name;
             Id = id;
         }
@@ -24,11 +25,11 @@ namespace PractikalLesson_1
         protected void Show()
         {
             Console.WriteLine($"Вы выбрали {Name}");
-            Console.WriteLine("Введите любую клавишу Enter, чтобы продолжить.");
+            Console.WriteLine("Введите клавишу Enter, чтобы продолжить.");
             Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
             Console.WriteLine("=========================================");
 
-            input = checkInput.GetUserInput(TypeOfUserInput.returnInMainMenu, TypeOfUserInput.empty);
+            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
             if (input == "Return")
             {

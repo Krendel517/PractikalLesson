@@ -9,7 +9,6 @@ namespace PractikalLesson_1
 {
     class TaxCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
         public TaxCalculator(string name, int id) : base(name, id)
         {
         }
@@ -76,7 +75,7 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
             Console.WriteLine("==========================================");//Декоративная часть
 
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.returnInMainMenu);
+            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
 
             input = inputCur;
             CheckReturnInput();
@@ -116,7 +115,7 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введите ваш доход за " + mothStr[count]);
                 Console.WriteLine("======================================");
 
-                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.returnInMainMenu);
+                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
 
                 input = monthlySalaryStr[count];
                 CheckReturnInput();
@@ -164,7 +163,7 @@ namespace PractikalLesson_1
             Console.WriteLine(" грн.");
 
             ShowCommand();
-            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.returnInMainMenu);
+            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.command);
 
             if (input == calculatorAgain)
             {

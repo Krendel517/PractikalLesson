@@ -76,12 +76,6 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
                     break;
-                case TypeOfUserInput.exit:
-                    GetUserInputExit();
-                    break;
-                case TypeOfUserInput.returnInMainMenu:
-                    GetUserInputReturn();
-                    break;
             }
 
             if (checkedInput == invalidValue)
@@ -130,12 +124,6 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.command:
                     GetUserInputCommand(false);
                     break;
-                case TypeOfUserInput.exit:
-                    GetUserInputExit(false);
-                    break;
-                case TypeOfUserInput.returnInMainMenu:
-                    GetUserInputReturn(false);
-                    break;
             }
 
             if (checkedInput == invalidValue)
@@ -181,12 +169,6 @@ namespace PractikalLesson_1
 
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
-                    break;
-                case TypeOfUserInput.exit:
-                    GetUserInputExit();
-                    break;
-                case TypeOfUserInput.returnInMainMenu:
-                    GetUserInputReturn();
                     break;
             }
 
@@ -463,52 +445,6 @@ namespace PractikalLesson_1
                 checkedInput = currentInput;
             }
             else if (currentInput == exitToMainMenu)
-            {
-                checkedInput = currentInput;
-            }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("=======================================");
-            }
-            else
-            {
-                checkedInput = invalidValue;
-            }
-
-            return checkedInput;
-        }
-
-        private string GetUserInputExit(bool showWarning = true)
-        {
-            string exit = "Exit";
-
-            if (currentInput == exit)
-            {
-                checkedInput = currentInput;
-            }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("=======================================");
-            }
-            else
-            {
-                checkedInput = invalidValue;
-            }
-
-            return checkedInput;
-        }
-
-        private string GetUserInputReturn(bool showWarning = true)
-        {
-            string exitToMainMenu = "Return";
-
-            if (currentInput == exitToMainMenu)
             {
                 checkedInput = currentInput;
             }
