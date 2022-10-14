@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1 
 {
-    class SimpleCalculator
+    class SimpleCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
+        public SimpleCalculator(string name, int id) : base(name, id)
+        {
+        }
 
+        UserInput chekInput = new UserInput();
+  
         private string firstNumberStr;
         private string secondNumberStr;
         private double firstNumber;
@@ -23,23 +27,13 @@ namespace MultiCalculator
         private const string division = "/";
         private const string multiplicatoins = "*";
         private const string percent = "%";
-
+       
         public void Start()
         {
-            ShowTheCalculator();
+            Show();
             InputNumbers();
             CalculateNumbers();
             ShowResult();
-        }
-
-        private void ShowTheCalculator()
-        {
-            Console.Clear();
-            Console.WriteLine("Вы выбрали простой калькулятор, нажмите любую клавишу, чтобы приступить к работе");
-            Console.WriteLine("=================================================================================");
-
-            Console.ReadKey();
-            Console.Clear();
         }
 
         private void InputNumbers()
@@ -48,7 +42,7 @@ namespace MultiCalculator
             Console.WriteLine("======================");
             firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
             firstNumber = chekInput.numberConv;
-           
+
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
             Console.WriteLine("========================================================================================================================");
@@ -106,12 +100,7 @@ namespace MultiCalculator
                 Console.WriteLine($"Результат вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
             }
 
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
-
+            ShowCommand();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
@@ -122,10 +111,7 @@ namespace MultiCalculator
             }
             else if (input == exitToMainMenu)
             {
-                MainMenu mainMenu = new MainMenu();
-
-                Console.Clear();
-                mainMenu.CalculatorSelection();
+                ExitToMainMenu();
             }
             else if (input == exit)
             {

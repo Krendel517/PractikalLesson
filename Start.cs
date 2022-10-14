@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
     class Start
     {

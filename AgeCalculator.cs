@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
-    class AgeCalculator
+    class AgeCalculator : BaseCalculator
     {
+        UserInput chekInput = new UserInput();
+        public AgeCalculator(string name, int id) : base(name, id)
+        {
+        }
+
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
         private string birthDayInput;
@@ -19,18 +24,18 @@ namespace MultiCalculator
         private string exit = "Exit";
         private string exitToMainMenu = "Return";
 
-        public void ShowAllCalculator()
+        public void Start()
         {
+            Show();
             CalculateAge();
-            ShowAnswer();
+            InputCommand();
         }
 
         public void CalculateAge()
         {
             Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
             Console.WriteLine("===========================================");
-  
-            UserInput chekInput = new UserInput();
+
             birthDayInput = chekInput.GetUserInput(TypeOfUserInput.ageDateFormat);
             birthDay = Convert.ToDateTime(birthDayInput);
 
@@ -47,28 +52,20 @@ namespace MultiCalculator
             Console.Clear();
         }
 
-        public void ShowAnswer()
+        public void InputCommand()
         {
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
-
-            UserInput chekInput = new UserInput();
+            ShowCommand();
             input = chekInput.GetUserInput(TypeOfUserInput.command);
 
             if (input == calculatorAgain)
             {
                 Console.Clear();
-                ShowAllCalculator();
+                Start();
             }
             else if (input == exitToMainMenu)
             {
-                MainMenu mainMenu = new MainMenu();
-
                 Console.Clear();
-                mainMenu.CalculatorSelection();
+                ExitToMainMenu();
             }
             else if (input == exit)
             {
@@ -79,7 +76,7 @@ namespace MultiCalculator
                 Console.Clear();
                 Console.WriteLine("Значение некорректно, попробуйте снова");
 
-                ShowAnswer();
+                InputCommand();
             }
 
             Console.ReadKey();

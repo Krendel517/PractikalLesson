@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiCalculator
+namespace PractikalLesson_1
 {
     class UserInput
     {
@@ -300,7 +300,6 @@ namespace MultiCalculator
             }
             else if (!isLetter && currentInput.Contains("."))
             {
-                currentInput = Console.ReadLine();
                 isLetter = currentInput.All(Char.IsLetter);
                 
                 if (double.TryParse(currentInput, out double numberForMoney))
