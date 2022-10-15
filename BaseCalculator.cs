@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    abstract class BaseCalculator
+    abstract class BaseCalculator : ICalculate
     {
         public UserInput chekInput = new UserInput();
         protected string input;
@@ -16,8 +16,6 @@ namespace PractikalLesson_1
         protected int Id { get; }
         protected BaseCalculator(string name, int id)
         {
-            UserInput chekInput = new UserInput();
-
             Name = name;
             Id = id;
         }
@@ -79,6 +77,34 @@ namespace PractikalLesson_1
 
             Console.Clear();
             mainMenu.CalculatorSelection();
+        }
+
+        public void ChooseCurrencyView()
+        {
+            Console.WriteLine("Введите валюту вашего дохода");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах");
+            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах");
+            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро");
+            Console.WriteLine("==========================================");
+        }
+
+        public void InputFirstNumeView()
+        {
+            Console.WriteLine("Введите первое число");
+            Console.WriteLine("======================");
+        }
+
+        public void InputSecondNumberView()
+        {
+            Console.WriteLine("Введите второе число");
+            Console.WriteLine("======================");
+        }
+
+        public void InputActionView()
+        {
+            Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
+            Console.WriteLine("========================================================================================================================");
         }
     }
 }

@@ -39,9 +39,7 @@ namespace PractikalLesson_1
 
         public void CalculateAge()
         {
-            Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
-            Console.WriteLine("===========================================");
-
+            InputAgeOfByrhtDayView();
             input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
             CheckReturnInput();
 

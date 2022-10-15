@@ -59,22 +59,19 @@ namespace PractikalLesson_1
 
         private void InputNumbers()
         {
-            Console.WriteLine("Выберете первое число");
-            Console.WriteLine("======================");
+            InputFirstNumeView();
             input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
             CheckReturnInput();
             firstNumber = chekInput.numberConv;
 
             Console.Clear();
-            Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
-            Console.WriteLine("========================================================================================================================");
+            InputActionView();
             input = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
             CheckReturnInput();
             action = input;
 
             Console.Clear();
-            Console.WriteLine("Выберете второе число");
-            Console.WriteLine("======================");
+            InputSecondNumberView();
             input = chekInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
             CheckReturnInput();
             secondNumber = chekInput.numberConv;

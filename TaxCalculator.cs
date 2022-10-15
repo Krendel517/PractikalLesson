@@ -18,6 +18,7 @@ namespace PractikalLesson_1
         private const string euro = "EUR";
         string inputCur;
 
+        protected string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
         double[] monthlySalaryDouble = new double[12];
         private string formatMoney = "{0:N}";
         private string valut = "";
@@ -68,12 +69,7 @@ namespace PractikalLesson_1
 
         private void ChooseCurrency()
         {
-            Console.WriteLine("Введите валюту вашего дохода");
-            Console.WriteLine("==========================================");//Декоративная часть интерфейса
-            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-            Console.WriteLine("==========================================");//Декоративная часть
+            Console.WriteLine(ChooseCurrencyView());
 
             inputCur = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
 
@@ -96,7 +92,6 @@ namespace PractikalLesson_1
 
         private void CalculateIncome()
         {
-            string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
             string[] monthlySalaryStr = new string[12];
 
             NumberFormatInfo chekPoint = new NumberFormatInfo()
