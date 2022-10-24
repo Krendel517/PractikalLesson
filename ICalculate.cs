@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    interface ICalculate
+    public interface ICalculate
     {
-        void ChooseCurrencyView();
-        void InputFirstNumeView();
-        void InputSecondNumberView();
-        void InputActionView();
+        void Show();
+
+        void WelcomeMessege(); 
+
+        void GetInput();
+
+        void Calculate();
+
+        void ShowResult();
+
+        void FinalScreen();
     }
 }

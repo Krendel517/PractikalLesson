@@ -1,39 +1,47 @@
-﻿using PractikalLesson_1;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    abstract class BaseCalculator : ICalculate
+    public abstract class BaseCalculator : ICalculate
     {
-        public UserInput chekInput = new UserInput();
-        protected string input;
+        protected UserInput userInput = new UserInput();
 
-        protected string Name { get; }
-        protected int Id { get; }
-        protected BaseCalculator(string name, int id)
+        protected string checkedInput;
+        protected string name;
+        protected int id;
+
+        const string calculatorAgain = "Calculate again";
+        const string exitToMainMenu = "Return";
+        const string exit = "Exit";
+
+        public string Name { get { return name; } }
+        public int Id { get { return id; } }
+
+        public BaseCalculator(string name, int id)
         {
-            Name = name;
-            Id = id;
+            this.name = name;
+            this.id = id;
         }
 
-        protected void Show()
+        public abstract void Show();
+       
+        public void WelcomeMessege()
         {
-            Console.WriteLine($"Вы выбрали {Name}");
+            Console.WriteLine($"Вы выбрали {name}");
             Console.WriteLine("Введите клавишу Enter, чтобы продолжить.");
             Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
             Console.WriteLine("=========================================");
 
-            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
-            if (input == "Return")
+            if (checkedInput == "Return")
             {
-                ExitToMainMenu();
+                MainMenu mainMenu = new MainMenu();
+                Console.Clear();
+                mainMenu.CalculatorSelection();
             }
-            else if (input == "")
+            else if (checkedInput == "")
             {
                 Console.Clear();
             }
@@ -44,28 +52,41 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введенное значение не верно, попробуйте снова");
                 Console.WriteLine("=========================================");
 
-                Show();
+                WelcomeMessege();
             }
         }
 
-        protected abstract void Calculate();
+        public  abstract void GetInput();
 
-        protected void ShowCommand()
+        public  abstract void Calculate();
+
+        public abstract void ShowResult();
+
+        public void FinalScreen()
         {
-            const string calculatorAgain = "Calculate again";
-            const string exitToMainMenu = "Return";
-            const string exit = "Exit";
+            ShowCommand();
 
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
+
+            if (checkedInput == calculatorAgain)
+            {
+                Console.Clear();
+                WelcomeMessege();
+            }
+            else if (checkedInput == exitToMainMenu)
+            {
+                ExitToMainMenu();
+            }
+            else if (checkedInput == exit)
+            {
+                Environment.Exit(0);
+            }
         }
+
 
         protected void CheckReturnInput()
         {
-            if (input == "Return")
+            if (checkedInput == "Return")
             {
                 ExitToMainMenu();
             }
@@ -74,38 +95,19 @@ namespace PractikalLesson_1
         protected void ExitToMainMenu()
         {
             MainMenu mainMenu = new MainMenu();
-
             Console.Clear();
             mainMenu.CalculatorSelection();
         }
 
-        public void ChooseCurrencyView()
+        protected void ShowCommand()
         {
-            Console.WriteLine("Введите валюту вашего дохода");
-            Console.WriteLine("==========================================");
-            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах");
-            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах");
-            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро");
-            Console.WriteLine("==========================================");
+            Console.WriteLine("======================================================");
+            Console.WriteLine($"Введите Calculate again, чтобы посчитать заново.");
+            Console.WriteLine($"Введите Return чтобы вернуться в окно выбора калькулятора");
+            Console.WriteLine($"Если же вы желаете выйти, введите Exit");
+            Console.WriteLine("======================================================");
         }
 
-        public void InputFirstNumeView()
-        {
-            Console.WriteLine("Введите первое число");
-            Console.WriteLine("======================");
-        }
-
-        public void InputSecondNumberView()
-        {
-            Console.WriteLine("Введите второе число");
-            Console.WriteLine("======================");
-        }
-
-        public void InputActionView()
-        {
-            Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
-            Console.WriteLine("========================================================================================================================");
-        }
     }
 }
 
