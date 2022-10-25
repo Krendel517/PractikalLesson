@@ -1,66 +1,114 @@
-﻿using PractikalLesson_1;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    public class BaseCalculator
+    public abstract class BaseCalculator : ICalculate
     {
-        protected string _name;
-        protected int _id;
+        protected UserInput userInput = new UserInput();
+
+        protected string checkedInput;
+        protected string name;
+        protected int id;
+        protected 
+
+        const string calculatorAgain = "Calculate again";
+        const string exitToMainMenu = "Return";
+        const string exit = "Exit";
+
+        protected string Name { get { return name; } }
+        protected int Id { get { return id; } }
 
         protected BaseCalculator(string name, int id)
         {
-            _name = name;
-            _id = id;
+            this.name = name;
+            this.id = id;
         }
 
-        protected string Name
+        public abstract void Show();
+
+        public void WelcomeMessege()
         {
-            get { return _name; }
-            set { _name = value; }
+            Console.WriteLine($"Вы выбрали {name}");
+            Console.WriteLine("Введите клавишу Enter, чтобы продолжить.");
+            Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
+            Console.WriteLine("=========================================");
+
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
+
+            if (checkedInput == "Return")
+            {
+                MainMenu mainMenu = new MainMenu();
+                Console.Clear();
+                mainMenu.CalculatorSelection();
+            }
+            else if (checkedInput == "")
+            {
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("Введенное значение не верно, попробуйте снова");
+                Console.WriteLine("=========================================");
+
+                WelcomeMessege();
+            }
         }
 
-        protected int Id
+        public  abstract void GetInput();
+
+        public  abstract void Calculate();
+
+        public abstract void ShowResult();
+
+        public void FinalScreen()
         {
-            get { return _id; }
-            set { _id = value; }
+            ShowCommand();
+
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
+
+            if (checkedInput == calculatorAgain)
+            {
+                Console.Clear();
+                Show();
+            }
+            else if (checkedInput == exitToMainMenu)
+            {
+                ExitToMainMenu();
+            }
+            else if (checkedInput == exit)
+            {
+                Environment.Exit(0);
+            }
         }
 
-        protected void Show()
+
+        protected void CheckReturnInput()
         {
-            Console.Clear();
-
-            Console.WriteLine($"Вы выбрали {_name}");
-            Console.WriteLine("Введите любую клавишу, чтобы продолжить.");
-
-            Console.ReadKey();
-            Console.Clear();
-        }
-
-        protected void ShowCommand()
-        {
-            const string calculatorAgain = "Calculate again";
-            const string exitToMainMenu = "Return";
-            const string exit = "Exit";
-
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите {calculatorAgain}, чтобы посчитать заново.");
-            Console.WriteLine($"Введите {exitToMainMenu} чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите {exit}");
-            Console.WriteLine("======================================================");
+            if (checkedInput == "Return")
+            {
+                ExitToMainMenu();
+            }
         }
 
         protected void ExitToMainMenu()
         {
             MainMenu mainMenu = new MainMenu();
-
             Console.Clear();
             mainMenu.CalculatorSelection();
         }
+
+        protected void ShowCommand()
+        {
+            Console.WriteLine("======================================================");
+            Console.WriteLine($"Введите Calculate again, чтобы посчитать заново.");
+            Console.WriteLine($"Введите Return чтобы вернуться в окно выбора калькулятора");
+            Console.WriteLine($"Если же вы желаете выйти, введите Exit");
+            Console.WriteLine("======================================================");
+        }
+
     }
 }
 

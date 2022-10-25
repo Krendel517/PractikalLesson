@@ -9,9 +9,8 @@ namespace PractikalLesson_1
 {
     class TaxCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
         public TaxCalculator(string name, int id) : base(name, id)
-        { 
+        {
         }
 
         private const string hryvnia = "UAH";
@@ -19,30 +18,31 @@ namespace PractikalLesson_1
         private const string euro = "EUR";
         string inputCur;
 
+        protected string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
+        double[] monthlySalaryDouble = new double[12];
         private string formatMoney = "{0:N}";
         private string valut = "";
         private double singleTax;
         private double taxDeduction;
+        double annualIncome = 0;
         private const double minimumWage = 6500;
         double singleSocialContribution = minimumWage * 0.22;
         const double kursDollar = 29.2;
         const double kursEuro = 30.7;
         double sumInHruvnia = 0;
 
-        private string exit = "Exit";
-        private string calculatorAgain = "Calculate again";
-        private string exitToMainMenu = "Return";
-        string input = " ";
-
-        public void Start()
+        public override void Show()
         {
-            Show();
-            ChooseCurrency();
-            CalculateIncome();
+            WelcomeMessege();
+            ChooseCurreny();
+            GetInput();
+            Calculate();
             ShowResult();
         }
 
-        private void ChooseCurrency()
+
+
+        private void ChooseCurreny()
         {
             Console.WriteLine("Введите валюту вашего дохода");
             Console.WriteLine("==========================================");//Декоративная часть интерфейса
@@ -51,7 +51,10 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
             Console.WriteLine("==========================================");//Декоративная часть
 
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency);
+            inputCur = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
+
+            checkedInput = inputCur;
+            CheckReturnInput();
 
             if (inputCur == hryvnia)
             {
@@ -67,12 +70,9 @@ namespace PractikalLesson_1
             }
         }
 
-        private void CalculateIncome()
+        public override void GetInput()
         {
-            string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
             string[] monthlySalaryStr = new string[12];
-            double[] monthlySalaryDouble = new double[12];
-
 
             NumberFormatInfo chekPoint = new NumberFormatInfo()
             {
@@ -90,7 +90,10 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введите ваш доход за " + mothStr[count]);
                 Console.WriteLine("======================================");
 
-                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money);
+                monthlySalaryStr[count] = userInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
+
+                checkedInput = monthlySalaryStr[count];
+                CheckReturnInput();
 
                 if (monthlySalaryStr[count].Contains("."))
                 {
@@ -105,8 +108,10 @@ namespace PractikalLesson_1
                     monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count]);
                 }
             }
+        }
 
-            double annualIncome = 0;
+        public override void Calculate()
+        {
             foreach (double annualIncomeInt in monthlySalaryDouble)
             {
                 annualIncome += annualIncomeInt;
@@ -127,21 +132,13 @@ namespace PractikalLesson_1
                     break;
             }
 
+        }
+
+        public override void ShowResult()
+        {
             Console.Clear();
             Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
             Console.WriteLine(valut);
-            Console.WriteLine("____________________________________________");
-            Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
-
-            Console.ReadKey();
-            Console.Clear();
-        }
-
-        private void ShowResult()
-        {
-
-
-            Console.WriteLine("Вот ваш счет!");
             Console.WriteLine("============================================");
             Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
             Console.WriteLine(" грн.");
@@ -154,30 +151,7 @@ namespace PractikalLesson_1
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
 
-            ShowCommand();
-            input = chekInput.GetUserInput(TypeOfUserInput.command);
-
-            if (input == calculatorAgain)
-            {
-                Start();
-            }
-            else if (input == exitToMainMenu)
-            {
-               ExitToMainMenu();
-            }
-            else if (input == exit)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("============================================");
-                ShowResult();
-            }
-
-            Console.ReadKey();
+            FinalScreen();
         }
     }
 }
