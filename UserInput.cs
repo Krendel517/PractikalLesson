@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    class UserInput
+    public class UserInput
     {
         private string currentInput;
         private string checkedInput;
@@ -45,6 +45,7 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.empty:
                     GetUserInput();
                     break;
+
                 case TypeOfUserInput.year:
                     GetUserInputYear();
                     break;
@@ -284,7 +285,7 @@ namespace PractikalLesson_1
 
         private string GetUserInputMoney(bool showWarning = true)
         {
-            bool isLetter = currentInput.All(Char.IsLetter);
+            bool isLetter = currentInput.Any(Char.IsLetter);
 
             if (double.TryParse(currentInput, out double number))
             {
@@ -318,9 +319,9 @@ namespace PractikalLesson_1
 
         private string GetUserInputSimpleNumb(bool showWarning = true)
         {
-            bool isLetter = currentInput.All(Char.IsLetter);
+            bool isLetter = currentInput.Any(Char.IsLetter);
 
-            if (double.TryParse(currentInput, out double number))
+            if (double.TryParse(currentInput, out double number_1))
             {
                 numberConv = Convert.ToDouble(currentInput);
 
@@ -328,16 +329,7 @@ namespace PractikalLesson_1
             }
             else if (!isLetter && currentInput.Contains("."))
             {
-                isLetter = currentInput.All(Char.IsLetter);
-                
-                if (double.TryParse(currentInput, out double numberForMoney))
-                {
-                    checkedInput = currentInput;
-                }
-                else if (isLetter == false && currentInput.Contains("."))
-                {
-                    numberConv = Convert.ToDouble(currentInput, chekPoint);
-                }
+                numberConv = Convert.ToDouble(currentInput, chekPoint);
 
                 checkedInput = currentInput;
             }

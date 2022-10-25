@@ -1,14 +1,12 @@
-﻿using PractikalLesson_1;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
     class MainMenu
     {
+        UserInput userInput = new UserInput();
+
         private string firstCalc = "1";
         private string secCalc = "2";
         private string thirdCalc = "3";
@@ -30,8 +28,7 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите свой год рождения");
             Console.WriteLine("===============================");
 
-            UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.year);
+            input = userInput.GetUserInput(TypeOfUserInput.year);
 
             int inputYear = Convert.ToInt32(input);
             bool comingOfAge = inputYear < adult && inputYear > questionableAge;
@@ -58,29 +55,28 @@ namespace PractikalLesson_1
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
 
-            UserInput chekInput = new UserInput();
-            input = chekInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
+            input = userInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
 
             if (input == firstCalc)
             {
                 SimpleCalculator simpleCalculator = new SimpleCalculator("простой калькулятор", 1);
 
                 Console.Clear();
-                simpleCalculator.Start();
+                simpleCalculator.Show();
             }
             else if (input == secCalc)
             {
                 AgeCalculator ageCalculator = new AgeCalculator("калькулятор возраста", 2);
 
                 Console.Clear();
-                ageCalculator.Start();
+                ageCalculator.Show();
             }
             else if (input == thirdCalc)
             {
                 TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
 
                 Console.Clear();
-                taxCalculator.Start();
+                taxCalculator.Show();
             }
             else if (input == exit)
             {

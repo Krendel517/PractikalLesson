@@ -18,6 +18,7 @@ namespace PractikalLesson_1
         private const string euro = "EUR";
         string inputCur;
 
+        protected string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
         double[] monthlySalaryDouble = new double[12];
         private string formatMoney = "{0:N}";
         private string valut = "";
@@ -30,11 +31,86 @@ namespace PractikalLesson_1
         const double kursEuro = 30.7;
         double sumInHruvnia = 0;
 
-        private string exit = "Exit";
-        private string calculatorAgain = "Calculate again";
-        private string exitToMainMenu = "Return";
+        public override void Show()
+        {
+            WelcomeMessege();
+            ChooseCurreny();
+            GetInput();
+            Calculate();
+            ShowResult();
+        }
 
-        protected override void Calculate()
+
+
+        private void ChooseCurreny()
+        {
+            Console.WriteLine("Введите валюту вашего дохода");
+            Console.WriteLine("==========================================");//Декоративная часть интерфейса
+            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
+            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
+            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
+            Console.WriteLine("==========================================");//Декоративная часть
+
+            inputCur = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
+
+            checkedInput = inputCur;
+            CheckReturnInput();
+
+            if (inputCur == hryvnia)
+            {
+                valut = " грн.";
+            }
+            else if (inputCur == dollar)
+            {
+                valut = " дол.";
+            }
+            else if (inputCur == euro)
+            {
+                valut = " евро.";
+            }
+        }
+
+        public override void GetInput()
+        {
+            string[] monthlySalaryStr = new string[12];
+
+            NumberFormatInfo chekPoint = new NumberFormatInfo()
+            {
+                NumberDecimalSeparator = "."
+            };
+
+            NumberFormatInfo chekComma = new NumberFormatInfo()
+            {
+                NumberDecimalSeparator = ","
+            };
+
+            for (int count = 0; count <= 11; count++)
+            {
+                Console.Clear();
+                Console.WriteLine("Введите ваш доход за " + mothStr[count]);
+                Console.WriteLine("======================================");
+
+                monthlySalaryStr[count] = userInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
+
+                checkedInput = monthlySalaryStr[count];
+                CheckReturnInput();
+
+                if (monthlySalaryStr[count].Contains("."))
+                {
+                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekPoint);
+                }
+                else if (monthlySalaryStr[count].Contains(","))
+                {
+                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekComma);
+                }
+                else
+                {
+                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count]);
+                }
+            }
+        }
+
+        public override void Calculate()
         {
             foreach (double annualIncomeInt in monthlySalaryDouble)
             {
@@ -58,98 +134,11 @@ namespace PractikalLesson_1
 
         }
 
-        public void Start()
+        public override void ShowResult()
         {
-            Show();
-            ChooseCurrency();
-            CalculateIncome();
-            ShowResult();
-        }
-
-        private void ChooseCurrency()
-        {
-            Console.WriteLine("Введите валюту вашего дохода");
-            Console.WriteLine("==========================================");//Декоративная часть интерфейса
-            Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
-            Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
-            Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-            Console.WriteLine("==========================================");//Декоративная часть
-
-            inputCur = chekInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
-
-            input = inputCur;
-            CheckReturnInput();
-
-            if (inputCur == hryvnia)
-            {
-                valut = " грн.";
-            }
-            else if (inputCur == dollar)
-            {
-                valut = " дол.";
-            }
-            else if (inputCur == euro)
-            {
-                valut = " евро.";
-            }
-        }
-
-        private void CalculateIncome()
-        {
-            string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
-            string[] monthlySalaryStr = new string[12];
-
-            NumberFormatInfo chekPoint = new NumberFormatInfo()
-            {
-                NumberDecimalSeparator = "."
-            };
-
-            NumberFormatInfo chekComma = new NumberFormatInfo()
-            {
-                NumberDecimalSeparator = ","
-            };
-
-            for (int count = 0; count <= 11; count++)
-            {
-                Console.Clear();
-                Console.WriteLine("Введите ваш доход за " + mothStr[count]);
-                Console.WriteLine("======================================");
-
-                monthlySalaryStr[count] = chekInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
-
-                input = monthlySalaryStr[count];
-                CheckReturnInput();
-
-                if (monthlySalaryStr[count].Contains("."))
-                {
-                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekPoint);
-                }
-                else if (monthlySalaryStr[count].Contains(","))
-                {
-                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekComma);
-                }
-                else
-                {
-                    monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count]);
-                }
-            }
-
-            Calculate();
-
             Console.Clear();
             Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
             Console.WriteLine(valut);
-            Console.WriteLine("____________________________________________");
-            Console.WriteLine("Нажмите любую клавишу, чтобы посмотреть ваш доход в грн.");
-
-            annualIncome = 0;
-            Console.ReadKey();
-            Console.Clear();
-        }
-
-        private void ShowResult()
-        {
-            Console.WriteLine("Вот ваш счет!");
             Console.WriteLine("============================================");
             Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
             Console.WriteLine(" грн.");
@@ -162,32 +151,7 @@ namespace PractikalLesson_1
             Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
 
-            ShowCommand();
-            input = chekInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.command);
-
-            if (input == calculatorAgain)
-            {
-                Console.Clear();
-                Start();
-            }
-            else if (input == exitToMainMenu)
-            {
-                Console.Clear();
-                ExitToMainMenu();
-            }
-            else if (input == exit)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("============================================");
-                ShowResult();
-            }
-
-            Console.ReadKey();
+            FinalScreen();
         }
     }
 }

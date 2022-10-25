@@ -46,6 +46,7 @@
     <Compile Include="AgeCalculator.cs" />
     <Compile Include="BaseCalculator.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="ICalculate.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
