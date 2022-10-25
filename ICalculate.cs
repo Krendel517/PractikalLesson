@@ -18,6 +18,6 @@ namespace PractikalLesson_1
 
         void ShowResult();
 
-        void FinalScreen();
+        void ShowFinalScreen();
     }
 }

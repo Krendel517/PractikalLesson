@@ -8,15 +8,16 @@ namespace PractikalLesson_1
 {
     class AgeCalculator : BaseCalculator
     {
-        public AgeCalculator(string name, int id) : base(name, id)
-        {
-        }
-
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
         private const double daysInYear = 365.2425;
         private double agePerson;
         private double ageInDays;
+
+        public AgeCalculator(string name, int id) : base(name, id)
+        {
+        }
+
         public override void Show()
         {
             WelcomeMessege();
@@ -48,7 +49,7 @@ namespace PractikalLesson_1
             Console.WriteLine($"Возраст человека, который родился {checkedInput} составляет " + Math.Truncate(agePerson));
             Console.WriteLine("==================================================");
 
-            FinalScreen();
+            ShowFinalScreen();
         }
     }
 }

@@ -110,7 +110,7 @@ namespace PractikalLesson_1
                 Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
             }
 
-            FinalScreen();
+            ShowFinalScreen();
         }
     }
 }
