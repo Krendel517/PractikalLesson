@@ -10,7 +10,6 @@ namespace PractikalLesson_1
         protected string checkedInput;
         protected string name;
         protected int id;
-        protected 
 
         const string calculatorAgain = "Calculate again";
         const string exitToMainMenu = "Return";
@@ -63,7 +62,7 @@ namespace PractikalLesson_1
 
         public abstract void ShowResult();
 
-        public void FinalScreen()
+        public void ShowFinalScreen()
         {
             ShowCommand();
 
@@ -108,7 +107,6 @@ namespace PractikalLesson_1
             Console.WriteLine($"Если же вы желаете выйти, введите Exit");
             Console.WriteLine("======================================================");
         }
-
     }
 }
 
