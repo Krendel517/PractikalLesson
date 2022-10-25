@@ -10,22 +10,23 @@ namespace PractikalLesson_1
         protected string checkedInput;
         protected string name;
         protected int id;
+        protected 
 
         const string calculatorAgain = "Calculate again";
         const string exitToMainMenu = "Return";
         const string exit = "Exit";
 
-        public string Name { get { return name; } }
-        public int Id { get { return id; } }
+        protected string Name { get { return name; } }
+        protected int Id { get { return id; } }
 
-        public BaseCalculator(string name, int id)
+        protected BaseCalculator(string name, int id)
         {
             this.name = name;
             this.id = id;
         }
 
         public abstract void Show();
-       
+
         public void WelcomeMessege()
         {
             Console.WriteLine($"Вы выбрали {name}");
@@ -71,7 +72,7 @@ namespace PractikalLesson_1
             if (checkedInput == calculatorAgain)
             {
                 Console.Clear();
-                WelcomeMessege();
+                Show();
             }
             else if (checkedInput == exitToMainMenu)
             {
