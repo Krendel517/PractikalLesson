@@ -8,79 +8,47 @@ namespace PractikalLesson_1
 {
     class AgeCalculator : BaseCalculator
     {
-        UserInput chekInput = new UserInput();
         public AgeCalculator(string name, int id) : base(name, id)
         {
         }
 
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
-        private string birthDayInput;
         private const double daysInYear = 365.2425;
         private double agePerson;
         private double ageInDays;
-        private string input;
-        private string calculatorAgain = "Calculate again";
-        private string exit = "Exit";
-        private string exitToMainMenu = "Return";
-
-        public void Start()
+        public override void Show()
         {
-            Show();
-            CalculateAge();
-            InputCommand();
+            WelcomeMessege();
+            GetInput();
+            Calculate();
+            ShowResult();
         }
 
-        public void CalculateAge()
+        public override void GetInput()
         {
-            Console.WriteLine("Укажите дату рождения в формате дд.мм.гггг");
-            Console.WriteLine("===========================================");
+            Console.WriteLine("Введите дату рождения какого-либо человека, чтобы узнать кол-во лет.");
 
-            birthDayInput = chekInput.GetUserInput(TypeOfUserInput.ageDateFormat);
-            birthDay = Convert.ToDateTime(birthDayInput);
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
+            CheckReturnInput();
+        }
+
+        public override void Calculate()
+        {
+            birthDay = Convert.ToDateTime(checkedInput);
 
             TimeSpan ageForYears = todayData - birthDay;
             ageInDays = ageForYears.TotalDays;
             agePerson = ageInDays / daysInYear;
-
-            Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {birthDayInput} составляет " + Math.Truncate(agePerson));
-            Console.WriteLine("==================================================");
-            Console.WriteLine("Введите любую клавишу чтобы продолжить.");
-
-            Console.ReadKey();
-            Console.Clear();
         }
 
-        public void InputCommand()
+        public override void ShowResult()
         {
-            ShowCommand();
-            input = chekInput.GetUserInput(TypeOfUserInput.command);
+            Console.Clear();
+            Console.WriteLine($"Возраст человека, который родился {checkedInput} составляет " + Math.Truncate(agePerson));
+            Console.WriteLine("==================================================");
 
-            if (input == calculatorAgain)
-            {
-                Console.Clear();
-                Start();
-            }
-            else if (input == exitToMainMenu)
-            {
-                Console.Clear();
-                ExitToMainMenu();
-            }
-            else if (input == exit)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-
-                InputCommand();
-            }
-
-            Console.ReadKey();
-            Environment.Exit(0);
+            FinalScreen();
         }
     }
 }

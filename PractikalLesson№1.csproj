@@ -46,6 +46,7 @@
     <Compile Include="AgeCalculator.cs" />
     <Compile Include="BaseCalculator.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="ICalculate.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,7 +55,6 @@
     <Compile Include="UserInput.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".editorconfig" />
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

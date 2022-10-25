@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    class UserInput
+    public class UserInput
     {
         private string currentInput;
         private string checkedInput;
@@ -21,8 +21,6 @@ namespace PractikalLesson_1
 
         public string GetUserInput(bool showWarning = true)
         {
-            currentInput = Console.ReadLine();
-
             if (currentInput.Contains(""))
             {
                 Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти");
@@ -32,10 +30,7 @@ namespace PractikalLesson_1
             }
             else
             {
-                Console.WriteLine("Ввод успешен, но все же нажмите любую клавишу чтобы выйти :)");
-
-                Console.ReadKey();
-                Environment.Exit(0);
+                Console.WriteLine("Значение корректно :D");
             }
 
             return currentInput;
@@ -47,6 +42,10 @@ namespace PractikalLesson_1
 
             switch (type)
             {
+                case TypeOfUserInput.empty:
+                    GetUserInput();
+                    break;
+
                 case TypeOfUserInput.year:
                     GetUserInputYear();
                     break;
@@ -94,12 +93,17 @@ namespace PractikalLesson_1
 
             switch (firstType)
             {
+                case TypeOfUserInput.empty:
+                    GetUserInputEmpty(false);
+                    break;
                 case TypeOfUserInput.year:
                     GetUserInputYear(false);
                     break;
-
+                case TypeOfUserInput.ageDateFormat:
+                    GetUserInputGetData();
+                    break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc();
+                    GetUserInputNumberCalc(false);
                     break;
 
                 case TypeOfUserInput.currency:
@@ -135,32 +139,37 @@ namespace PractikalLesson_1
         {
             switch (secondType)
             {
-                case TypeOfUserInput.year:
-                    GetUserInputYear(false);
+                case TypeOfUserInput.empty:
+                    GetUserInputEmpty();
                     break;
-
+                case TypeOfUserInput.year:
+                    GetUserInputYear();
+                    break;
+                case TypeOfUserInput.ageDateFormat:
+                    GetUserInputGetData();
+                    break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc(false);
+                    GetUserInputNumberCalc();
                     break;
 
                 case TypeOfUserInput.currency:
-                    GetUserInputCurrency(false);
+                    GetUserInputCurrency();
                     break;
 
                 case TypeOfUserInput.money:
-                    GetUserInputMoney(false);
+                    GetUserInputMoney();
                     break;
 
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb(false);
+                    GetUserInputSimpleNumb();
                     break;
 
                 case TypeOfUserInput.mathematicalActions:
-                    GetUserInputMathAction(false);
+                    GetUserInputMathAction();
                     break;
 
                 case TypeOfUserInput.command:
-                    GetUserInputCommand(false);
+                    GetUserInputCommand();
                     break;
             }
 
@@ -170,6 +179,27 @@ namespace PractikalLesson_1
             }
 
             return checkedInput;
+        }
+
+        public string GetUserInputEmpty(bool showWarning = true)
+        {
+            if (currentInput.Contains(""))
+            {
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                checkedInput = invalidValue;
+
+                Console.WriteLine("Значение некорректно, попробуйте снова");
+                Console.WriteLine("=======================================");
+            }
+            else
+            {
+                checkedInput = invalidValue;
+            }
+
+            return currentInput;
         }
 
         private string GetUserInputYear(bool showWarning = true)
@@ -255,7 +285,7 @@ namespace PractikalLesson_1
 
         private string GetUserInputMoney(bool showWarning = true)
         {
-            bool isLetter = currentInput.All(Char.IsLetter);
+            bool isLetter = currentInput.Any(Char.IsLetter);
 
             if (double.TryParse(currentInput, out double number))
             {
@@ -278,7 +308,6 @@ namespace PractikalLesson_1
 
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 Console.WriteLine("========================================");
-                GetUserInput(TypeOfUserInput.money);
             }
             else
             {
@@ -290,9 +319,9 @@ namespace PractikalLesson_1
 
         private string GetUserInputSimpleNumb(bool showWarning = true)
         {
-            bool isLetter = currentInput.All(Char.IsLetter);
+            bool isLetter = currentInput.Any(Char.IsLetter);
 
-            if (double.TryParse(currentInput, out double number))
+            if (double.TryParse(currentInput, out double number_1))
             {
                 numberConv = Convert.ToDouble(currentInput);
 
@@ -300,16 +329,7 @@ namespace PractikalLesson_1
             }
             else if (!isLetter && currentInput.Contains("."))
             {
-                isLetter = currentInput.All(Char.IsLetter);
-                
-                if (double.TryParse(currentInput, out double numberForMoney))
-                {
-                    checkedInput = currentInput;
-                }
-                else if (isLetter == false && currentInput.Contains("."))
-                {
-                    numberConv = Convert.ToDouble(currentInput, chekPoint);
-                }
+                numberConv = Convert.ToDouble(currentInput, chekPoint);
 
                 checkedInput = currentInput;
             }
@@ -319,7 +339,6 @@ namespace PractikalLesson_1
 
                 Console.WriteLine("Значение некорректно, попробуйте снова");
                 Console.WriteLine("========================================");
-                GetUserInput(TypeOfUserInput.simpleNumber);
             }
             else
             {
@@ -387,12 +406,16 @@ namespace PractikalLesson_1
                 DateTime birthDayInput = DateTime.Parse(currentInput);
                 checkedInput = currentInput;
             }
-            else
+            else if (showWarning == true)
             {
+                checkedInput = invalidValue;
+
                 Console.Clear();
                 Console.WriteLine("Значение не корректно, введите дату в формате дд.мм.гггг");
-
-                GetUserInput(TypeOfUserInput.ageDateFormat);
+            }
+            else
+            {
+                checkedInput = invalidValue;
             }
 
 

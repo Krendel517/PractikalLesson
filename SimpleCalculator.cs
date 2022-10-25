@@ -1,61 +1,75 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PractikalLesson_1 
+namespace PractikalLesson_1
 {
     class SimpleCalculator : BaseCalculator
     {
+        public double firstNumber;
+        public double secondNumber;
+        public string action;
+        public double answer;
+        private const string plus = "+";
+        private const string distribuctions = "-";
+        private const string division = ":";
+        private const string multiplicatoins = "*";
+        private const string percent = "%";
+        const string formatAnswer = "{0:N}";
+
         public SimpleCalculator(string name, int id) : base(name, id)
         {
         }
 
-        UserInput chekInput = new UserInput();
-  
-        private string firstNumberStr;
-        private string secondNumberStr;
-        private double firstNumber;
-        private double secondNumber;
-        private string action;
-        private string input;
-        private double answer;
-        private const string plus = "+";
-        private const string distribuctions = "-";
-        private const string division = "/";
-        private const string multiplicatoins = "*";
-        private const string percent = "%";
-       
-        public void Start()
+        public override void Show()
         {
-            Show();
-            InputNumbers();
-            CalculateNumbers();
+            WelcomeMessege();
+            GetInput();
+            Calculate();
             ShowResult();
         }
 
-        private void InputNumbers()
+        public override void GetInput()
         {
-            Console.WriteLine("Выберете первое число");
+            Console.WriteLine("Введите первое число.");
             Console.WriteLine("======================");
-            firstNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
-            firstNumber = chekInput.numberConv;
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
+
+            if (checkedInput == "Return")
+            {
+                Console.Clear();
+                CheckReturnInput();
+            }
+
+            firstNumber = userInput.numberConv;
 
             Console.Clear();
-            Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго):");
+            Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго).");
             Console.WriteLine("========================================================================================================================");
-            action = chekInput.GetUserInput(TypeOfUserInput.mathematicalActions);
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
+
+            if (checkedInput == "Return")
+            {
+                Console.Clear();
+                CheckReturnInput();
+            }
+
+            action = checkedInput;
 
             Console.Clear();
-            Console.WriteLine("Выберете второе число");
+            Console.WriteLine("Выберете второе число.");
             Console.WriteLine("======================");
-            secondNumberStr = chekInput.GetUserInput(TypeOfUserInput.simpleNumber);
-            secondNumber = chekInput.numberConv;
+            checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
+
+            if (checkedInput == "Return")
+            {
+                Console.Clear();
+                CheckReturnInput();
+            }
+
+            secondNumber = userInput.numberConv;
+            Calculate();
         }
 
-        private void CalculateNumbers()
+        public override void Calculate()
         {
             switch (action)
             {
@@ -80,43 +94,23 @@ namespace PractikalLesson_1
                     break;
             }
         }
-        private void ShowResult()
-        {
-            const string calculatorAgain = "Calculate again";
-            const string exitToMainMenu = "Return";
-            const string exit = "Exit";
-            const string formatAnswer = "{0:N}";
 
+        public override void ShowResult()
+        {
             if (action == "%")
             {
                 Console.Clear();
-                Console.Write($"Процентное соотношение {firstNumberStr} от {secondNumberStr} составляет - ");
+                Console.Write($"Процентное соотношение {firstNumber} от {secondNumber} составляет - ");
                 Console.Write(formatAnswer, answer);
                 Console.WriteLine("%");
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine($"Результат вычисления {firstNumberStr} {action} {secondNumberStr} = " + answer);
+                Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
             }
 
-            ShowCommand();
-            input = chekInput.GetUserInput(TypeOfUserInput.command);
-
-            if (input == calculatorAgain)
-            {
-                Start();
-                Console.Clear();
-                Console.WriteLine("Нажмите любую клавишу, чтобы приступить к работе");
-            }
-            else if (input == exitToMainMenu)
-            {
-                ExitToMainMenu();
-            }
-            else if (input == exit)
-            {
-                Environment.Exit(0);
-            }
+            FinalScreen();
         }
     }
 }
