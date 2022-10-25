@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
@@ -49,7 +45,7 @@ namespace PractikalLesson_1
 
             inputCur = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
 
-            checkedInput = inputCur;
+            GlobalVariable.checkedInput = inputCur;
             CheckReturnInput();
 
             if (inputCur == hryvnia)
@@ -88,7 +84,7 @@ namespace PractikalLesson_1
 
                 monthlySalaryStr[count] = userInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
 
-                checkedInput = monthlySalaryStr[count];
+                GlobalVariable.checkedInput = monthlySalaryStr[count];
                 CheckReturnInput();
 
                 if (monthlySalaryStr[count].Contains("."))

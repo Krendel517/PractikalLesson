@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
@@ -30,13 +26,13 @@ namespace PractikalLesson_1
         {
             Console.WriteLine("Введите дату рождения какого-либо человека, чтобы узнать кол-во лет.");
 
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
             CheckReturnInput();
         }
 
         public override void Calculate()
         {
-            birthDay = Convert.ToDateTime(checkedInput);
+            birthDay = Convert.ToDateTime(GlobalVariable.checkedInput);
 
             TimeSpan ageForYears = todayData - birthDay;
             ageInDays = ageForYears.TotalDays;
@@ -46,7 +42,7 @@ namespace PractikalLesson_1
         public override void ShowResult()
         {
             Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {checkedInput} составляет " + Math.Truncate(agePerson));
+            Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(agePerson));
             Console.WriteLine("==================================================");
 
             ShowFinalScreen();

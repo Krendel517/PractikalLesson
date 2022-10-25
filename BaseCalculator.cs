@@ -7,13 +7,8 @@ namespace PractikalLesson_1
     {
         protected UserInput userInput = new UserInput();
 
-        protected string checkedInput;
         protected string name;
         protected int id;
-
-        const string calculatorAgain = "Calculate again";
-        const string exitToMainMenu = "Return";
-        const string exit = "Exit";
 
         protected string Name { get { return name; } }
         protected int Id { get { return id; } }
@@ -33,15 +28,15 @@ namespace PractikalLesson_1
             Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
             Console.WriteLine("=========================================");
 
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
-            if (checkedInput == "Return")
+            if (GlobalVariable.checkedInput == "Return")
             {
                 MainMenu mainMenu = new MainMenu();
                 Console.Clear();
                 mainMenu.CalculatorSelection();
             }
-            else if (checkedInput == "")
+            else if (GlobalVariable.checkedInput == "")
             {
                 Console.Clear();
             }
@@ -56,9 +51,9 @@ namespace PractikalLesson_1
             }
         }
 
-        public  abstract void GetInput();
+        public abstract void GetInput();
 
-        public  abstract void Calculate();
+        public abstract void Calculate();
 
         public abstract void ShowResult();
 
@@ -66,18 +61,18 @@ namespace PractikalLesson_1
         {
             ShowCommand();
 
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
 
-            if (checkedInput == calculatorAgain)
+            if (GlobalVariable.checkedInput == GlobalVariable.calculatorAgain)
             {
                 Console.Clear();
                 Show();
             }
-            else if (checkedInput == exitToMainMenu)
+            else if (GlobalVariable.checkedInput == GlobalVariable.exitToMainMenu)
             {
                 ExitToMainMenu();
             }
-            else if (checkedInput == exit)
+            else if (GlobalVariable.checkedInput == GlobalVariable.exit)
             {
                 Environment.Exit(0);
             }
@@ -85,7 +80,7 @@ namespace PractikalLesson_1
 
         protected void CheckReturnInput()
         {
-            if (checkedInput == "Return")
+            if (GlobalVariable.checkedInput == "Return")
             {
                 ExitToMainMenu();
             }

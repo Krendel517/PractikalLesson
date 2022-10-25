@@ -31,9 +31,9 @@ namespace PractikalLesson_1
         {
             Console.WriteLine("Введите первое число.");
             Console.WriteLine("======================");
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
 
-            if (checkedInput == "Return")
+            if (GlobalVariable.checkedInput == "Return")
             {
                 Console.Clear();
                 CheckReturnInput();
@@ -44,22 +44,22 @@ namespace PractikalLesson_1
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго).");
             Console.WriteLine("========================================================================================================================");
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
 
-            if (checkedInput == "Return")
+            if (GlobalVariable.checkedInput == "Return")
             {
                 Console.Clear();
                 CheckReturnInput();
             }
 
-            action = checkedInput;
+            action = GlobalVariable.checkedInput;
 
             Console.Clear();
             Console.WriteLine("Выберете второе число.");
             Console.WriteLine("======================");
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
 
-            if (checkedInput == "Return")
+            if (GlobalVariable.checkedInput == "Return")
             {
                 Console.Clear();
                 CheckReturnInput();
