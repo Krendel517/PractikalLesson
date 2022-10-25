@@ -204,7 +204,6 @@ namespace PractikalLesson_1
 
         private string GetUserInputYear(bool showWarning = true)
         {
-
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
@@ -417,7 +416,6 @@ namespace PractikalLesson_1
             {
                 checkedInput = invalidValue;
             }
-
 
             return checkedInput;
         }

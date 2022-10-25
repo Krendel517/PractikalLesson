@@ -83,7 +83,6 @@ namespace PractikalLesson_1
             }
         }
 
-
         protected void CheckReturnInput()
         {
             if (checkedInput == "Return")

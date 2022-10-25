@@ -9,15 +9,10 @@ namespace PractikalLesson_1
 {
     class TaxCalculator : BaseCalculator
     {
-        public TaxCalculator(string name, int id) : base(name, id)
-        {
-        }
-
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
         string inputCur;
-
         protected string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
         double[] monthlySalaryDouble = new double[12];
         private string formatMoney = "{0:N}";
@@ -31,6 +26,9 @@ namespace PractikalLesson_1
         const double kursEuro = 30.7;
         double sumInHruvnia = 0;
 
+        public TaxCalculator(string name, int id) : base(name, id)
+        {
+        }
         public override void Show()
         {
             WelcomeMessege();
@@ -39,8 +37,6 @@ namespace PractikalLesson_1
             Calculate();
             ShowResult();
         }
-
-
 
         private void ChooseCurreny()
         {
@@ -131,7 +127,6 @@ namespace PractikalLesson_1
                     sumInHruvnia = annualIncome * kursEuro;
                     break;
             }
-
         }
 
         public override void ShowResult()
