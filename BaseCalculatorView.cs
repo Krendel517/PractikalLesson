@@ -8,6 +8,8 @@ namespace PractikalLesson_1
         void WelcomeMessegeView();
 
         void ShowCommand();
+
+        void ShowResult();
     }
 
     interface ICommand
@@ -17,11 +19,11 @@ namespace PractikalLesson_1
 
     public abstract class BaseCalculatorView : IVisible, ICommand
     {
-        protected string name;
-        protected int id;
+        private string name;
+        private int id;
 
-        string Name { get { return name; } }
-        int Id { get { return id; } }
+        protected string Name { get { return name; } }
+        protected int Id { get { return id; } }
 
         public BaseCalculatorView(string name, int id)
         {
@@ -45,6 +47,8 @@ namespace PractikalLesson_1
             Console.WriteLine($"Если же вы желаете выйти, введите Exit");
             Console.WriteLine("======================================================");
         }
+
+        public abstract void ShowResult();
 
         public void ExiFromProgramOrMainMenu()
         {

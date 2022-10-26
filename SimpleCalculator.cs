@@ -13,13 +13,12 @@ namespace PractikalLesson_1
         private const string division = ":";
         private const string multiplicatoins = "*";
         private const string percent = "%";
-        const string formatAnswer = "{0:N}";
 
         public SimpleCalculator(string name, int id) : base(name, id)
         {
         }
 
-        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView ("простой калькулятор",1);
+        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView("простой калькулятор", 1);
 
         public override void Show()
         {
@@ -79,20 +78,7 @@ namespace PractikalLesson_1
 
         public override void ShowResult()
         {
-            if (action == "%")
-            {
-                Console.Clear();
-                Console.Write($"Процентное соотношение {firstNumber} от {secondNumber} составляет - ");
-                Console.Write(formatAnswer, answer);
-                Console.WriteLine("%");
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
-            }
-
-            simpleCalculatorView.ShowCommand();
+            simpleCalculatorView.ShowResult();
             GetCommand();
         }
     }

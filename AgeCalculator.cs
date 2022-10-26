@@ -7,15 +7,18 @@ namespace PractikalLesson_1
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
         private const double daysInYear = 365.2425;
-        private double agePerson;
+        public double agePerson;
         private double ageInDays;
 
         public AgeCalculator(string name, int id) : base(name, id)
         {
         }
 
+        TaxCalculatorView taxCalculatorView = new TaxCalculatorView("калькулятор возраста", 2);
+
         public override void Show()
         {
+            taxCalculatorView.WelcomeMessegeView();
             WelcomeMessege();
             GetInput();
             Calculate();
@@ -41,10 +44,7 @@ namespace PractikalLesson_1
 
         public override void ShowResult()
         {
-            Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(agePerson));
-            Console.WriteLine("==================================================");
-
+            taxCalculatorView.ShowResult();
             GetCommand();
         }
     }
