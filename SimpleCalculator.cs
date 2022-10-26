@@ -19,8 +19,11 @@ namespace PractikalLesson_1
         {
         }
 
+        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView ("простой калькулятор",1);
+
         public override void Show()
         {
+            simpleCalculatorView.WelcomeMessegeView();
             WelcomeMessege();
             GetInput();
             Calculate();
@@ -29,44 +32,23 @@ namespace PractikalLesson_1
 
         public override void GetInput()
         {
-            Console.WriteLine("Введите первое число.");
-            Console.WriteLine("======================");
+            simpleCalculatorView.RequestEnterFirstNumber();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
 
-            if (GlobalVariable.checkedInput == "Return")
-            {
-                Console.Clear();
-                CheckReturnInput();
-            }
-
+            simpleCalculatorView.ExiFromProgramOrMainMenu();
             firstNumber = userInput.numberConv;
 
-            Console.Clear();
-            Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго).");
-            Console.WriteLine("========================================================================================================================");
+            simpleCalculatorView.RequestEnterAction();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
 
-            if (GlobalVariable.checkedInput == "Return")
-            {
-                Console.Clear();
-                CheckReturnInput();
-            }
-
+            simpleCalculatorView.ExiFromProgramOrMainMenu();
             action = GlobalVariable.checkedInput;
 
-            Console.Clear();
-            Console.WriteLine("Выберете второе число.");
-            Console.WriteLine("======================");
+            simpleCalculatorView.RequestEnterSecondnumber();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
 
-            if (GlobalVariable.checkedInput == "Return")
-            {
-                Console.Clear();
-                CheckReturnInput();
-            }
-
+            simpleCalculatorView.ExiFromProgramOrMainMenu();
             secondNumber = userInput.numberConv;
-            Calculate();
         }
 
         public override void Calculate()
@@ -110,7 +92,8 @@ namespace PractikalLesson_1
                 Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
             }
 
-            ShowFinalScreen();
+            simpleCalculatorView.ShowCommand();
+            GetCommand();
         }
     }
 }

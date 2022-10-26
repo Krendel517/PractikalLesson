@@ -23,11 +23,6 @@ namespace PractikalLesson_1
 
         public void WelcomeMessege()
         {
-            Console.WriteLine($"Вы выбрали {name}");
-            Console.WriteLine("Введите клавишу Enter, чтобы продолжить.");
-            Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
-            Console.WriteLine("=========================================");
-
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
             if (GlobalVariable.checkedInput == "Return")
@@ -47,7 +42,7 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введенное значение не верно, попробуйте снова");
                 Console.WriteLine("=========================================");
 
-                WelcomeMessege();
+                Show();
             }
         }
 
@@ -57,10 +52,8 @@ namespace PractikalLesson_1
 
         public abstract void ShowResult();
 
-        public void ShowFinalScreen()
+        public void GetCommand()
         {
-            ShowCommand();
-
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
 
             if (GlobalVariable.checkedInput == GlobalVariable.calculatorAgain)
@@ -91,15 +84,6 @@ namespace PractikalLesson_1
             MainMenu mainMenu = new MainMenu();
             Console.Clear();
             mainMenu.CalculatorSelection();
-        }
-
-        protected void ShowCommand()
-        {
-            Console.WriteLine("======================================================");
-            Console.WriteLine($"Введите Calculate again, чтобы посчитать заново.");
-            Console.WriteLine($"Введите Return чтобы вернуться в окно выбора калькулятора");
-            Console.WriteLine($"Если же вы желаете выйти, введите Exit");
-            Console.WriteLine("======================================================");
         }
     }
 }

@@ -12,9 +12,7 @@ namespace PractikalLesson_1
         private string thirdCalc = "3";
         int adult = 2004;
         int questionableAge = 1920;
-        private string exit = "Exit";
-        private string input;
-
+       
         public void Show()
         {
             Start();
@@ -26,9 +24,9 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите свой год рождения");
             Console.WriteLine("===============================");
 
-            input = userInput.GetUserInput(TypeOfUserInput.year);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.year);
 
-            int inputYear = Convert.ToInt32(input);
+            int inputYear = Convert.ToInt32(GlobalVariable.checkedInput);
             bool comingOfAge = inputYear < adult && inputYear > questionableAge;
 
             if (comingOfAge)
@@ -53,30 +51,30 @@ namespace PractikalLesson_1
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
 
-            input = userInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
 
-            if (input == firstCalc)
+            if (GlobalVariable.checkedInput == firstCalc)
             {
                 SimpleCalculator simpleCalculator = new SimpleCalculator("простой калькулятор", 1);
 
                 Console.Clear();
                 simpleCalculator.Show();
             }
-            else if (input == secCalc)
+            else if (GlobalVariable.checkedInput == secCalc)
             {
                 AgeCalculator ageCalculator = new AgeCalculator("калькулятор возраста", 2);
 
                 Console.Clear();
                 ageCalculator.Show();
             }
-            else if (input == thirdCalc)
+            else if (GlobalVariable.checkedInput == thirdCalc)
             {
                 TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
 
                 Console.Clear();
                 taxCalculator.Show();
             }
-            else if (input == exit)
+            else if (GlobalVariable.checkedInput == GlobalVariable.exit)
             {
                 Environment.Exit(0);
             }

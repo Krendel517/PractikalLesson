@@ -7,13 +7,7 @@ namespace PractikalLesson_1
     {
         void WelcomeMessegeView();
 
-        void ShowResult();
-
         void ShowCommand();
-
-        void DrawLongDividingLine();
-
-        void DrawShortDividingLine();
     }
 
     interface ICommand
@@ -21,7 +15,7 @@ namespace PractikalLesson_1
         void ExiFromProgramOrMainMenu();
     }
 
-    abstract class BaseCalculatorView : IVisible, ICommand
+    public abstract class BaseCalculatorView : IVisible, ICommand
     {
         protected string name;
         protected int id;
@@ -34,8 +28,6 @@ namespace PractikalLesson_1
             this.name = name;
             this.id = id;
         }
-
-        public abstract void ShowResult();
 
         public void WelcomeMessegeView()
         {
@@ -52,16 +44,6 @@ namespace PractikalLesson_1
             Console.WriteLine($"Введите Return чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine($"Если же вы желаете выйти, введите Exit");
             Console.WriteLine("======================================================");
-        }
-
-        public void DrawShortDividingLine()
-        {
-            Console.WriteLine("======================================================");
-        }
-
-        public void DrawLongDividingLine()
-        {
-            Console.WriteLine("========================================================================================================================");
         }
 
         public void ExiFromProgramOrMainMenu()

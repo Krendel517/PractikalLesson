@@ -45,7 +45,7 @@ namespace PractikalLesson_1
             Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(agePerson));
             Console.WriteLine("==================================================");
 
-            ShowFinalScreen();
+            GetCommand();
         }
     }
 }
