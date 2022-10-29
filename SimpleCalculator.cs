@@ -7,6 +7,7 @@ namespace PractikalLesson_1
         public double firstNumber;
         public double secondNumber;
         public string action;
+        public string formatMoney = "{0:N}";
         public double answer;
         private const string plus = "+";
         private const string distribuctions = "-";
@@ -78,7 +79,18 @@ namespace PractikalLesson_1
 
         public override void ShowResult()
         {
-            simpleCalculatorView.ShowResult();
+            if (action == "%")
+            {
+                Console.Clear();
+                Console.Write($"Процентное соотношение {firstNumber} от {secondNumber} составляет - ");
+                Console.Write(formatMoney, answer);
+                Console.WriteLine("%");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
+            }
             GetCommand();
         }
     }

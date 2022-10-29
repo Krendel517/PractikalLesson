@@ -14,11 +14,11 @@ namespace PractikalLesson_1
         {
         }
 
-        TaxCalculatorView taxCalculatorView = new TaxCalculatorView("калькулятор возраста", 2);
+        AgeCalculatorView ageCalculatorView = new AgeCalculatorView("калькулятор возраста", 2);
 
         public override void Show()
         {
-            taxCalculatorView.WelcomeMessegeView();
+            ageCalculatorView.WelcomeMessegeView();
             WelcomeMessege();
             GetInput();
             Calculate();
@@ -44,7 +44,10 @@ namespace PractikalLesson_1
 
         public override void ShowResult()
         {
-            taxCalculatorView.ShowResult();
+
+            Console.Clear();
+            Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(agePerson));
+            ageCalculatorView.ShowCommand();
             GetCommand();
         }
     }

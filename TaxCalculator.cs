@@ -126,7 +126,21 @@ namespace PractikalLesson_1
 
         public override void ShowResult()
         {
-            taxCalculatorView.ShowResult();
+            Console.Clear();
+            Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
+            Console.WriteLine(valut);
+            Console.WriteLine("============================================");
+            Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
+            Console.WriteLine(" грн.");
+            singleTax = sumInHruvnia * 0.05;
+            Console.Write("Сумма единого налога равна " + formatMoney, singleTax);
+            Console.WriteLine(" грн.");
+            Console.Write("Сумма единого социального взноса равна " + formatMoney, singleSocialContribution);
+            Console.WriteLine(" грн.");
+            taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
+            Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
+            Console.WriteLine(" грн.");
+            taxCalculatorView.ShowCommand();
             GetCommand();
         }
     }
