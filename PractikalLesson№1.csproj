@@ -50,6 +50,8 @@
     <Compile Include="Enum.cs" />
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="ICalculate.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="IVisible.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="SimpleCalculatorView.cs" />
     <Compile Include="Start.cs" />
@@ -57,7 +59,7 @@
     <Compile Include="SimpleCalculator.cs" />
     <Compile Include="TaxCalculator.cs" />
     <Compile Include="TaxCalculatorView.cs" />
-    <Compile Include="UserInput.cs" />
+    <Compile Include="Controller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

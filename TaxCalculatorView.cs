@@ -2,12 +2,8 @@
 
 namespace PractikalLesson_1
 {
-    class TaxCalculatorView : BaseCalculatorView
+    public class TaxCalculatorView : BaseCalculatorView
     {
-        public TaxCalculatorView(string name, int id) : base (name, id)
-        {          
-        }
-
         public void RequestEnterCurrency()
         {
             Console.WriteLine("Введите валюту вашего дохода");
@@ -23,20 +19,17 @@ namespace PractikalLesson_1
             TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
 
             Console.Clear();
-            Console.Write("Ваш годовой доход состовляет:" + taxCalculator.formatMoney, taxCalculator.annualIncome);
-            Console.WriteLine(taxCalculator.valut);
+            Console.Write("Ваш годовой доход состовляет:" + taxCalculator.FormatMoney, taxCalculator.AnnualIncome);
+            Console.WriteLine(taxCalculator.Valut);
             Console.WriteLine("============================================");
-            Console.Write("Сумма в гривнах " + taxCalculator.formatMoney, taxCalculator.sumInHruvnia);
+            Console.Write("Сумма в гривнах " + taxCalculator.FormatMoney, taxCalculator.SumInHruvnia);
             Console.WriteLine(" грн.");
-            taxCalculator.singleTax = taxCalculator.sumInHruvnia * 0.05;
-            Console.Write("Сумма единого налога равна " + taxCalculator.formatMoney, taxCalculator.singleTax);
+            Console.Write("Сумма единого налога равна " + taxCalculator.FormatMoney, taxCalculator.SingleTax);
             Console.WriteLine(" грн.");
-            Console.Write("Сумма единого социального взноса равна " + taxCalculator.formatMoney, taxCalculator.singleSocialContribution);
+            Console.Write("Сумма единого социального взноса равна " + taxCalculator.FormatMoney, taxCalculator.SingleSocialContribution);
             Console.WriteLine(" грн.");
-            taxCalculator.taxDeduction = taxCalculator.sumInHruvnia - taxCalculator.singleTax - taxCalculator.singleSocialContribution;
-            Console.Write("Ваша прибыль, за вычетом налогов равна " + taxCalculator.formatMoney, taxCalculator.taxDeduction);
+            Console.Write("Ваша прибыль, за вычетом налогов равна " + taxCalculator.FormatMoney, taxCalculator.TaxDeduction);
             Console.WriteLine(" грн.");
-
             ShowCommand();
         }
     }

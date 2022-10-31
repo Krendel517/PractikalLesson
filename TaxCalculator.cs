@@ -3,17 +3,24 @@ using System.Globalization;
 
 namespace PractikalLesson_1
 {
-    class TaxCalculator : BaseCalculator
+    public class TaxCalculator : BaseCalculator
     {
-        public int count;
-        public double singleSocialContribution = minimumWage * 0.22;
-        public double sumInHruvnia = 0;
-        public double[] monthlySalaryDouble = new double[12];
-        public string formatMoney = "{0:N}";
-        public string valut = "";
-        public double singleTax;
-        public double taxDeduction;
-        public double annualIncome = 0;
+
+        TaxCalculatorView taxCalculatorView = new TaxCalculatorView();
+
+        public TaxCalculator(string name, int id) : base(name, id)
+        {
+        }
+
+        private int count;
+        private double singleSocialContribution = minimumWage * 0.22;
+        private double sumInHruvnia = 0;
+        private double[] monthlySalaryDouble = new double[12];
+        private string formatMoney = "{0:N}";
+        private string valut = "";
+        private double singleTax;
+        private double taxDeduction;
+        private double annualIncome = 0;
         private const string hryvnia = "UAH";
         private const string dollar = "USD";
         private const string euro = "EUR";
@@ -21,22 +28,25 @@ namespace PractikalLesson_1
         private const double minimumWage = 6500;
         private const double kursDollar = 29.2;
         private const double kursEuro = 30.7;
-        public string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
+        private string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
 
-        TaxCalculatorView taxCalculatorView = new TaxCalculatorView("калькулятор налогов", 3);
+        public double SingleSocialContribution => singleSocialContribution;
+        public string FormatMoney { get { return formatMoney; } }
+        public string Valut { get { return valut; } }
+        public double SingleTax { get { return singleTax; } }
+        public double TaxDeduction { get { return taxDeduction; } }
+        public double AnnualIncome => annualIncome;
+        public double SumInHruvnia { get { return sumInHruvnia; } }
 
-        public TaxCalculator(string name, int id) : base(name, id)
+        public override void Start()
         {
-        }
-
-        public override void Show()
-        {
-            taxCalculatorView.WelcomeMessegeView();
+            taxCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             ChooseCurreny();
             GetInput();
             Calculate();
-            ShowResult();
+            taxCalculatorView.ShowResult();
+            GetCommand();
         }
 
         private void ChooseCurreny()
@@ -45,8 +55,7 @@ namespace PractikalLesson_1
             inputCur = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
 
             GlobalVariable.checkedInput = inputCur;
-            taxCalculatorView.ExiFromProgramOrMainMenu();
-
+            
             if (inputCur == hryvnia)
             {
                 valut = " грн.";
@@ -84,8 +93,7 @@ namespace PractikalLesson_1
                 monthlySalaryStr[count] = userInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
 
                 GlobalVariable.checkedInput = monthlySalaryStr[count];
-                taxCalculatorView.ExiFromProgramOrMainMenu();
-
+               
                 if (monthlySalaryStr[count].Contains("."))
                 {
                     monthlySalaryDouble[count] = Convert.ToDouble(monthlySalaryStr[count], chekPoint);
@@ -122,26 +130,11 @@ namespace PractikalLesson_1
                     sumInHruvnia = annualIncome * kursEuro;
                     break;
             }
-        }
 
-        public override void ShowResult()
-        {
-            Console.Clear();
-            Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
-            Console.WriteLine(valut);
-            Console.WriteLine("============================================");
-            Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
-            Console.WriteLine(" грн.");
-            singleTax = sumInHruvnia * 0.05;
-            Console.Write("Сумма единого налога равна " + formatMoney, singleTax);
-            Console.WriteLine(" грн.");
-            Console.Write("Сумма единого социального взноса равна " + formatMoney, singleSocialContribution);
-            Console.WriteLine(" грн.");
+            singleTax = sumInHruvnia - singleTax - singleSocialContribution;
             taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-            Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
-            Console.WriteLine(" грн.");
-            taxCalculatorView.ShowCommand();
-            GetCommand();
+
+            taxCalculatorView.ShowResult();
         }
     }
 }

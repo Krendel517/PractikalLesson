@@ -4,10 +4,6 @@ namespace PractikalLesson_1
 {
     class SimpleCalculatorView : BaseCalculatorView
     {
-        public SimpleCalculatorView(string name, int id) : base(name, id)
-        {
-        }
-
         public void RequestEnterFirstNumber()
         {
             Console.Clear();

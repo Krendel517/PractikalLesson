@@ -2,7 +2,7 @@
 
 namespace PractikalLesson_1
 {
-    class SimpleCalculator : BaseCalculator
+    public class SimpleCalculator : BaseCalculator
     {
         public double firstNumber;
         public double secondNumber;
@@ -19,15 +19,15 @@ namespace PractikalLesson_1
         {
         }
 
-        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView("простой калькулятор", 1);
+        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView();
 
-        public override void Show()
+        public override void Start()
         {
-            simpleCalculatorView.WelcomeMessegeView();
+            simpleCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             GetInput();
             Calculate();
-            ShowResult();
+            simpleCalculatorView.ShowResult();
         }
 
         public override void GetInput()
@@ -35,19 +35,16 @@ namespace PractikalLesson_1
             simpleCalculatorView.RequestEnterFirstNumber();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
 
-            simpleCalculatorView.ExiFromProgramOrMainMenu();
             firstNumber = userInput.numberConv;
 
             simpleCalculatorView.RequestEnterAction();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
 
-            simpleCalculatorView.ExiFromProgramOrMainMenu();
             action = GlobalVariable.checkedInput;
 
             simpleCalculatorView.RequestEnterSecondnumber();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
 
-            simpleCalculatorView.ExiFromProgramOrMainMenu();
             secondNumber = userInput.numberConv;
         }
 
@@ -75,23 +72,6 @@ namespace PractikalLesson_1
                     answer = firstNumber / secondNumber * 100;
                     break;
             }
-        }
-
-        public override void ShowResult()
-        {
-            if (action == "%")
-            {
-                Console.Clear();
-                Console.Write($"Процентное соотношение {firstNumber} от {secondNumber} составляет - ");
-                Console.Write(formatMoney, answer);
-                Console.WriteLine("%");
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
-            }
-            GetCommand();
         }
     }
 }

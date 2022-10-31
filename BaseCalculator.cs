@@ -5,7 +5,8 @@ namespace PractikalLesson_1
 {
     public abstract class BaseCalculator : ICalculate
     {
-        protected UserInput userInput = new UserInput();
+        protected Controller userInput = new Controller();
+        protected BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
 
         protected string name;
         protected int id;
@@ -19,7 +20,7 @@ namespace PractikalLesson_1
             this.id = id;
         }
 
-        public abstract void Show();
+        public abstract void Start();
 
         public void WelcomeMessege()
         {
@@ -33,16 +34,14 @@ namespace PractikalLesson_1
             }
             else if (GlobalVariable.checkedInput == "")
             {
-                Console.Clear();
+                baseCalculatorView.Clear();
             }
             else
             {
-                Console.Clear();
+                baseCalculatorView.Clear();
+                baseCalculatorView.WtireWarning();
 
-                Console.WriteLine("Введенное значение не верно, попробуйте снова");
-                Console.WriteLine("=========================================");
-
-                Show();
+                Start();
             }
         }
 
@@ -50,16 +49,13 @@ namespace PractikalLesson_1
 
         public abstract void Calculate();
 
-        public abstract void ShowResult();
-
         public void GetCommand()
         {
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
 
             if (GlobalVariable.checkedInput == GlobalVariable.calculatorAgain)
             {
-                Console.Clear();
-                Show();
+                CalculateAgain();
             }
             else if (GlobalVariable.checkedInput == GlobalVariable.exitToMainMenu)
             {
@@ -67,23 +63,26 @@ namespace PractikalLesson_1
             }
             else if (GlobalVariable.checkedInput == GlobalVariable.exit)
             {
-                Environment.Exit(0);
+                ExitToProgram();
             }
         }
 
-        protected void CheckReturnInput()
+        public void CalculateAgain()
         {
-            if (GlobalVariable.checkedInput == "Return")
-            {
-                ExitToMainMenu();
-            }
+            baseCalculatorView.Clear();
+            Start();
         }
 
-        protected void ExitToMainMenu()
+        public void ExitToMainMenu()
         {
             MainMenu mainMenu = new MainMenu();
-            Console.Clear();
+            baseCalculatorView.Clear();
             mainMenu.CalculatorSelection();
+        }
+
+        public void ExitToProgram()
+        {
+            Environment.Exit(0);
         }
     }
 }

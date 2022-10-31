@@ -14,15 +14,15 @@ namespace PractikalLesson_1
         {
         }
 
-        AgeCalculatorView ageCalculatorView = new AgeCalculatorView("калькулятор возраста", 2);
+        AgeCalculatorView ageCalculatorView = new AgeCalculatorView();
 
-        public override void Show()
+        public override void Start()
         {
-            ageCalculatorView.WelcomeMessegeView();
+            ageCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             GetInput();
             Calculate();
-            ShowResult();
+            ageCalculatorView.ShowResult();
         }
 
         public override void GetInput()
@@ -30,7 +30,6 @@ namespace PractikalLesson_1
             Console.WriteLine("Введите дату рождения какого-либо человека, чтобы узнать кол-во лет.");
 
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
-            CheckReturnInput();
         }
 
         public override void Calculate()
@@ -40,15 +39,6 @@ namespace PractikalLesson_1
             TimeSpan ageForYears = todayData - birthDay;
             ageInDays = ageForYears.TotalDays;
             agePerson = ageInDays / daysInYear;
-        }
-
-        public override void ShowResult()
-        {
-
-            Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(agePerson));
-            ageCalculatorView.ShowCommand();
-            GetCommand();
         }
     }
 }

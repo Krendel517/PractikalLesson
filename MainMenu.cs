@@ -3,9 +3,9 @@ using System;
 
 namespace PractikalLesson_1
 {
-    class MainMenu
+    public class MainMenu
     {
-        UserInput userInput = new UserInput();
+        Controller userInput = new Controller();
 
         private string firstCalc = "1";
         private string secCalc = "2";
@@ -58,21 +58,21 @@ namespace PractikalLesson_1
                 SimpleCalculator simpleCalculator = new SimpleCalculator("простой калькулятор", 1);
 
                 Console.Clear();
-                simpleCalculator.Show();
+                simpleCalculator.Start();
             }
             else if (GlobalVariable.checkedInput == secCalc)
             {
                 AgeCalculator ageCalculator = new AgeCalculator("калькулятор возраста", 2);
 
                 Console.Clear();
-                ageCalculator.Show();
+                ageCalculator.Start();
             }
             else if (GlobalVariable.checkedInput == thirdCalc)
             {
                 TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
 
                 Console.Clear();
-                taxCalculator.Show();
+                taxCalculator.Start();
             }
             else if (GlobalVariable.checkedInput == GlobalVariable.exit)
             {

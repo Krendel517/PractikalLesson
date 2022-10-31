@@ -3,40 +3,25 @@ using System;
 
 namespace PractikalLesson_1
 {
-    interface IVisible
+    public abstract class BaseCalculatorView : IVisible
     {
-        void WelcomeMessegeView();
-
-        void ShowCommand();
-
-        void ShowResult();
-    }
-
-    interface ICommand
-    {
-        void ExiFromProgramOrMainMenu();
-    }
-
-    public abstract class BaseCalculatorView : IVisible, ICommand
-    {
-        private string name;
-        private int id;
-
-        protected string Name { get { return name; } }
-        protected int Id { get { return id; } }
-
-        public BaseCalculatorView(string name, int id)
-        {
-            this.name = name;
-            this.id = id;
-        }
-
-        public void WelcomeMessegeView()
+        public void WelcomeMessegeView(string name)
         {
             Console.WriteLine($"Вы выбрали {name}");
             Console.WriteLine("Введите клавишу Enter, чтобы продолжить.");
             Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
             Console.WriteLine("=========================================");
+        }
+
+        public void WtireWarning()
+        {
+            Console.WriteLine("Введенное значение не верно, попробуйте снова");
+            Console.WriteLine("=========================================");
+        }
+
+        public void Clear()
+        {
+            Console.Clear();
         }
 
         public void ShowCommand()
@@ -49,20 +34,6 @@ namespace PractikalLesson_1
         }
 
         public abstract void ShowResult();
-
-        public void ExiFromProgramOrMainMenu()
-        {
-            MainMenu mainMenu = new MainMenu();
-
-            if (GlobalVariable.checkedInput == GlobalVariable.exitToMainMenu)
-            {
-                Console.Clear();
-                mainMenu.CalculatorSelection();
-            }
-            else if (GlobalVariable.checkedInput == GlobalVariable.exit)
-            {
-                Environment.Exit(0);
-            }
-        }
     }
 }
+
