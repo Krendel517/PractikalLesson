@@ -10,6 +10,7 @@ namespace PractikalLesson_1
         private string firstCalc = "1";
         private string secCalc = "2";
         private string thirdCalc = "3";
+        private string fourthCalc = "4";
         int adult = 2004;
         int questionableAge = 1920;
        
@@ -73,6 +74,13 @@ namespace PractikalLesson_1
 
                 Console.Clear();
                 taxCalculator.Start();
+            }
+            else if (GlobalVariable.checkedInput == fourthCalc)
+            {
+                Timer timer = new Timer("секундомер", 4);
+
+                Console.Clear();
+                timer.Start();
             }
             else if (GlobalVariable.checkedInput == GlobalVariable.exit)
             {

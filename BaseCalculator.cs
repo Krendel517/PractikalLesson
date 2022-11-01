@@ -24,6 +24,7 @@ namespace PractikalLesson_1
 
         public void WelcomeMessege()
         {
+            baseCalculatorView.WelcomeMessegeView(name);
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
             if (GlobalVariable.checkedInput == "Return")
@@ -51,6 +52,7 @@ namespace PractikalLesson_1
 
         public void GetCommand()
         {
+            baseCalculatorView.ShowCommand();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
 
             if (GlobalVariable.checkedInput == GlobalVariable.calculatorAgain)

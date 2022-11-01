@@ -60,6 +60,7 @@
     <Compile Include="TaxCalculator.cs" />
     <Compile Include="TaxCalculatorView.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

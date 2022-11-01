@@ -204,9 +204,6 @@ namespace PractikalLesson_1
 
         private string GetUserInputYear(bool showWarning = true)
         {
-            Exit();
-            BackToMainMenu();
-
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
@@ -230,11 +227,12 @@ namespace PractikalLesson_1
             string firstCalc = "1";
             string secCalc = "2";
             string thirdCalc = "3";
+            string fourthCalc = "4";
 
             Exit();
             BackToMainMenu();
 
-            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
+            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc || currentInput == fourthCalc)
             {
                 checkedInput = currentInput;
             }
