@@ -16,7 +16,7 @@ namespace PractikalLesson_1
         private double singleSocialContribution = minimumWage * 0.22;
         private double sumInHruvnia = 0;
         private double[] monthlySalaryDouble = new double[12];
-        private string formatMoney = "{0:N}";
+        public string formatMoney = "{0:N}";
         private string valut = "";
         private double singleTax;
         private double taxDeduction;
@@ -30,14 +30,6 @@ namespace PractikalLesson_1
         private const double kursEuro = 30.7;
         private string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
 
-        public double SingleSocialContribution => singleSocialContribution;
-        public string FormatMoney { get { return formatMoney; } }
-        public string Valut { get { return valut; } }
-        public double SingleTax { get { return singleTax; } }
-        public double TaxDeduction { get { return taxDeduction; } }
-        public double AnnualIncome => annualIncome;
-        public double SumInHruvnia { get { return sumInHruvnia; } }
-
         public override void Start()
         {
             taxCalculatorView.WelcomeMessegeView(name);
@@ -45,7 +37,7 @@ namespace PractikalLesson_1
             ChooseCurreny();
             GetInput();
             Calculate();
-            taxCalculatorView.ShowResult();
+            taxCalculatorView.ShowResult(formatMoney, annualIncome, valut, sumInHruvnia, singleTax, singleSocialContribution, taxDeduction);
             GetCommand();
         }
 
@@ -131,10 +123,8 @@ namespace PractikalLesson_1
                     break;
             }
 
-            singleTax = sumInHruvnia - singleTax - singleSocialContribution;
+            singleTax = sumInHruvnia * 0.05;
             taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-
-            taxCalculatorView.ShowResult();
         }
     }
 }

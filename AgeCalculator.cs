@@ -22,7 +22,8 @@ namespace PractikalLesson_1
             WelcomeMessege();
             GetInput();
             Calculate();
-            ageCalculatorView.ShowResult();
+            ageCalculatorView.ShowResult(agePerson, birthDay);
+            GetCommand();
         }
 
         public override void GetInput()

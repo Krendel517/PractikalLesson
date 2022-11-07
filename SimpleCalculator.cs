@@ -27,7 +27,8 @@ namespace PractikalLesson_1
             WelcomeMessege();
             GetInput();
             Calculate();
-            simpleCalculatorView.ShowResult();
+            simpleCalculatorView.ShowResult(action, firstNumber, secondNumber, answer);
+            GetCommand();
         }
 
         public override void GetInput()

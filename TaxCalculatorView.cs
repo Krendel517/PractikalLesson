@@ -14,23 +14,20 @@ namespace PractikalLesson_1
             Console.WriteLine("==========================================");
         }
 
-        public override void ShowResult()
+        public void ShowResult(string formatMoney,double annualIncome, string valut, double sumInHruvnia,double singleTax, double singleSocialContribution, double taxDeduction)
         {
-            TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
-
             Console.Clear();
-            Console.Write("Ваш годовой доход состовляет:" + taxCalculator.FormatMoney, taxCalculator.AnnualIncome);
-            Console.WriteLine(taxCalculator.Valut);
+            Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
+            Console.WriteLine(valut);
             Console.WriteLine("============================================");
-            Console.Write("Сумма в гривнах " + taxCalculator.FormatMoney, taxCalculator.SumInHruvnia);
+            Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
             Console.WriteLine(" грн.");
-            Console.Write("Сумма единого налога равна " + taxCalculator.FormatMoney, taxCalculator.SingleTax);
+            Console.Write("Сумма единого налога равна " + formatMoney, singleTax);
             Console.WriteLine(" грн.");
-            Console.Write("Сумма единого социального взноса равна " + taxCalculator.FormatMoney, taxCalculator.SingleSocialContribution);
+            Console.Write("Сумма единого социального взноса равна " + formatMoney, singleSocialContribution);
             Console.WriteLine(" грн.");
-            Console.Write("Ваша прибыль, за вычетом налогов равна " + taxCalculator.FormatMoney, taxCalculator.TaxDeduction);
+            Console.Write("Ваша прибыль, за вычетом налогов равна " + formatMoney, taxDeduction);
             Console.WriteLine(" грн.");
-            ShowCommand();
         }
     }
 }

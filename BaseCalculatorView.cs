@@ -33,7 +33,6 @@ namespace PractikalLesson_1
             Console.WriteLine("======================================================");
         }
 
-        public abstract void ShowResult();
     }
 }
 
