@@ -44,35 +44,30 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.empty:
                     GetUserInput();
                     break;
-
                 case TypeOfUserInput.year:
                     GetUserInputYear();
                     break;
-
                 case TypeOfUserInput.number:
                     GetUserInputNumberCalc();
                     break;
-
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency();
                     break;
-
                 case TypeOfUserInput.money:
                     GetUserInputMoney();
                     break;
-
                 case TypeOfUserInput.simpleNumber:
                     GetUserInputSimpleNumb();
                     break;
-
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction();
                     break;
-
                 case TypeOfUserInput.ageDateFormat:
                     GetUserInputGetData();
                     break;
-
+                case TypeOfUserInput.second:
+                    GetUserInputSecond();
+                    break;
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
                     break;
@@ -99,28 +94,26 @@ namespace PractikalLesson_1
                     GetUserInputYear(false);
                     break;
                 case TypeOfUserInput.ageDateFormat:
-                    GetUserInputGetData();
+                    GetUserInputGetData(false);
                     break;
                 case TypeOfUserInput.number:
                     GetUserInputNumberCalc(false);
                     break;
-
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency(false);
                     break;
-
                 case TypeOfUserInput.money:
                     GetUserInputMoney(false);
                     break;
-
                 case TypeOfUserInput.simpleNumber:
                     GetUserInputSimpleNumb(false);
                     break;
-
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction(false);
                     break;
-
+                case TypeOfUserInput.second:
+                    GetUserInputSecond(false);
+                    break;
                 case TypeOfUserInput.command:
                     GetUserInputCommand(false);
                     break;
@@ -150,23 +143,21 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.number:
                     GetUserInputNumberCalc();
                     break;
-
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency();
                     break;
-
                 case TypeOfUserInput.money:
                     GetUserInputMoney();
                     break;
-
                 case TypeOfUserInput.simpleNumber:
                     GetUserInputSimpleNumb();
                     break;
-
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction();
                     break;
-
+                case TypeOfUserInput.second:
+                    GetUserInputSecond();
+                    break;
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
                     break;
@@ -224,26 +215,27 @@ namespace PractikalLesson_1
 
         private string GetUserInputNumberCalc(bool showWarning = true)
         {
-            string firstCalc = "1";
-            string secCalc = "2";
-            string thirdCalc = "3";
-            string fourthCalc = "4";
+            string[] calculatorNumber = { "1", "2", "3", "4" };
 
-            Exit();
-            BackToMainMenu();
+            foreach (string calculatorNumberChecked in calculatorNumber)
+            {
+                Exit();
+                BackToMainMenu();
 
-            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc || currentInput == fourthCalc)
-            {
-                checkedInput = currentInput;
-            }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
-            }
-            else
-            {
-                checkedInput = invalidValue;
+                if (currentInput == calculatorNumberChecked)
+                {
+                    checkedInput = currentInput;
+                    break;
+                }
+                else if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WtireWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
             }
 
             return checkedInput;
@@ -321,7 +313,6 @@ namespace PractikalLesson_1
         private string GetUserInputSimpleNumb(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
-
             Exit();
             BackToMainMenu();
 
@@ -422,6 +413,41 @@ namespace PractikalLesson_1
             }
 
             return checkedInput;
+        }
+
+        private string GetUserInputSecond(bool showWarning = true)
+        {
+            bool isLetter = currentInput.Any(Char.IsLetter);
+
+            Exit();
+            BackToMainMenu();
+
+            if (double.TryParse(currentInput, out double number_1))
+            {
+                numberConv = Convert.ToDouble(currentInput);
+                checkedInput = currentInput;
+            }
+            else if (!isLetter && currentInput.Contains("."))
+            {
+                numberConv = Convert.ToDouble(currentInput, chekPoint);
+                checkedInput = currentInput;
+            }
+            else if (currentInput == "")
+            {
+                checkedInput = currentInput;
+            }
+            else if (showWarning == true)
+            {
+                checkedInput = invalidValue;
+                baseCalculatorView.WtireWarning();
+            }
+            else
+            {
+                checkedInput = invalidValue;
+            }
+
+            return checkedInput;
+
         }
 
         private string GetUserInputCommand(bool showWarning = true)

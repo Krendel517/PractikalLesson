@@ -40,7 +40,6 @@ namespace PractikalLesson_1
 
         public override void Start()
         {
-            taxCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             ChooseCurreny();
             GetInput();

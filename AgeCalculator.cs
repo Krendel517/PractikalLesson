@@ -18,7 +18,6 @@ namespace PractikalLesson_1
 
         public override void Start()
         {
-            ageCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             GetInput();
             Calculate();

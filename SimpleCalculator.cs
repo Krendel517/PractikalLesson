@@ -23,7 +23,6 @@ namespace PractikalLesson_1
 
         public override void Start()
         {
-            simpleCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             GetInput();
             Calculate();

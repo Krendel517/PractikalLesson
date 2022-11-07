@@ -46,11 +46,12 @@ namespace PractikalLesson_1
 
         public void CalculatorSelection()
         {
-            Console.WriteLine("Чтобы выбрать нужный вам калькулятор, введите соответствующую цифру или Exit, чтобы выйти.");
+            Console.WriteLine("Чтобы выбрать нужную вам функцию, введите соответствующую цифру или Exit, чтобы выйти.");
             Console.WriteLine("=====================================================================");
             Console.WriteLine("1. Простой калькулятор");
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
+            Console.WriteLine("4. Секундоиер");
 
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
 
