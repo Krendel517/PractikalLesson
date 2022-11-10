@@ -6,6 +6,8 @@ namespace PractikalLesson_1
 {
     public class Controller : ICommand
     {
+        BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
+
         private string currentInput;
         private string checkedInput;
         public double numberConv;
@@ -16,13 +18,11 @@ namespace PractikalLesson_1
             NumberDecimalSeparator = "."
         };
 
-        BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
-
         public string GetUserInput(bool showWarning = true)
         {
             if (currentInput.Contains(""))
             {
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
 
                 Console.ReadKey();
                 Environment.Exit(0);
@@ -192,7 +192,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -215,7 +215,7 @@ namespace PractikalLesson_1
             {
                 checkedInput = invalidValue;
                 baseCalculatorView.Clear();
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -241,7 +241,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -275,7 +275,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -310,7 +310,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -342,7 +342,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -386,7 +386,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -416,7 +416,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -444,7 +444,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
             }
             else
             {

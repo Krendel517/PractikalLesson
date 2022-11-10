@@ -5,7 +5,6 @@ namespace PractikalLesson_1
 {
     public class TaxCalculator : BaseCalculator
     {
-
         TaxCalculatorView taxCalculatorView = new TaxCalculatorView();
 
         public TaxCalculator(string name, int id) : base(name, id)
@@ -16,7 +15,7 @@ namespace PractikalLesson_1
         private double singleSocialContribution = minimumWage * 0.22;
         private double sumInHruvnia = 0;
         private double[] monthlySalaryDouble = new double[12];
-        public string formatMoney = "{0:N}";
+        private string formatMoney = "{0:N}";
         private string valut = "";
         private double singleTax;
         private double taxDeduction;

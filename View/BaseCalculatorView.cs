@@ -10,13 +10,13 @@ namespace PractikalLesson_1
             Console.WriteLine($"Вы выбрали {name}");
             Console.WriteLine("Введите клавишу Enter, чтобы продолжить.");
             Console.WriteLine("(В любой момент вы можете ввести Return, чтобы вернутся обратно.)");
-            Console.WriteLine("=========================================");
+            MediumDivisionLine();
         }
 
-        public void WtireWarning()
+        public void WriteWarning()
         {
             Console.WriteLine("Введенное значение не верно, попробуйте снова");
-            Console.WriteLine("=========================================");
+            MediumDivisionLine();
         }
 
         public void Clear()
@@ -24,15 +24,41 @@ namespace PractikalLesson_1
             Console.Clear();
         }
 
+        public string ShowString(string text)
+        {
+            return text;
+        }
+
+        public void SkipThreeString()
+        {
+            Console.WriteLine(@"
+
+");
+        }
+
+        public string LongDivisionLine()
+        {
+            return "========================================================================================================================";
+        }
+
+        public string MediumDivisionLine()
+        {
+           return "======================================================";
+        }
+
+        public string LowDivisionLine()
+        {
+            return "======================";
+        }
+
         public void ShowCommand()
         {
-            Console.WriteLine("======================================================");
+            MediumDivisionLine();
             Console.WriteLine($"Введите Calculate again, чтобы посчитать заново.");
             Console.WriteLine($"Введите Return чтобы вернуться в окно выбора калькулятора");
             Console.WriteLine($"Если же вы желаете выйти, введите Exit");
-            Console.WriteLine("======================================================");
+            MediumDivisionLine();
         }
-
     }
 }
 

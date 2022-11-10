@@ -8,21 +8,21 @@ namespace PractikalLesson_1
         {
             Console.Clear();
             Console.WriteLine("Введите первое число.");
-            Console.WriteLine("======================");
+            LowDivisionLine();
         }
 
         public void RequestEnterAction()
         {
             Console.Clear();
             Console.WriteLine("Введите требуемую операцию ( (+) - сложение, (-) -  вычитание, (/) - деление, (*) - умножение,  (%)  - сколько процентов составляет первое число от второго).");
-            Console.WriteLine("========================================================================================================================");
+            LongDivisionLine();
         }
 
         public void RequestEnterSecondnumber()
         {
             Console.Clear();
             Console.WriteLine("Выберете второе число.");
-            Console.WriteLine("======================");
+            LowDivisionLine();
         }
 
         public void ShowResult(string action, double firstNumber, double secondNumber, double answer)

@@ -39,7 +39,7 @@ namespace PractikalLesson_1
             else
             {
                 baseCalculatorView.Clear();
-                baseCalculatorView.WtireWarning();
+                baseCalculatorView.WriteWarning();
 
                 Start();
             }

@@ -7,11 +7,11 @@ namespace PractikalLesson_1
         public void RequestEnterCurrency()
         {
             Console.WriteLine("Введите валюту вашего дохода");
-            Console.WriteLine("==========================================");
+            MediumDivisionLine();
             Console.WriteLine("Введите UAH, чтобы выбрать курс в гривнах  ");
             Console.WriteLine("Введите USD, чтобы выбрать курс в долларах  ");
             Console.WriteLine("Введите EUR, чтобы выбрать курс в евро  ");
-            Console.WriteLine("==========================================");
+            MediumDivisionLine();
         }
 
         public void ShowResult(string formatMoney,double annualIncome, string valut, double sumInHruvnia,double singleTax, double singleSocialContribution, double taxDeduction)
@@ -19,7 +19,7 @@ namespace PractikalLesson_1
             Console.Clear();
             Console.Write("Ваш годовой доход состовляет:" + formatMoney, annualIncome);
             Console.WriteLine(valut);
-            Console.WriteLine("============================================");
+            MediumDivisionLine();
             Console.Write("Сумма в гривнах " + formatMoney, sumInHruvnia);
             Console.WriteLine(" грн.");
             Console.Write("Сумма единого налога равна " + formatMoney, singleTax);
