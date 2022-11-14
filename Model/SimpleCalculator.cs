@@ -11,7 +11,7 @@ namespace PractikalLesson_1
         public double answer;
         private const string plus = "+";
         private const string distribuctions = "-";
-        private const string division = ":";
+        private const string division = "/";
         private const string multiplicatoins = "*";
         private const string percent = "%";
 
