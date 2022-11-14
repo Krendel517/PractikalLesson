@@ -32,8 +32,6 @@ namespace PractikalLesson_1
             Console.WriteLine($"Если же вы желаете выйти, введите Exit");
             Console.WriteLine("======================================================");
         }
-
-        public abstract void ShowResult();
     }
 }
 

@@ -81,6 +81,7 @@
     <Compile Include="TaxCalculatorView.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Timer.cs" />
+    <Compile Include="TimerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

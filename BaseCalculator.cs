@@ -3,10 +3,9 @@ using System;
 
 namespace PractikalLesson_1
 {
-    public abstract class BaseCalculator : ICalculate
+    public abstract class BaseCalculator : BaseCalculatorView, ICalculate
     {
         protected Controller userInput = new Controller();
-        protected BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
 
         protected string name;
         protected int id;
@@ -24,7 +23,7 @@ namespace PractikalLesson_1
 
         public void WelcomeMessege()
         {
-            baseCalculatorView.WelcomeMessegeView(name);
+            WelcomeMessegeView(name);
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
             if (GlobalVariable.checkedInput == "Return")
@@ -35,12 +34,12 @@ namespace PractikalLesson_1
             }
             else if (GlobalVariable.checkedInput == "")
             {
-                baseCalculatorView.Clear();
+                Clear();
             }
             else
             {
-                baseCalculatorView.Clear();
-                baseCalculatorView.WtireWarning();
+                Clear();
+                WtireWarning();
 
                 Start();
             }
@@ -52,7 +51,7 @@ namespace PractikalLesson_1
 
         public void GetCommand()
         {
-            baseCalculatorView.ShowCommand();
+            ShowCommand();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
 
             if (GlobalVariable.checkedInput == GlobalVariable.calculatorAgain)
@@ -71,14 +70,14 @@ namespace PractikalLesson_1
 
         public void CalculateAgain()
         {
-            baseCalculatorView.Clear();
+            Clear();
             Start();
         }
 
         public void ExitToMainMenu()
         {
             MainMenu mainMenu = new MainMenu();
-            baseCalculatorView.Clear();
+            Clear();
             mainMenu.CalculatorSelection();
         }
 

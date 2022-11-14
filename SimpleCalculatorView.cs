@@ -25,7 +25,7 @@ namespace PractikalLesson_1
             Console.WriteLine("======================");
         }
 
-        public override void ShowResult()
+        public void ShowResult()
         {
             SimpleCalculator simpleCalculator = new SimpleCalculator("простой калькулятор", 1);
 

@@ -14,7 +14,7 @@ namespace PractikalLesson_1
             Console.WriteLine("==========================================");
         }
 
-        public override void ShowResult()
+        public void ShowResult()
         {
             TaxCalculator taxCalculator = new TaxCalculator("калькулятор налогов", 3);
 

@@ -4,7 +4,7 @@ namespace PractikalLesson_1
 {
     class AgeCalculatorView : BaseCalculatorView
     {
-        public override void ShowResult()
+        public void ShowResult()
         {
             AgeCalculator ageCalculator = new AgeCalculator("калькулятор возраста", 2);
 
