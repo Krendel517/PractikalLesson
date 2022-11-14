@@ -7,11 +7,13 @@ namespace PractikalLesson_1
 {
     class Timer : BaseCalculator
     {
-        TimerView timerView = new TimerView();
-
         private double inputTime;
         private double time;
         private const double millisecond = 0.1f;
+        public delegate void ShowView(double inputTime);
+        public event ShowView showResult;
+
+        public TimerView timerView = new TimerView();
 
         public Timer(string name, int id) : base(name, id)
         {
@@ -23,7 +25,9 @@ namespace PractikalLesson_1
             GetInput();
             AddTime();
             Calculate();
-            timerView.ShowResult(inputTime);
+            showResult += timerView.ShowResult;
+            showResult(inputTime);
+            showResult -= timerView.ShowResult;
             GetCommand();
         }
 
