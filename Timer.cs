@@ -25,16 +25,13 @@ namespace PractikalLesson_1
             GetInput();
             AddTime();
             Calculate();
-            showResult += timerView.ShowResult;
-            showResult(inputTime);
-            showResult -= timerView.ShowResult;
             GetCommand();
         }
 
         public override void GetInput()
         {
             timerView.RequestEnterTime();
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.second);
             inputTime = Convert.ToDouble(GlobalVariable.checkedInput);
         }
 
@@ -63,8 +60,9 @@ namespace PractikalLesson_1
             {
                 time += millisecond;
                 Thread.Sleep(100);
-                // Console.WriteLine(formatSeconds, time);
             }
+
+            timerView.ShowResult(inputTime);
         }
     }
 }

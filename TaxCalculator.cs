@@ -51,7 +51,7 @@ namespace PractikalLesson_1
         private void ChooseCurreny()
         {
             taxCalculatorView.RequestEnterCurrency();
-            inputCur = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
+            inputCur = userInput.GetUserInput(TypeOfUserInput.currency);
 
             GlobalVariable.checkedInput = inputCur;
             
@@ -89,7 +89,7 @@ namespace PractikalLesson_1
                 Console.WriteLine("Введите ваш доход за " + mothStr[count]);
                 Console.WriteLine("======================================");
 
-                monthlySalaryStr[count] = userInput.GetUserInput(TypeOfUserInput.money, TypeOfUserInput.command);
+                monthlySalaryStr[count] = userInput.GetUserInput(TypeOfUserInput.money);
 
                 GlobalVariable.checkedInput = monthlySalaryStr[count];
                

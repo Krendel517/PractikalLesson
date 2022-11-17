@@ -79,13 +79,12 @@
     <Compile Include="SimpleCalculator.cs" />
     <Compile Include="TaxCalculator.cs" />
     <Compile Include="TaxCalculatorView.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="InputController.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="TimerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

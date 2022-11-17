@@ -5,7 +5,7 @@ namespace PractikalLesson_1
 {
     public class MainMenu
     {
-        Controller userInput = new Controller();
+        InputController userInput = new InputController();
 
         private string firstCalc = "1";
         private string secCalc = "2";
@@ -82,10 +82,6 @@ namespace PractikalLesson_1
 
                 Console.Clear();
                 timer.Start();
-            }
-            else if (GlobalVariable.checkedInput == GlobalVariable.exit)
-            {
-                Environment.Exit(0);
             }
             else
             {

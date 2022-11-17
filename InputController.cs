@@ -4,12 +4,15 @@ using System.Linq;
 
 namespace PractikalLesson_1
 {
-    public class Controller : ICommand
+    public class InputController : ICommand
     {
         private string currentInput;
         private string checkedInput;
         public double numberConv;
-        string invalidValue = "invalid value";
+        private string invalidValue = "invalid value";
+        public delegate void OnBackToMainMenuEntered();
+        public event OnBackToMainMenuEntered backToMainMenuEntered;
+
 
         NumberFormatInfo chekPoint = new NumberFormatInfo()
         {
@@ -42,7 +45,7 @@ namespace PractikalLesson_1
             switch (type)
             {
                 case TypeOfUserInput.empty:
-                    GetUserInput();
+                    GetUserInputEmpty();
                     break;
                 case TypeOfUserInput.year:
                     GetUserInputYear();
@@ -66,7 +69,7 @@ namespace PractikalLesson_1
                     GetUserInputGetData();
                     break;
                 case TypeOfUserInput.second:
-                    GetUserInputSecond();
+                    GetUserInputSeconds();
                     break;
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
@@ -112,7 +115,7 @@ namespace PractikalLesson_1
                     GetUserInputMathAction(false);
                     break;
                 case TypeOfUserInput.second:
-                    GetUserInputSecond(false);
+                    GetUserInputSeconds(false);
                     break;
                 case TypeOfUserInput.command:
                     GetUserInputCommand(false);
@@ -156,7 +159,7 @@ namespace PractikalLesson_1
                     GetUserInputMathAction();
                     break;
                 case TypeOfUserInput.second:
-                    GetUserInputSecond();
+                    GetUserInputSeconds();
                     break;
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
@@ -173,8 +176,8 @@ namespace PractikalLesson_1
 
         public string GetUserInputEmpty(bool showWarning = true)
         {
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (currentInput.Contains(""))
             {
@@ -219,8 +222,8 @@ namespace PractikalLesson_1
 
             foreach (string calculatorNumberChecked in calculatorNumber)
             {
-                Exit();
-                BackToMainMenu();
+                ExitEntered();
+                BackToMainMenuEntered();
 
                 if (currentInput == calculatorNumberChecked)
                 {
@@ -247,8 +250,8 @@ namespace PractikalLesson_1
             const string dollar = "USD";
             const string euro = "EUR";
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (currentInput == hryvnia)
             {
@@ -279,8 +282,8 @@ namespace PractikalLesson_1
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (double.TryParse(currentInput, out double number))
             {
@@ -313,8 +316,8 @@ namespace PractikalLesson_1
         private string GetUserInputSimpleNumb(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (double.TryParse(currentInput, out double number_1))
             {
@@ -349,8 +352,8 @@ namespace PractikalLesson_1
             string multiplication = "*";
             string persent = "%";
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (currentInput == plus)
             {
@@ -394,8 +397,8 @@ namespace PractikalLesson_1
             culture = CultureInfo.CreateSpecificCulture("fr-FR");
             styles = DateTimeStyles.None;
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
             {
@@ -415,12 +418,12 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        private string GetUserInputSecond(bool showWarning = true)
+        private string GetUserInputSeconds(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (double.TryParse(currentInput, out double number_1))
             {
@@ -478,7 +481,7 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        public void Exit()
+        public void ExitEntered()
         {
             if (currentInput == GlobalVariable.exit)
             {
@@ -487,12 +490,11 @@ namespace PractikalLesson_1
             }
         }
 
-        public void BackToMainMenu()
+        public void BackToMainMenuEntered()
         {
             if (currentInput == GlobalVariable.exitToMainMenu)
             {
-                BaseCalculator baseCalculator = new SimpleCalculator("протсой калькулятор", 1);
-                baseCalculator.ExitToMainMenu();
+                backToMainMenuEntered?.Invoke();
             }
         }
     }

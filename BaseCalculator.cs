@@ -5,7 +5,7 @@ namespace PractikalLesson_1
 {
     public abstract class BaseCalculator : BaseCalculatorView, ICalculate
     {
-        protected Controller userInput = new Controller();
+        protected InputController userInput = new InputController();
 
         protected string name;
         protected int id;
@@ -23,16 +23,11 @@ namespace PractikalLesson_1
 
         public void WelcomeMessege()
         {
+            userInput.backToMainMenuEntered += ExitToMainMenu;
             WelcomeMessegeView(name);
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.empty);
 
-            if (GlobalVariable.checkedInput == "Return")
-            {
-                MainMenu mainMenu = new MainMenu();
-                Console.Clear();
-                mainMenu.CalculatorSelection();
-            }
-            else if (GlobalVariable.checkedInput == "")
+            if (GlobalVariable.checkedInput == "")
             {
                 Clear();
             }
@@ -41,7 +36,7 @@ namespace PractikalLesson_1
                 Clear();
                 WtireWarning();
 
-                Start();
+                WelcomeMessege();
             }
         }
 
@@ -77,6 +72,8 @@ namespace PractikalLesson_1
         public void ExitToMainMenu()
         {
             MainMenu mainMenu = new MainMenu();
+            userInput.backToMainMenuEntered -= ExitToMainMenu;
+
             Clear();
             mainMenu.CalculatorSelection();
         }
