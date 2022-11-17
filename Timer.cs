@@ -10,9 +10,6 @@ namespace PractikalLesson_1
         private double inputTime;
         private double time;
         private const double millisecond = 0.1f;
-        public delegate void ShowView(double inputTime);
-        public event ShowView showResult;
-
         public TimerView timerView = new TimerView();
 
         public Timer(string name, int id) : base(name, id)

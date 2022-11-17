@@ -51,7 +51,7 @@ namespace PractikalLesson_1
             Console.WriteLine("1. Простой калькулятор");
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
-            Console.WriteLine("4. Секундоиер");
+            Console.WriteLine("4. Секундомер");
 
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
 
