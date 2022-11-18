@@ -3,13 +3,13 @@ using System;
 
 namespace PractikalLesson_1
 {
-    public abstract class BaseCalculator : BaseCalculatorView, ICalculate
+    public abstract class BaseCalculator : ICalculate
     {
         protected InputController userInput = new InputController();
+        protected BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
 
         protected string name;
         protected int id;
-
         protected string Name { get { return name; } }
         protected int Id { get { return id; } }
 
@@ -24,18 +24,17 @@ namespace PractikalLesson_1
         public void WelcomeMessege()
         {
             userInput.backToMainMenuEntered += ExitToMainMenu;
-            WelcomeMessegeView(name);
+            baseCalculatorView.WelcomeMessegeView(name);
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.empty);
 
             if (GlobalVariable.checkedInput == "")
             {
-                Clear();
+                baseCalculatorView.Clear();
             }
             else
             {
-                Clear();
-                WtireWarning();
-
+                baseCalculatorView.Clear();
+                baseCalculatorView.WtireWarning();
                 WelcomeMessege();
             }
         }
@@ -46,7 +45,7 @@ namespace PractikalLesson_1
 
         public void GetCommand()
         {
-            ShowCommand();
+            baseCalculatorView.ShowCommand();
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command);
 
             if (GlobalVariable.checkedInput == GlobalVariable.calculatorAgain)
@@ -65,7 +64,7 @@ namespace PractikalLesson_1
 
         public void CalculateAgain()
         {
-            Clear();
+            baseCalculatorView.Clear();
             Start();
         }
 
@@ -74,7 +73,7 @@ namespace PractikalLesson_1
             MainMenu mainMenu = new MainMenu();
             userInput.backToMainMenuEntered -= ExitToMainMenu;
 
-            Clear();
+            baseCalculatorView.Clear();
             mainMenu.CalculatorSelection();
         }
 
