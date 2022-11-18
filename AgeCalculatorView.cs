@@ -4,12 +4,10 @@ namespace PractikalLesson_1
 {
     class AgeCalculatorView : BaseCalculatorView
     {
-        public void ShowResult()
+        public void ShowResult(double agePerson)
         {
-            AgeCalculator ageCalculator = new AgeCalculator("калькулятор возраста", 2);
-
             Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(ageCalculator.agePerson));
+            Console.WriteLine($"Возраст человека, который родился {GlobalVariable.checkedInput} составляет " + Math.Truncate(agePerson));
             ShowCommand();
         }
     }

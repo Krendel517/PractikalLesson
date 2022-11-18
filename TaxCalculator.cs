@@ -5,7 +5,6 @@ namespace PractikalLesson_1
 {
     public class TaxCalculator : BaseCalculator
     {
-
         TaxCalculatorView taxCalculatorView = new TaxCalculatorView();
 
         public TaxCalculator(string name, int id) : base(name, id)
@@ -30,21 +29,13 @@ namespace PractikalLesson_1
         private const double kursEuro = 30.7;
         private string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
 
-        public double SingleSocialContribution => singleSocialContribution;
-        public string FormatMoney { get { return formatMoney; } }
-        public string Valut { get { return valut; } }
-        public double SingleTax { get { return singleTax; } }
-        public double TaxDeduction { get { return taxDeduction; } }
-        public double AnnualIncome => annualIncome;
-        public double SumInHruvnia { get { return sumInHruvnia; } }
-
         public override void Start()
         {
             WelcomeMessege();
             ChooseCurreny();
             GetInput();
             Calculate();
-            taxCalculatorView.ShowResult();
+            taxCalculatorView.ShowResult(formatMoney, valut, annualIncome, sumInHruvnia, singleTax, singleSocialContribution, taxDeduction);
             GetCommand();
         }
 
@@ -132,8 +123,6 @@ namespace PractikalLesson_1
 
             singleTax = sumInHruvnia - singleTax - singleSocialContribution;
             taxDeduction = sumInHruvnia - singleTax - singleSocialContribution;
-
-            taxCalculatorView.ShowResult();
         }
     }
 }

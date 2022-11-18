@@ -7,11 +7,12 @@ namespace PractikalLesson_1
 {
     class Timer : BaseCalculator
     {
+        public TimerView timerView = new TimerView();
+
         private double inputTime;
         private double time;
         private const double millisecond = 0.1f;
-        public TimerView timerView = new TimerView();
-
+       
         public Timer(string name, int id) : base(name, id)
         {
         }
@@ -28,7 +29,7 @@ namespace PractikalLesson_1
         public override void GetInput()
         {
             timerView.RequestEnterTime();
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.second);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.seconds);
             inputTime = Convert.ToDouble(GlobalVariable.checkedInput);
         }
 
@@ -42,7 +43,7 @@ namespace PractikalLesson_1
                 if (time < inputTime)
                 {
                     GlobalVariable.checkedInput = "";
-                    GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.second);
+                    GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.seconds);
                     firstNumbStr += GlobalVariable.checkedInput;
 
                     inputTime += Convert.ToDouble(firstNumbStr);

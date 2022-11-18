@@ -4,6 +4,9 @@ namespace PractikalLesson_1
 {
     class AgeCalculator : BaseCalculator
     {
+
+        AgeCalculatorView ageCalculatorView = new AgeCalculatorView();
+
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
         private const double daysInYear = 365.2425;
@@ -14,20 +17,17 @@ namespace PractikalLesson_1
         {
         }
 
-        AgeCalculatorView ageCalculatorView = new AgeCalculatorView();
-
         public override void Start()
         {
             WelcomeMessege();
             GetInput();
             Calculate();
-            ageCalculatorView.ShowResult();
+            ageCalculatorView.ShowResult(agePerson);
         }
 
         public override void GetInput()
         {
             Console.WriteLine("Введите дату рождения какого-либо человека, чтобы узнать кол-во лет.");
-
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.ageDateFormat);
         }
 

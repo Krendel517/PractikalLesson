@@ -4,6 +4,8 @@ namespace PractikalLesson_1
 {
     public class SimpleCalculator : BaseCalculator
     {
+        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView();
+
         public double firstNumber;
         public double secondNumber;
         public string action;
@@ -15,19 +17,16 @@ namespace PractikalLesson_1
         private const string multiplicatoins = "*";
         private const string percent = "%";
         
-
         public SimpleCalculator(string name, int id) : base(name, id)
         {
         }
-
-        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView();
 
         public override void Start()
         {
             WelcomeMessege();
             GetInput();
             Calculate();
-            simpleCalculatorView.ShowResult();
+            simpleCalculatorView.ShowResult(action, answer, firstNumber, secondNumber);
         }
 
         public override void GetInput()

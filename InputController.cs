@@ -51,16 +51,16 @@ namespace PractikalLesson_1
                     GetUserInputYear();
                     break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc();
+                    GetUserInputNumberOfCalculator();
                     break;
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency();
                     break;
                 case TypeOfUserInput.money:
-                    GetUserInputMoney();
+                    GetUserInputCalculateNumb();
                     break;
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb();
+                    GetUserInputCalculateNumb();
                     break;
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction();
@@ -68,7 +68,7 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.ageDateFormat:
                     GetUserInputGetData();
                     break;
-                case TypeOfUserInput.second:
+                case TypeOfUserInput.seconds:
                     GetUserInputSeconds();
                     break;
                 case TypeOfUserInput.command:
@@ -100,21 +100,21 @@ namespace PractikalLesson_1
                     GetUserInputGetData(false);
                     break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc(false);
+                    GetUserInputNumberOfCalculator(false);
                     break;
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency(false);
                     break;
                 case TypeOfUserInput.money:
-                    GetUserInputMoney(false);
+                    GetUserInputCalculateNumb(false);
                     break;
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb(false);
+                    GetUserInputCalculateNumb(false);
                     break;
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction(false);
                     break;
-                case TypeOfUserInput.second:
+                case TypeOfUserInput.seconds:
                     GetUserInputSeconds(false);
                     break;
                 case TypeOfUserInput.command:
@@ -144,21 +144,21 @@ namespace PractikalLesson_1
                     GetUserInputGetData();
                     break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc();
+                    GetUserInputNumberOfCalculator();
                     break;
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency();
                     break;
                 case TypeOfUserInput.money:
-                    GetUserInputMoney();
+                    GetUserInputCalculateNumb();
                     break;
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb();
+                    GetUserInputCalculateNumb();
                     break;
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction();
                     break;
-                case TypeOfUserInput.second:
+                case TypeOfUserInput.seconds:
                     GetUserInputSeconds();
                     break;
                 case TypeOfUserInput.command:
@@ -216,7 +216,7 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        private string GetUserInputNumberCalc(bool showWarning = true)
+        private string GetUserInputNumberOfCalculator(bool showWarning = true)
         {
             string[] calculatorNumber = { "1", "2", "3", "4" };
 
@@ -278,44 +278,11 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        private string GetUserInputMoney(bool showWarning = true)
+        private string GetUserInputCalculateNumb(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
-
-            ExitEntered();
-            BackToMainMenuEntered();
-
-            if (double.TryParse(currentInput, out double number))
-            {
-                numberConv = Convert.ToDouble(currentInput);
-
-                checkedInput = currentInput;
-            }
-            else if (isLetter == false && currentInput.Contains("."))
-            {
-                if (currentInput.Contains("."))
-                {
-                    numberConv = Convert.ToDouble(currentInput, chekPoint);
-                }
-
-                checkedInput = currentInput;
-            }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
-            }
-            else
-            {
-                checkedInput = invalidValue;
-            }
-
-            return checkedInput;
-        }
-
-        private string GetUserInputSimpleNumb(bool showWarning = true)
-        {
-            bool isLetter = currentInput.Any(Char.IsLetter);
+            bool isDot = currentInput.Contains(".");
+            bool isComma = currentInput.Contains(",");
             ExitEntered();
             BackToMainMenuEntered();
 
@@ -325,11 +292,36 @@ namespace PractikalLesson_1
 
                 checkedInput = currentInput;
             }
-            else if (!isLetter && currentInput.Contains("."))
+            else if (isComma && isDot)
             {
-                numberConv = Convert.ToDouble(currentInput, chekPoint);
+                if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WtireWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
+            }
+            else if (!isLetter && isDot)
+            {
+                int numberOfDots = currentInput.Count(x => x == '.');
 
-                checkedInput = currentInput;
+                if (numberOfDots > 1 && showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WtireWarning();
+                }
+                else if (numberOfDots > 1)
+                {
+                    checkedInput = invalidValue;
+                }
+                else
+                {
+                    numberConv = Convert.ToDouble(currentInput, chekPoint);
+                    checkedInput = currentInput;
+                }
             }
             else if (showWarning == true)
             {
@@ -346,43 +338,26 @@ namespace PractikalLesson_1
 
         private string GetUserInputMathAction(bool showWarning = true)
         {
-            string plus = "+";
-            string substruction = "-";
-            string division = "/";
-            string multiplication = "*";
-            string persent = "%";
-
+            string[] allAction = { "+", "-", "/", "*", "%" };
             ExitEntered();
             BackToMainMenuEntered();
 
-            if (currentInput == plus)
+            foreach (var action in allAction)
             {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == substruction)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == division)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == multiplication)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == persent)
-            {
-                checkedInput = currentInput;
-            }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-                baseCalculatorView.WtireWarning();
-            }
-            else
-            {
-                checkedInput = invalidValue;
+                if (currentInput == action)
+                {
+                    checkedInput = currentInput;
+                    return checkedInput;
+                }
+                else if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WtireWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
             }
 
             return checkedInput;
@@ -390,19 +365,9 @@ namespace PractikalLesson_1
 
         private string GetUserInputGetData(bool showWarning = true)
         {
-            CultureInfo culture;
-            DateTimeStyles styles;
-            DateTime dateResult;
-
-            culture = CultureInfo.CreateSpecificCulture("fr-FR");
-            styles = DateTimeStyles.None;
-
-            ExitEntered();
-            BackToMainMenuEntered();
-
-            if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
+            bool isDate = DateTime.TryParse(currentInput, out DateTime result);
+            if (isDate)
             {
-                DateTime birthDayInput = DateTime.Parse(currentInput);
                 checkedInput = currentInput;
             }
             else if (showWarning == true)
@@ -450,7 +415,6 @@ namespace PractikalLesson_1
             }
 
             return checkedInput;
-
         }
 
         private string GetUserInputCommand(bool showWarning = true)

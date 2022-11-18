@@ -25,24 +25,20 @@ namespace PractikalLesson_1
             Console.WriteLine("======================");
         }
 
-        public void ShowResult()
+        public void ShowResult(string action, double answer, double firstNumber, double secondNumber)
         {
-            SimpleCalculator simpleCalculator = new SimpleCalculator("простой калькулятор", 1);
-
-            if (simpleCalculator.action == "%")
+            if (action == "%")
             {
                 Console.Clear();
-                Console.Write($"Процентное соотношение {simpleCalculator.firstNumber} от {simpleCalculator.secondNumber} составляет - ");
-                Console.Write("{0:N}", simpleCalculator.answer);
+                Console.Write($"Процентное соотношение {firstNumber} от {secondNumber} составляет - ");
+                Console.Write("{0:N}", answer);
                 Console.WriteLine("%");
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine($"Результат вычисления {simpleCalculator.firstNumber} {simpleCalculator.action} {simpleCalculator.secondNumber} = {simpleCalculator.answer}");
+                Console.WriteLine($"Результат вычисления {firstNumber} {action} {secondNumber} = {answer}");
             }
-
-            ShowCommand();
         }
     }
 }
