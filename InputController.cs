@@ -11,6 +11,7 @@ namespace PractikalLesson_1
         private string currentInput;
         private string checkedInput;
         public double numberConv;
+        private int count = 0;
         string invalidValue = "invalid value";
         public delegate void OnBackToMainMenuEntered();
         public event OnBackToMainMenuEntered backToMainMenuEntered;
@@ -46,7 +47,7 @@ namespace PractikalLesson_1
             switch (type)
             {
                 case TypeOfUserInput.empty:
-                    GetUserInput();
+                    GetUserInputEmpty();
                     break;
                 case TypeOfUserInput.year:
                     GetUserInputYear();
@@ -223,17 +224,21 @@ namespace PractikalLesson_1
         private string GetUserInputNumberOfCalculator(bool showWarning = true)
         {
             string[] calculatorNumber = { "1", "2", "3", "4" };
+            count = 0;
 
             foreach (string calculatorNumberChecked in calculatorNumber)
             {
+                count++;
+
                 ExitEntered();
                 BackToMainMenuEntered();
+
                 if (currentInput == calculatorNumberChecked)
                 {
                     checkedInput = currentInput;
                     break;
                 }
-                else if (showWarning == true)
+                else if (count == 4 && showWarning == true)
                 {
                     checkedInput = invalidValue;
                     baseCalculatorView.WriteWarning();
@@ -248,19 +253,22 @@ namespace PractikalLesson_1
 
         private string GetUserInputCurrency(bool showWarning = true)
         {
-            string[] currencyCollections = {"UAH", "USD", "EUR" }; 
+            string[] currencyCollections = {"UAH", "USD", "EUR" };
+            count = 0;
 
             ExitEntered();
             BackToMainMenuEntered();
 
             foreach (string currency in currencyCollections)
             {
+                count++;
+
                 if (currentInput == currency)
                 {
                     checkedInput = currentInput;
                     break;
                 }
-                else if (showWarning == true)
+                else if (count == 3 && showWarning == true)
                 {
                     checkedInput = invalidValue;
                     baseCalculatorView.WriteWarning();
@@ -370,17 +378,20 @@ namespace PractikalLesson_1
         private string GetUserInputMathAction(bool showWarning = true)
         {
             string[] allAction = { "+", "-", "/", "*", "%" };
+            count = 0;
             ExitEntered();
             BackToMainMenuEntered();
 
             foreach (var action in allAction)
             {
+                count++;
+
                 if (currentInput == action)
                 {
                     checkedInput = currentInput;
-                    break;
+                    return checkedInput;
                 }
-                else if (showWarning == true)
+                else if (count == 5 && showWarning == true)
                 {
                     checkedInput = invalidValue;
                     baseCalculatorView.WriteWarning();

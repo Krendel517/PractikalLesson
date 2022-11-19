@@ -33,17 +33,17 @@ namespace PractikalLesson_1
         public override void GetInput()
         {
             simpleCalculatorView.RequestEnterFirstNumber();
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber);
 
             firstNumber = userInput.numberConv;
 
             simpleCalculatorView.RequestEnterAction();
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.mathematicalActions);
 
             action = GlobalVariable.checkedInput;
 
             simpleCalculatorView.RequestEnterSecondnumber();
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.simpleNumber);
 
             secondNumber = userInput.numberConv;
         }

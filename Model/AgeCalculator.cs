@@ -27,7 +27,7 @@ namespace PractikalLesson_1
         public override void GetInput()
         {
             Console.WriteLine("Введите дату рождения какого-либо человека, чтобы узнать кол-во лет.");
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.ageDateFormat);
         }
 
         public override void Calculate()

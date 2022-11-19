@@ -24,16 +24,12 @@ namespace PractikalLesson_1
 
         public void WelcomeMessege()
         {
+            userInput.backToMainMenuEntered += ExitToMainMenu;
             baseCalculatorView.WelcomeMessegeView(name);
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.empty);
 
-            if (GlobalVariable.checkedInput == "Return")
-            {
-                MainMenu mainMenu = new MainMenu();
-                Console.Clear();
-                mainMenu.CalculatorSelection();
-            }
-            else if (GlobalVariable.checkedInput == "")
+
+            if (GlobalVariable.checkedInput == "")
             {
                 baseCalculatorView.Clear();
             }
@@ -78,6 +74,8 @@ namespace PractikalLesson_1
         public void ExitToMainMenu()
         {
             MainMenu mainMenu = new MainMenu();
+            userInput.backToMainMenuEntered -= ExitToMainMenu;
+
             baseCalculatorView.Clear();
             mainMenu.CalculatorSelection();
         }

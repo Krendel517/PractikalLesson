@@ -12,7 +12,7 @@ namespace PractikalLesson_1.View
 
         public void CountdownWarning()
         {
-            Console.WriteLine($"Идет отсчет до {GlobalVariable.checkedInput}-ти секунд.");
+            Console.WriteLine($"Идет отсчет до {GlobalVariable.checkedInput} секунд.");
             Console.WriteLine("(Во время отсчета вы можете ввести кол-во секунд, которое вы можете прибавить к текущему времени.)");
         }
 

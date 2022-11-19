@@ -54,7 +54,7 @@ namespace PractikalLesson_1
             Console.WriteLine("3. Калькулятор налогов");
             Console.WriteLine("4. Секундомер");
 
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number);
 
             if (GlobalVariable.checkedInput == firstCalc)
             {
