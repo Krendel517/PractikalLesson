@@ -6,7 +6,7 @@ namespace PractikalLesson_1
 {
     public class MainMenu
     {
-        Controller userInput = new Controller();
+        InputController userInput = new InputController();
 
         private const string firstCalc = "1";
         private const string secCalc = "2";

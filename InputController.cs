@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PractikalLesson_1
 {
-    public class Controller : ICommand
+    public class InputController : ICommand
     {
         BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
 

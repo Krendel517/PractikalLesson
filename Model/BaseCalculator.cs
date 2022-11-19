@@ -5,7 +5,7 @@ namespace PractikalLesson_1
 {
     public abstract class BaseCalculator : BaseCalculatorView, ICalculate
     {
-        protected Controller userInput = new Controller();
+        protected InputController userInput = new InputController();
         protected BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
 
         protected string name;

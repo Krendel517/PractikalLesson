@@ -60,7 +60,7 @@
     <Compile Include="Model\SimpleCalculator.cs" />
     <Compile Include="Model\TaxCalculator.cs" />
     <Compile Include="View\TaxCalculatorView.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="InputController.cs" />
     <Compile Include="View\TimerView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
