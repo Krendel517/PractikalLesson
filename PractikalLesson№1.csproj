@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AgeCalculator.cs" />
+    <Compile Include="Model\Timer.cs" />
     <Compile Include="View\AgeCalculatorView.cs" />
     <Compile Include="Model\BaseCalculator.cs" />
     <Compile Include="View\BaseCalculatorView.cs" />
@@ -60,9 +61,7 @@
     <Compile Include="Model\TaxCalculator.cs" />
     <Compile Include="View\TaxCalculatorView.cs" />
     <Compile Include="Controller.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="View\TimerView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

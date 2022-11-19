@@ -36,19 +36,19 @@ namespace PractikalLesson_1
 ");
         }
 
-        public string LongDivisionLine()
+        public void LongDivisionLine()
         {
-            return "========================================================================================================================";
+            Console.WriteLine("========================================================================================================================");
         }
 
-        public string MediumDivisionLine()
+        public void MediumDivisionLine()
         {
-           return "======================================================";
+            Console.WriteLine("======================================================");
         }
 
-        public string LowDivisionLine()
+        public void LowDivisionLine()
         {
-            return "======================";
+            Console.WriteLine("======================");
         }
 
         public void ShowCommand()

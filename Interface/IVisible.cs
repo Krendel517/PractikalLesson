@@ -13,11 +13,11 @@ namespace PractikalLesson_1
 
         void SkipThreeString();
 
-        string LongDivisionLine();
+        void LongDivisionLine();
 
-        string MediumDivisionLine();
+        void MediumDivisionLine();
 
-        string LowDivisionLine();
+        void LowDivisionLine();
 
         void ShowCommand();
     }

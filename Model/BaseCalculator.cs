@@ -24,6 +24,7 @@ namespace PractikalLesson_1
 
         public void WelcomeMessege()
         {
+            baseCalculatorView.WelcomeMessegeView(name);
             GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.empty);
 
             if (GlobalVariable.checkedInput == "Return")

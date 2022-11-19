@@ -7,10 +7,6 @@ namespace PractikalLesson_1
     {
         TaxCalculatorView taxCalculatorView = new TaxCalculatorView();
 
-        public TaxCalculator(string name, int id) : base(name, id)
-        {
-        }
-
         private int count;
         private double singleSocialContribution = minimumWage * 0.22;
         private double sumInHruvnia = 0;
@@ -29,9 +25,12 @@ namespace PractikalLesson_1
         private const double kursEuro = 30.7;
         private string[] mothStr = { "январь:", "февраль:", "март:", "апрель:", "май:", "июнь:", "июль:", "август:", "сентябрь:", "октябрь:", "ноябрь:", "декабрь:" };
 
+        public TaxCalculator(string name, int id) : base(name, id)
+        {
+        }
+
         public override void Start()
         {
-            taxCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             ChooseCurreny();
             GetInput();
@@ -44,7 +43,6 @@ namespace PractikalLesson_1
         {
             taxCalculatorView.RequestEnterCurrency();
             inputCur = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
-
             GlobalVariable.checkedInput = inputCur;
             
             if (inputCur == hryvnia)
