@@ -12,6 +12,10 @@ namespace PractikalLesson_1
         private string checkedInput;
         public double numberConv;
         string invalidValue = "invalid value";
+        public delegate void OnBackToMainMenuEntered();
+        public event OnBackToMainMenuEntered backToMainMenuEntered;
+
+
 
         NumberFormatInfo chekPoint = new NumberFormatInfo()
         {
@@ -44,35 +48,30 @@ namespace PractikalLesson_1
                 case TypeOfUserInput.empty:
                     GetUserInput();
                     break;
-
                 case TypeOfUserInput.year:
                     GetUserInputYear();
                     break;
-
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc();
+                    GetUserInputNumberOfCalculator();
                     break;
-
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency();
                     break;
-
                 case TypeOfUserInput.money:
-                    GetUserInputMoney();
+                    GetUserInputCalculateNumb();
                     break;
-
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb();
+                    GetUserInputCalculateNumb();
                     break;
-
+                case TypeOfUserInput.seconds:
+                    GetUserInputSeconds();
+                    break;
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction();
                     break;
-
                 case TypeOfUserInput.ageDateFormat:
                     GetUserInputGetData();
                     break;
-
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
                     break;
@@ -102,25 +101,23 @@ namespace PractikalLesson_1
                     GetUserInputGetData();
                     break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc(false);
+                    GetUserInputNumberOfCalculator(false);
                     break;
-
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency(false);
                     break;
-
                 case TypeOfUserInput.money:
-                    GetUserInputMoney(false);
+                    GetUserInputCalculateNumb(false);
                     break;
-
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb(false);
+                    GetUserInputCalculateNumb(false);
                     break;
-
+                case TypeOfUserInput.seconds:
+                    GetUserInputSeconds(false);
+                    break;
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction(false);
                     break;
-
                 case TypeOfUserInput.command:
                     GetUserInputCommand(false);
                     break;
@@ -148,25 +145,23 @@ namespace PractikalLesson_1
                     GetUserInputGetData();
                     break;
                 case TypeOfUserInput.number:
-                    GetUserInputNumberCalc();
+                    GetUserInputNumberOfCalculator();
                     break;
-
                 case TypeOfUserInput.currency:
                     GetUserInputCurrency();
                     break;
-
                 case TypeOfUserInput.money:
-                    GetUserInputMoney();
+                    GetUserInputCalculateNumb();
                     break;
-
                 case TypeOfUserInput.simpleNumber:
-                    GetUserInputSimpleNumb();
+                    GetUserInputCalculateNumb();
                     break;
-
+                case TypeOfUserInput.seconds:
+                    GetUserInputSeconds();
+                    break;
                 case TypeOfUserInput.mathematicalActions:
                     GetUserInputMathAction();
                     break;
-
                 case TypeOfUserInput.command:
                     GetUserInputCommand();
                     break;
@@ -182,8 +177,8 @@ namespace PractikalLesson_1
 
         public string GetUserInputEmpty(bool showWarning = true)
         {
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (currentInput.Contains(""))
             {
@@ -204,8 +199,8 @@ namespace PractikalLesson_1
 
         private string GetUserInputYear(bool showWarning = true)
         {
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (int.TryParse(currentInput, out int number))
             {
@@ -225,107 +220,68 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        private string GetUserInputNumberCalc(bool showWarning = true)
+        private string GetUserInputNumberOfCalculator(bool showWarning = true)
         {
-            string firstCalc = "1";
-            string secCalc = "2";
-            string thirdCalc = "3";
+            string[] calculatorNumber = { "1", "2", "3", "4" };
 
-            Exit();
-            BackToMainMenu();
-
-            if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
+            foreach (string calculatorNumberChecked in calculatorNumber)
             {
-                checkedInput = currentInput;
+                ExitEntered();
+                BackToMainMenuEntered();
+                if (currentInput == calculatorNumberChecked)
+                {
+                    checkedInput = currentInput;
+                    break;
+                }
+                else if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WriteWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
             }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-                baseCalculatorView.WriteWarning();
-            }
-            else
-            {
-                checkedInput = invalidValue;
-            }
-
             return checkedInput;
         }
 
         private string GetUserInputCurrency(bool showWarning = true)
         {
-            const string hryvnia = "UAH";
-            const string dollar = "USD";
-            const string euro = "EUR";
+            string[] currencyCollections = {"UAH", "USD", "EUR" }; 
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
-            if (currentInput == hryvnia)
+            foreach (string currency in currencyCollections)
             {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == dollar)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == euro)
-            {
-                checkedInput = currentInput;
-            }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-                baseCalculatorView.WriteWarning();
-            }
-            else
-            {
-                checkedInput = invalidValue;
-            }
-
-            return checkedInput;
-        }
-
-        private string GetUserInputMoney(bool showWarning = true)
-        {
-            bool isLetter = currentInput.Any(Char.IsLetter);
-
-            Exit();
-            BackToMainMenu();
-
-            if (double.TryParse(currentInput, out double number))
-            {
-                numberConv = Convert.ToDouble(currentInput);
-
-                checkedInput = currentInput;
-            }
-            else if (isLetter == false && currentInput.Contains("."))
-            {
-                if (currentInput.Contains("."))
+                if (currentInput == currency)
                 {
-                    numberConv = Convert.ToDouble(currentInput, chekPoint);
+                    checkedInput = currentInput;
+                    break;
                 }
-
-                checkedInput = currentInput;
+                else if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WriteWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
             }
-            else if (showWarning == true)
-            {
-                checkedInput = invalidValue;
-                baseCalculatorView.WriteWarning();
-            }
-            else
-            {
-                checkedInput = invalidValue;
-            }
-
+           
             return checkedInput;
         }
 
-        private string GetUserInputSimpleNumb(bool showWarning = true)
+        private string GetUserInputCalculateNumb(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
+            bool isDot = currentInput.Contains(".");
+            bool isComma = currentInput.Contains(",");
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (double.TryParse(currentInput, out double number_1))
             {
@@ -333,11 +289,36 @@ namespace PractikalLesson_1
 
                 checkedInput = currentInput;
             }
-            else if (!isLetter && currentInput.Contains("."))
+            else if (isComma && isDot)
             {
-                numberConv = Convert.ToDouble(currentInput, chekPoint);
+                if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WriteWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
+            }
+            else if (!isLetter && isDot)
+            {
+                int numberOfDots = currentInput.Count(x => x == '.');
 
-                checkedInput = currentInput;
+                if (numberOfDots > 1 && showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WriteWarning();
+                }
+                else if (numberOfDots > 1)
+                {
+                    checkedInput = invalidValue;
+                }
+                else
+                {
+                    numberConv = Convert.ToDouble(currentInput, chekPoint);
+                    checkedInput = currentInput;
+                }
             }
             else if (showWarning == true)
             {
@@ -352,34 +333,22 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        private string GetUserInputMathAction(bool showWarning = true)
+        private string GetUserInputSeconds(bool showWarning = true)
         {
-            string plus = "+";
-            string substruction = "-";
-            string division = "/";
-            string multiplication = "*";
-            string persent = "%";
-
-            Exit();
-            BackToMainMenu();
-
-            if (currentInput == plus)
+            bool isLetter = currentInput.Any(Char.IsLetter);
+            ExitEntered();
+            BackToMainMenuEntered();
+            if (double.TryParse(currentInput, out double number_1))
             {
+                numberConv = Convert.ToDouble(currentInput);
                 checkedInput = currentInput;
             }
-            else if (currentInput == substruction)
+            else if (!isLetter && currentInput.Contains("."))
             {
+                numberConv = Convert.ToDouble(currentInput, chekPoint);
                 checkedInput = currentInput;
             }
-            else if (currentInput == division)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == multiplication)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == persent)
+            else if (currentInput == "")
             {
                 checkedInput = currentInput;
             }
@@ -391,6 +360,36 @@ namespace PractikalLesson_1
             else
             {
                 checkedInput = invalidValue;
+            }
+
+            return checkedInput;
+
+        }
+
+
+        private string GetUserInputMathAction(bool showWarning = true)
+        {
+            string[] allAction = { "+", "-", "/", "*", "%" };
+            ExitEntered();
+            BackToMainMenuEntered();
+
+            foreach (var action in allAction)
+            {
+                if (currentInput == action)
+                {
+                    checkedInput = currentInput;
+                    break;
+                }
+                else if (showWarning == true)
+                {
+                    checkedInput = invalidValue;
+                    baseCalculatorView.WriteWarning();
+                }
+                else
+                {
+                    checkedInput = invalidValue;
+                }
+
             }
 
             return checkedInput;
@@ -405,8 +404,8 @@ namespace PractikalLesson_1
             culture = CultureInfo.CreateSpecificCulture("fr-FR");
             styles = DateTimeStyles.None;
 
-            Exit();
-            BackToMainMenu();
+            ExitEntered();
+            BackToMainMenuEntered();
 
             if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
             {
@@ -454,7 +453,7 @@ namespace PractikalLesson_1
             return checkedInput;
         }
 
-        public void Exit()
+        public void ExitEntered()
         {
             if (currentInput == GlobalVariable.exit)
             {
@@ -462,13 +461,11 @@ namespace PractikalLesson_1
                 baseCalculator.ExitToProgram();
             }
         }
-
-        public void BackToMainMenu()
+        public void BackToMainMenuEntered()
         {
             if (currentInput == GlobalVariable.exitToMainMenu)
             {
-                BaseCalculator baseCalculator = new SimpleCalculator("протсой калькулятор", 1);
-                baseCalculator.ExitToMainMenu();
+                backToMainMenuEntered?.Invoke();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿
+using PractikalLesson_1.Model;
 using System;
 
 namespace PractikalLesson_1
@@ -7,12 +8,13 @@ namespace PractikalLesson_1
     {
         Controller userInput = new Controller();
 
-        private string firstCalc = "1";
-        private string secCalc = "2";
-        private string thirdCalc = "3";
-        int adult = 2004;
-        int questionableAge = 1920;
-       
+        private const string firstCalc = "1";
+        private const string secCalc = "2";
+        private const string thirdCalc = "3";
+        private const string fouthCalc = "4";
+        private int adult = 2004;
+        private int questionableAge = 1920;
+
         public void Show()
         {
             Start();
@@ -37,7 +39,7 @@ namespace PractikalLesson_1
             else if (!comingOfAge)
             {
                 Console.WriteLine("На данный момент вы не можете воспользоваться данными услагами, введите люблую клавишу, чтобы выйти.");
-                
+
                 Console.ReadKey();
                 Environment.Exit(0);
             }
@@ -50,8 +52,9 @@ namespace PractikalLesson_1
             Console.WriteLine("1. Простой калькулятор");
             Console.WriteLine("2. Калькулятор возраста");
             Console.WriteLine("3. Калькулятор налогов");
+            Console.WriteLine("4. Секундомер");
 
-            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number,TypeOfUserInput.command);
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
 
             if (GlobalVariable.checkedInput == firstCalc)
             {
@@ -74,9 +77,12 @@ namespace PractikalLesson_1
                 Console.Clear();
                 taxCalculator.Start();
             }
-            else if (GlobalVariable.checkedInput == GlobalVariable.exit)
+            else if (GlobalVariable.checkedInput == fouthCalc)
             {
-                Environment.Exit(0);
+                TimerCalculator timer = new TimerCalculator("секундомер", 4);
+
+                Console.Clear();
+                timer.Start();
             }
             else
             {

@@ -4,6 +4,8 @@ namespace PractikalLesson_1
 {
     public class SimpleCalculator : BaseCalculator
     {
+        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView();
+
         public double firstNumber;
         public double secondNumber;
         public string action;
@@ -19,11 +21,8 @@ namespace PractikalLesson_1
         {
         }
 
-        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView();
-
         public override void Start()
         {
-            simpleCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             GetInput();
             Calculate();
@@ -56,19 +55,15 @@ namespace PractikalLesson_1
                 case plus:
                     answer = firstNumber + secondNumber;
                     break;
-
                 case distribuctions:
                     answer = firstNumber - secondNumber;
                     break;
-
                 case division:
                     answer = firstNumber / secondNumber;
                     break;
-
                 case multiplicatoins:
                     answer = firstNumber * secondNumber;
                     break;
-
                 case percent:
                     answer = firstNumber / secondNumber * 100;
                     break;
