@@ -43,16 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgeCalculator.cs" />
-    <Compile Include="BaseCalculator.cs" />
+    <Compile Include="Model\AgeCalculator.cs" />
+    <Compile Include="View\AgeCalculatorView.cs" />
+    <Compile Include="Model\BaseCalculator.cs" />
+    <Compile Include="View\BaseCalculatorView.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="ICalculate.cs" />
+    <Compile Include="GlobalVariable.cs" />
+    <Compile Include="Interface\ICalculate.cs" />
+    <Compile Include="Interface\ICommand.cs" />
+    <Compile Include="Interface\IVisible.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="View\SimpleCalculatorView.cs" />
     <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleCalculator.cs" />
-    <Compile Include="TaxCalculator.cs" />
-    <Compile Include="UserInput.cs" />
+    <Compile Include="Model\SimpleCalculator.cs" />
+    <Compile Include="Model\TaxCalculator.cs" />
+    <Compile Include="View\TaxCalculatorView.cs" />
+    <Compile Include="Controller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

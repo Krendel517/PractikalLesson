@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
-    public class UserInput
+    public class Controller : ICommand
     {
+        BaseCalculatorView baseCalculatorView = new SimpleCalculatorView();
+
         private string currentInput;
         private string checkedInput;
         public double numberConv;
@@ -23,7 +22,7 @@ namespace PractikalLesson_1
         {
             if (currentInput.Contains(""))
             {
-                Console.WriteLine("Значение не корректно, введите любую клавишу, чтобы выйти");
+                baseCalculatorView.WriteWarning();
 
                 Console.ReadKey();
                 Environment.Exit(0);
@@ -183,6 +182,9 @@ namespace PractikalLesson_1
 
         public string GetUserInputEmpty(bool showWarning = true)
         {
+            Exit();
+            BackToMainMenu();
+
             if (currentInput.Contains(""))
             {
                 checkedInput = currentInput;
@@ -190,9 +192,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("=======================================");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -204,6 +204,9 @@ namespace PractikalLesson_1
 
         private string GetUserInputYear(bool showWarning = true)
         {
+            Exit();
+            BackToMainMenu();
+
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
@@ -211,10 +214,8 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.Clear();
-                Console.WriteLine("Значение не корректно, попробуйте ввести нужное значение снова.");
-                Console.WriteLine("===============================================================");
+                baseCalculatorView.Clear();
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -230,6 +231,9 @@ namespace PractikalLesson_1
             string secCalc = "2";
             string thirdCalc = "3";
 
+            Exit();
+            BackToMainMenu();
+
             if (currentInput == firstCalc || currentInput == secCalc || currentInput == thirdCalc)
             {
                 checkedInput = currentInput;
@@ -237,9 +241,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение не корректно, попробуйте снова.");
-                Console.WriteLine("=========================================");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -254,6 +256,9 @@ namespace PractikalLesson_1
             const string hryvnia = "UAH";
             const string dollar = "USD";
             const string euro = "EUR";
+
+            Exit();
+            BackToMainMenu();
 
             if (currentInput == hryvnia)
             {
@@ -270,9 +275,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("==========================================");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -285,6 +288,9 @@ namespace PractikalLesson_1
         private string GetUserInputMoney(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
+
+            Exit();
+            BackToMainMenu();
 
             if (double.TryParse(currentInput, out double number))
             {
@@ -304,9 +310,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("========================================");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -319,6 +323,9 @@ namespace PractikalLesson_1
         private string GetUserInputSimpleNumb(bool showWarning = true)
         {
             bool isLetter = currentInput.Any(Char.IsLetter);
+
+            Exit();
+            BackToMainMenu();
 
             if (double.TryParse(currentInput, out double number_1))
             {
@@ -335,9 +342,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("========================================");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -354,6 +359,9 @@ namespace PractikalLesson_1
             string division = "/";
             string multiplication = "*";
             string persent = "%";
+
+            Exit();
+            BackToMainMenu();
 
             if (currentInput == plus)
             {
@@ -378,10 +386,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение не верно, попробуйте снова.");
-                Console.WriteLine("========================================");
-                GetUserInput(TypeOfUserInput.mathematicalActions);
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -400,6 +405,9 @@ namespace PractikalLesson_1
             culture = CultureInfo.CreateSpecificCulture("fr-FR");
             styles = DateTimeStyles.None;
 
+            Exit();
+            BackToMainMenu();
+
             if (DateTime.TryParse(currentInput, culture, styles, out dateResult))
             {
                 DateTime birthDayInput = DateTime.Parse(currentInput);
@@ -408,9 +416,7 @@ namespace PractikalLesson_1
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.Clear();
-                Console.WriteLine("Значение не корректно, введите дату в формате дд.мм.гггг");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -422,28 +428,23 @@ namespace PractikalLesson_1
 
         private string GetUserInputCommand(bool showWarning = true)
         {
-            string exit = "Exit";
-            string calculatorAgain = "Calculate again";
-            string exitToMainMenu = "Return";
+            if (currentInput == GlobalVariable.calculatorAgain)
+            {
+                checkedInput = currentInput;
 
-            if (currentInput == calculatorAgain)
+            }
+            else if (currentInput == GlobalVariable.exit)
             {
                 checkedInput = currentInput;
             }
-            else if (currentInput == exit)
-            {
-                checkedInput = currentInput;
-            }
-            else if (currentInput == exitToMainMenu)
+            else if (currentInput == GlobalVariable.exitToMainMenu)
             {
                 checkedInput = currentInput;
             }
             else if (showWarning == true)
             {
                 checkedInput = invalidValue;
-
-                Console.WriteLine("Значение некорректно, попробуйте снова");
-                Console.WriteLine("=======================================");
+                baseCalculatorView.WriteWarning();
             }
             else
             {
@@ -451,6 +452,24 @@ namespace PractikalLesson_1
             }
 
             return checkedInput;
+        }
+
+        public void Exit()
+        {
+            if (currentInput == GlobalVariable.exit)
+            {
+                BaseCalculator baseCalculator = new SimpleCalculator("протсой калькулятор", 1);
+                baseCalculator.ExitToProgram();
+            }
+        }
+
+        public void BackToMainMenu()
+        {
+            if (currentInput == GlobalVariable.exitToMainMenu)
+            {
+                BaseCalculator baseCalculator = new SimpleCalculator("протсой калькулятор", 1);
+                baseCalculator.ExitToMainMenu();
+            }
         }
     }
 }

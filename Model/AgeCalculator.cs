@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PractikalLesson_1
 {
@@ -11,45 +7,39 @@ namespace PractikalLesson_1
         private DateTime todayData = DateTime.Today;
         private DateTime birthDay;
         private const double daysInYear = 365.2425;
-        private double agePerson;
+        public double agePerson;
         private double ageInDays;
 
         public AgeCalculator(string name, int id) : base(name, id)
         {
         }
 
-        public override void Show()
+        AgeCalculatorView ageCalculatorView = new AgeCalculatorView();
+
+        public override void Start()
         {
+            ageCalculatorView.WelcomeMessegeView(name);
             WelcomeMessege();
             GetInput();
             Calculate();
-            ShowResult();
+            ageCalculatorView.ShowResult(agePerson, birthDay);
+            GetCommand();
         }
 
         public override void GetInput()
         {
             Console.WriteLine("Введите дату рождения какого-либо человека, чтобы узнать кол-во лет.");
 
-            checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
-            CheckReturnInput();
+            GlobalVariable.checkedInput = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.ageDateFormat);
         }
 
         public override void Calculate()
         {
-            birthDay = Convert.ToDateTime(checkedInput);
+            birthDay = Convert.ToDateTime(GlobalVariable.checkedInput);
 
             TimeSpan ageForYears = todayData - birthDay;
             ageInDays = ageForYears.TotalDays;
             agePerson = ageInDays / daysInYear;
-        }
-
-        public override void ShowResult()
-        {
-            Console.Clear();
-            Console.WriteLine($"Возраст человека, который родился {checkedInput} составляет " + Math.Truncate(agePerson));
-            Console.WriteLine("==================================================");
-
-            ShowFinalScreen();
         }
     }
 }
