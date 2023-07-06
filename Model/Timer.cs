@@ -50,9 +50,8 @@ namespace PractikalLesson_1.Model
         public override void Calculate()
         {
             timerView.CountdownWarning();
-            for (time = 0; time < inputTime;)
+            for (time += millisecond; time < inputTime;)
             {
-                time += millisecond;
                 Thread.Sleep(100);
             }
 
